@@ -1,14 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
-import 'package:test_shop_task/core/model/config.dart';
+import 'package:test_shop_task/core/logic/navigation_provider.dart';
 
 class App extends ConsumerStatefulWidget {
-  final Config config;
-
   const App({
-    required this.config,
     super.key,
   });
 
@@ -18,29 +14,26 @@ class App extends ConsumerStatefulWidget {
 
 class AppState extends ConsumerState<App> {
   bool isInitialized = false;
-  late final  model;
+  late final AppModel model = ref.read(appModelProvider);
 
   @override
   void initState() {
-    super.initState();
     initApp();
+    super.initState();
   }
 
   Future<void> initApp() async {
-    model = ref.read(appModelProvider);
-    await model?.init(widget.config);
-    if (mounted) {
-      setState(() {
-        isInitialized = true;
-      });
-    }
+    await model.init();
   }
 
   @override
   Widget build(BuildContext context) {
+    final model = ref.watch(appModelProvider);
     return MaterialApp(
       title: "Weather",
-      home: Placeholder(),
+      home: model.isInitialized
+          ? const Placeholder()
+          : const Placeholder(color: Colors.red),
       // theme: AppTheme().buildThemeData(),
       // home: isInitialized ? const BottomNavigation() : const SplashPage(),
       // builder: BotToastInit(),
@@ -51,7 +44,7 @@ class AppState extends ConsumerState<App> {
       //   GlobalCupertinoLocalizations.delegate,
       // ],
       // supportedLocales: S.delegate.supportedLocales,
-      // navigatorKey: ref.read(navigator).key,
+      navigatorKey: ref.read(navigatorProvider).key,
     );
   }
 }

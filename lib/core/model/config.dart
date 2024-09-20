@@ -1,9 +1,3 @@
 class Config {
-  final bool isHttps;
-  final String host;
-
-  Config({
-    this.isHttps = false,
-    required this.host,
-  });
+  static const String host = '89.169.9.95';
 }
