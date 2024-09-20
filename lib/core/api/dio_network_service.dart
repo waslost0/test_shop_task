@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:test_shop_task/core/api/exception_handler_mixin.dart';
 import 'package:test_shop_task/core/api/network_service.dart';
 import 'package:test_shop_task/core/exceptions/app_exceptions.dart';
+import 'package:test_shop_task/core/model/api_response.dart';
 import 'package:test_shop_task/core/model/config.dart';
 
-import '../model/response.dart' as response;
 
 abstract class DioNetworkService extends NetworkService
     with ExceptionHandlerMixin {
@@ -43,7 +43,7 @@ abstract class DioNetworkService extends NetworkService
   }
 
   @override
-  Future<Either<AppException, response.Response>> post(
+  Future<ApiResponse> post(
     String endpoint, {
     Map<String, dynamic>? data,
   }) {
@@ -58,7 +58,7 @@ abstract class DioNetworkService extends NetworkService
   }
 
   @override
-  Future<Either<AppException, response.Response>> get(
+  Future<ApiResponse> get(
     String endpoint, {
     Map<String, dynamic>? queryParameters,
   }) {

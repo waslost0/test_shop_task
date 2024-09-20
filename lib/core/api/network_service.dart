@@ -1,6 +1,4 @@
-import 'package:dartz/dartz.dart';
-import 'package:test_shop_task/core/exceptions/app_exceptions.dart';
-import 'package:test_shop_task/core/model/response.dart';
+import 'package:test_shop_task/core/model/api_response.dart';
 
 abstract class NetworkService {
   String get baseUrl;
@@ -9,12 +7,12 @@ abstract class NetworkService {
 
   void updateHeader(Map<String, dynamic> data);
 
-  Future<Either<AppException, Response>> get(
+  Future<ApiResponse> get(
     String endpoint, {
     Map<String, dynamic>? queryParameters,
   });
 
-  Future<Either<AppException, Response>> post(
+  Future<ApiResponse> post(
     String endpoint, {
     Map<String, dynamic>? data,
   });
