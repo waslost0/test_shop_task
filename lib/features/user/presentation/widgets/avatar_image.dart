@@ -1,0 +1,61 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:test_shop_task/core/theme/app_colors.dart';
+import 'package:test_shop_task/core/widgets/safe_networkImage.dart';
+
+class AvatarImage extends StatelessWidget {
+  final String? imageUrl;
+  final double size;
+  final File? imageFile;
+  final Color? backgroundColor;
+
+  const AvatarImage(
+    this.imageUrl, {
+    super.key,
+    this.size = double.infinity,
+    this.backgroundColor,
+    this.imageFile,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      height: size,
+      child: Container(
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: backgroundColor ?? AppColors.raisinBlack.withOpacity(0.62),
+          border: Border.all(color: AppColors.border, width: 1.0),
+          boxShadow: const [
+            BoxShadow(
+              color: Color.fromRGBO(0, 0, 0, 0.1),
+              blurRadius: 1.0,
+              offset: Offset(0.0, 0.0),
+              spreadRadius: 4.0,
+            )
+          ],
+        ),
+        child: ClipOval(
+          child: image(context),
+        ),
+      ),
+    );
+  }
+
+  Widget image(BuildContext context) {
+    if (imageFile != null) {
+      return Image.file(
+        imageFile!,
+        fit: BoxFit.cover,
+      );
+    }
+
+    return SafeNetworkImage(
+      placeholderFit: BoxFit.scaleDown,
+      imageUrl: imageUrl,
+    );
+  }
+}

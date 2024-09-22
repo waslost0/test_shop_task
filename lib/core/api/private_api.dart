@@ -2,25 +2,20 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:injectable/injectable.dart';
 import 'package:test_shop_task/core/api/dio_network_service.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
+import 'package:test_shop_task/features/auth/domain/repositories/auth_repository.dart';
 
-final privateApiProvider = Provider<DioNetworkService>(
-  (ref) {
-    var appModel = ref.read(appModelProvider);
-    return PrivateApi(appModel: appModel);
-  },
-);
-
+@injectable
 class PrivateApi extends DioNetworkService {
   bool shouldLogRequest = true;
   bool shouldLogResponse = false;
-  final AppModel appModel;
+  final AuthRepository _authRepository;
 
-  PrivateApi({
-    required this.appModel,
-  }) {
+  PrivateApi(
+    this._authRepository,
+  ) {
     dio.options = dioBaseOptions;
     if (kDebugMode) {
       dio.interceptors.add(
@@ -33,7 +28,7 @@ class PrivateApi extends DioNetworkService {
   }
 
   Map<String, String> get tokenQueryParameters => {
-        'accessToken': appModel.appUser.getAccessToken() ?? '',
+        'accessToken': _authRepository.getAccessToken() ?? '',
       };
 
   void onRequest(
@@ -41,7 +36,7 @@ class PrivateApi extends DioNetworkService {
     RequestInterceptorHandler handler,
   ) async {
     log("[onRequest] $tokenQueryParameters");
-    if (!appModel.appUser.isAuthenticated()) {
+    if (!_authRepository.isAuthenticated()) {
       return;
     } else {
       options.queryParameters.addAll(tokenQueryParameters);

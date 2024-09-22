@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/logic/navigation_provider.dart';
 import 'package:test_shop_task/features/auth/presentation/screen/auth_by_phone.dart';
+import 'package:test_shop_task/features/navigation/bottom_navigation.dart';
 
 class App extends ConsumerStatefulWidget {
   const App({
@@ -33,7 +34,6 @@ class AppState extends ConsumerState<App> {
   Widget build(BuildContext context) {
     final model = ref.watch(appModelProvider);
     return MaterialApp(
-      key: _navigatorKey,
       title: "Weather",
       home: prepareStartPage(context),
       // theme: AppTheme().buildThemeData(),
@@ -53,10 +53,12 @@ class AppState extends ConsumerState<App> {
   Widget prepareStartPage(context) {
     final model = ref.watch(appModelProvider);
     if (!model.isInitialized) {
-      return const Placeholder();
+      return const Material(
+        child: Center(child: CircularProgressIndicator()),
+      );
     }
     if (model.isAuthenticated) {
-      return const Placeholder();
+      return const BottomNavigation();
     }
     return const AuthByPhonePage();
   }

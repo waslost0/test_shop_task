@@ -14,6 +14,7 @@ abstract class ExceptionToFailureConverter {
     return switch (exception) {
       AppException() => AppException(
           message: exception.message,
+          stack: exception.stack,
         ),
       UnauthorizedHttpException() => UnauthorizedServerFailure(
           message: exception.message,

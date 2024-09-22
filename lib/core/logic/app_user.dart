@@ -1,25 +1,53 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'app_model.dart';
+import 'package:test_shop_task/di/injection.dart';
+import 'package:test_shop_task/features/auth/domain/repositories/auth_repository.dart';
+import 'package:test_shop_task/features/user/domain/entities/user_entity.dart';
+import 'package:test_shop_task/features/user/domain/repositories/user_repository.dart';
 
 final appUserProvider = ChangeNotifierProvider<AppUser>(
-  (ref) => AppUser(ref: ref),
+  (ref) {
+    return AppUser(
+      ref,
+      getIt<AuthRepository>(),
+      getIt<UserRepository>(),
+    );
+  },
 );
 
 class AppUser extends ChangeNotifier {
-  static const String _accessTokenKey = "accessToken";
-  late final AppModel appModel = ref.read(appModelProvider);
+  final AuthRepository _authRepository;
+  final UserRepository _userRepository;
 
   final ChangeNotifierProviderRef ref;
+  UserEntity? user;
 
-  AppUser({required this.ref});
+  AppUser(
+    this.ref,
+    this._authRepository,
+    this._userRepository,
+  );
 
   bool isAuthenticated() {
-    return false;
+    return getAccessToken()?.isNotEmpty ?? false;
   }
 
   String? getAccessToken() {
-    return appModel.localStorageService.getValue<String>(key: _accessTokenKey);
+    return _authRepository.getAccessToken();
+  }
+
+  Future<UserEntity?> loadUserProfile() async {
+    final result = await _userRepository.getUser();
+    return result.fold(
+      (l) => null,
+      (r) {
+        user = r;
+        return r;
+      },
+    );
+  }
+
+  Future logout() async {
+    await _authRepository.deleteAccessToken();
   }
 }

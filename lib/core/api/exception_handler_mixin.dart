@@ -21,7 +21,7 @@ mixin ExceptionHandlerMixin on NetworkService {
         }
       }
       return ApiResponse.fromJson(res.data!);
-    } catch (e) {
+    } catch (e, s) {
       String message = '';
       switch (e.runtimeType) {
         case const (SocketException):
@@ -40,7 +40,7 @@ mixin ExceptionHandlerMixin on NetworkService {
         default:
           message = 'Unknown error occurred';
       }
-      throw AppException(message: message);
+      throw AppException(message: message, stack: s);
     }
   }
 }

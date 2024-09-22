@@ -2,33 +2,28 @@ part of "auth_local_data_source.dart";
 
 @LazySingleton(as: AuthLocalDataSource)
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
-  final LocalStorageService localStorageService;
+  static const String _accessTokenKey = "accessToken";
+  final LocalStorageService _localStorageService;
 
-  AuthLocalDataSourceImpl({
-    required this.localStorageService,
-  });
+  AuthLocalDataSourceImpl(
+    this._localStorageService,
+  );
 
   @override
-  Future<void> deleteAuthModel() {
-    // TODO: implement deleteAuthModel
-    throw UnimplementedError();
+  Future<void> deleteAccessToken() async {
+    await _localStorageService.removeValue(key: _accessTokenKey);
   }
-// final LocalStorageService _localStorageService;
-//
-// const AuthLocalDataSourceImpl(this._localStorageService);
-//
-// static const String authModelKey = "authModel";
-//
-// @override
-// Future<void> deleteAuthModel() async {
-//   await _localStorageService.removeValue(key: authModelKey);
-// }
-//
-// @override
-// Future<void> saveAuthModel({required AuthModel authModel}) async {
-//   await _localStorageService.setValue(
-//     key: authModelKey,
-//     value: jsonEncode(authModel),
-//   );
-// }
+
+  @override
+  String? getAccessToken() {
+    return _localStorageService.getValue<String>(key: _accessTokenKey);
+  }
+
+  @override
+  Future<void> saveAccessToken({required String accessToken}) async {
+    await _localStorageService.setValue(
+      key: _accessTokenKey,
+      value: accessToken,
+    );
+  }
 }

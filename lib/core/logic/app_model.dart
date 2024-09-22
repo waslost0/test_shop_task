@@ -21,8 +21,17 @@ class AppModel extends ChangeNotifier {
   AppModel({required this.ref});
 
   Future init() async {
+    if (isAuthenticated) {
+      await appUser.loadUserProfile();
+    }
     isInitialized = true;
+    notifyListeners();
   }
 
   bool get isAuthenticated => appUser.isAuthenticated();
+
+  void logout() {
+    appUser.logout();
+    notifyListeners();
+  }
 }
