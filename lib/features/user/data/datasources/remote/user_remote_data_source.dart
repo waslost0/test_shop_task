@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:test_shop_task/core/api/base_api.dart';
 import 'package:test_shop_task/core/api/private_api.dart';
 import 'package:test_shop_task/core/model/api_response.dart';
 import 'package:test_shop_task/features/user/data/models/user.dart';

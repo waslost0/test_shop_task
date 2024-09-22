@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/logic/navigation_provider.dart';
+import 'package:test_shop_task/core/router/router.dart';
 import 'package:test_shop_task/features/auth/presentation/screen/auth_by_phone.dart';
 import 'package:test_shop_task/features/navigation/bottom_navigation.dart';
 
@@ -15,14 +16,14 @@ class App extends ConsumerStatefulWidget {
 }
 
 class AppState extends ConsumerState<App> {
-  bool isInitialized = false;
-  final _navigatorKey = GlobalKey<NavigatorState>();
-
   late final AppModel model = ref.read(appModelProvider);
+  late AppNavigator appNavigator = ref.read(navigatorProvider);
 
   @override
   void initState() {
-    initApp();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => initApp(),
+    );
     super.initState();
   }
 
@@ -33,11 +34,14 @@ class AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
     final model = ref.watch(appModelProvider);
+    final router = ref.watch(routerProvider);
     return MaterialApp(
-      title: "Weather",
+      title: "Shop",
+      key: appNavigator.materialAppKey,
+      navigatorKey: appNavigator.key,
       home: prepareStartPage(context),
+
       // theme: AppTheme().buildThemeData(),
-      // home: isInitialized ? const BottomNavigation() : const SplashPage(),
       // builder: BotToastInit(),
       // navigatorObservers: [BotToastNavigatorObserver()],
       // localizationsDelegates: const [
@@ -46,7 +50,7 @@ class AppState extends ConsumerState<App> {
       //   GlobalCupertinoLocalizations.delegate,
       // ],
       // supportedLocales: S.delegate.supportedLocales,
-      navigatorKey: ref.read(navigatorProvider).key,
+
     );
   }
 

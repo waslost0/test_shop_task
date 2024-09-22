@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final navigatorProvider = Provider<AppNavigator>(
-    (_) => AppNavigator(key: GlobalKey<NavigatorState>()));
+  (_) => AppNavigator(
+    key: GlobalKey<NavigatorState>(),
+    materialAppKey: GlobalKey(),
+  ),
+);
 
 class AppNavigator {
-  final GlobalKey<NavigatorState> key;
+  GlobalKey<NavigatorState> key;
+  GlobalKey materialAppKey;
 
   AppNavigator({
     required this.key,
+    required this.materialAppKey,
   });
-
-  // MaterialPageRoute get homePage =>
-  //     MaterialPageRoute(builder: (BuildContext context) => HomePage());
 }

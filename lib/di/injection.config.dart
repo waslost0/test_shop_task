@@ -23,6 +23,12 @@ import 'package:test_shop_task/features/auth/domain/repositories/auth_repository
     as _i405;
 import 'package:test_shop_task/features/auth/domain/usecases/login_by_phone_code.dart'
     as _i801;
+import 'package:test_shop_task/features/catalog/data/datasources/remote/catalog_remote_data_source.dart'
+    as _i840;
+import 'package:test_shop_task/features/catalog/domain/repositories/catalog_repository.dart'
+    as _i496;
+import 'package:test_shop_task/features/catalog/domain/usecases/category_list_usecase.dart'
+    as _i993;
 import 'package:test_shop_task/features/user/data/datasources/remote/user_remote_data_source.dart'
     as _i406;
 import 'package:test_shop_task/features/user/domain/repositories/user_repository.dart'
@@ -61,12 +67,18 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i423.PrivateApi(gh<_i405.AuthRepository>()));
     gh.factory<_i801.LoginByPhoneCodeUseCase>(
         () => _i801.LoginByPhoneCodeUseCase(gh<_i405.AuthRepository>()));
+    gh.lazySingleton<_i840.CatalogRemoteDataSource>(
+        () => _i840.CatalogRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
     gh.lazySingleton<_i406.UserRemoteDataSource>(
         () => _i406.UserRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
     gh.lazySingleton<_i563.UserRepository>(
         () => _i563.UserRepositoryImpl(gh<_i406.UserRemoteDataSource>()));
+    gh.lazySingleton<_i496.CatalogRepository>(
+        () => _i496.CatalogRepositoryImpl(gh<_i840.CatalogRemoteDataSource>()));
     gh.factory<_i107.LoadProfileUseCase>(
         () => _i107.LoadProfileUseCase(gh<_i563.UserRepository>()));
+    gh.factory<_i993.CatalogRepositoryUseCase>(
+        () => _i993.CatalogRepositoryUseCase(gh<_i496.CatalogRepository>()));
     return this;
   }
 }
