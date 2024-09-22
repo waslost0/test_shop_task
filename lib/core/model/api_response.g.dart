@@ -22,7 +22,7 @@ Map<String, dynamic> _$$ApiResponseImplToJson(_$ApiResponseImpl instance) =>
 
 _$MetaImpl _$$MetaImplFromJson(Map<String, dynamic> json) => _$MetaImpl(
       success: json['success'] as bool? ?? false,
-      error: json['error'] as String? ?? 'Unknown error',
+      error: json['error'] as String? ?? null,
       invalidAccessToken: json['invalidAccessToken'] as bool? ?? false,
     );
 

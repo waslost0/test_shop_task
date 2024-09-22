@@ -12,11 +12,13 @@ mixin ExceptionHandlerMixin on NetworkService {
   }) async {
     try {
       final res = await handler();
-      if (res.data?['meta']?['error'] != null) {
+      if (res.data?['meta'] != null) {
         var meta = Meta.fromJson(res.data!['meta']);
-        throw AppException(
-          message: meta.error,
-        );
+        if (meta.error?.isNotEmpty ?? false) {
+          throw AppException(
+            message: meta.error,
+          );
+        }
       }
       return ApiResponse.fromJson(res.data!);
     } catch (e) {
@@ -31,7 +33,10 @@ mixin ExceptionHandlerMixin on NetworkService {
           e as DioException;
           message = e.response?.data?['message'] ?? 'Internal Error occurred';
           break;
-
+        case const (AppException):
+          e as AppException;
+          message = e.message ?? 'Unknown error occurred';
+          break;
         default:
           message = 'Unknown error occurred';
       }

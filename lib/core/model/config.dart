@@ -1,3 +1,3 @@
 class Config {
-  static const String host = '89.169.9.95';
+  static const String host = 'http://89.169.9.95/api/';
 }

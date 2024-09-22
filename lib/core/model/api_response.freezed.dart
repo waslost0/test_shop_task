@@ -206,7 +206,7 @@ Meta _$MetaFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Meta {
   bool get success => throw _privateConstructorUsedError;
-  String get error => throw _privateConstructorUsedError;
+  String? get error => throw _privateConstructorUsedError;
   bool get invalidAccessToken => throw _privateConstructorUsedError;
 
   /// Serializes this Meta to a JSON map.
@@ -223,7 +223,7 @@ abstract class $MetaCopyWith<$Res> {
   factory $MetaCopyWith(Meta value, $Res Function(Meta) then) =
       _$MetaCopyWithImpl<$Res, Meta>;
   @useResult
-  $Res call({bool success, String error, bool invalidAccessToken});
+  $Res call({bool success, String? error, bool invalidAccessToken});
 }
 
 /// @nodoc
@@ -242,7 +242,7 @@ class _$MetaCopyWithImpl<$Res, $Val extends Meta>
   @override
   $Res call({
     Object? success = null,
-    Object? error = null,
+    Object? error = freezed,
     Object? invalidAccessToken = null,
   }) {
     return _then(_value.copyWith(
@@ -250,10 +250,10 @@ class _$MetaCopyWithImpl<$Res, $Val extends Meta>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
-      error: null == error
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       invalidAccessToken: null == invalidAccessToken
           ? _value.invalidAccessToken
           : invalidAccessToken // ignore: cast_nullable_to_non_nullable
@@ -269,7 +269,7 @@ abstract class _$$MetaImplCopyWith<$Res> implements $MetaCopyWith<$Res> {
       __$$MetaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool success, String error, bool invalidAccessToken});
+  $Res call({bool success, String? error, bool invalidAccessToken});
 }
 
 /// @nodoc
@@ -285,7 +285,7 @@ class __$$MetaImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? success = null,
-    Object? error = null,
+    Object? error = freezed,
     Object? invalidAccessToken = null,
   }) {
     return _then(_$MetaImpl(
@@ -293,10 +293,10 @@ class __$$MetaImplCopyWithImpl<$Res>
           ? _value.success
           : success // ignore: cast_nullable_to_non_nullable
               as bool,
-      error: null == error
+      error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       invalidAccessToken: null == invalidAccessToken
           ? _value.invalidAccessToken
           : invalidAccessToken // ignore: cast_nullable_to_non_nullable
@@ -310,7 +310,7 @@ class __$$MetaImplCopyWithImpl<$Res>
 class _$MetaImpl implements _Meta {
   const _$MetaImpl(
       {this.success = false,
-      this.error = 'Unknown error',
+      this.error = null,
       this.invalidAccessToken = false});
 
   factory _$MetaImpl.fromJson(Map<String, dynamic> json) =>
@@ -321,7 +321,7 @@ class _$MetaImpl implements _Meta {
   final bool success;
   @override
   @JsonKey()
-  final String error;
+  final String? error;
   @override
   @JsonKey()
   final bool invalidAccessToken;
@@ -366,7 +366,7 @@ class _$MetaImpl implements _Meta {
 abstract class _Meta implements Meta {
   const factory _Meta(
       {final bool success,
-      final String error,
+      final String? error,
       final bool invalidAccessToken}) = _$MetaImpl;
 
   factory _Meta.fromJson(Map<String, dynamic> json) = _$MetaImpl.fromJson;
@@ -374,7 +374,7 @@ abstract class _Meta implements Meta {
   @override
   bool get success;
   @override
-  String get error;
+  String? get error;
   @override
   bool get invalidAccessToken;
 

@@ -1,12 +1,9 @@
-import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:test_shop_task/core/api/exception_handler_mixin.dart';
 import 'package:test_shop_task/core/api/network_service.dart';
-import 'package:test_shop_task/core/exceptions/app_exceptions.dart';
 import 'package:test_shop_task/core/model/api_response.dart';
 import 'package:test_shop_task/core/model/config.dart';
-
 
 abstract class DioNetworkService extends NetworkService
     with ExceptionHandlerMixin {
@@ -31,8 +28,8 @@ abstract class DioNetworkService extends NetworkService
 
   @override
   Map<String, Object> get headers => {
-        'accept': 'application/json',
-        'content-type': 'application/json',
+        Headers.acceptHeader: Headers.jsonContentType,
+        Headers.contentTypeHeader: Headers.formUrlEncodedContentType,
       };
 
   @override

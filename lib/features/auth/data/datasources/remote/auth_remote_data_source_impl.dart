@@ -1,5 +1,8 @@
 part of "auth_remote_data_source.dart";
 
+@LazySingleton(
+  as: AuthRemoteDataSource,
+)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   final BaseApi _appHttpService;
 
@@ -23,7 +26,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String code,
   }) async {
     final response = await _appHttpService.post(
-      '',
+      'auth/phone/login-by-phone',
       data: {
         "phone": phone,
         "code": code,

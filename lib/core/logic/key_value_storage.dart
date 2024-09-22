@@ -1,14 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_shop_task/core/logic/app_model.dart';
 
-final localStorageServiceProvider = Provider<LocalStorageService>(
-  (ref) {
-    var appModel = ref.read(appModelProvider);
-    return LocalStorageService(appModel.sharedPref);
-  },
-);
-
+@Singleton()
 class LocalStorageService {
   final SharedPreferences _prefs;
 

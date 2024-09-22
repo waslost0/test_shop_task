@@ -22,7 +22,7 @@ extension ApiResponseExtension on ApiResponse {
 class Meta with _$Meta {
   const factory Meta({
     @Default(false) bool success,
-    @Default('Unknown error') String error,
+    @Default(null) String? error,
     @Default(false) bool invalidAccessToken,
   }) = _Meta;
 
