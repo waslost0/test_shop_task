@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_shop_task/core/theme/theme.dart';
 import 'package:test_shop_task/core/widgets/keyboard_dismisser.dart';
 
 abstract class BasePage extends ConsumerStatefulWidget {
@@ -40,12 +41,7 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
   @protected
   Widget buildDecorateScaffold(BuildContext context, Widget child) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: const SystemUiOverlayStyle().copyWith(
-        statusBarColor: Colors.white,
-        statusBarBrightness: Brightness.light,
-        statusBarIconBrightness: Brightness.dark,
-        systemNavigationBarColor: Colors.black,
-      ),
+      value: ThemeBuilder.systemUiOverlayStyle,
       child: child,
     );
   }

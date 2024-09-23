@@ -4,6 +4,7 @@ import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/catalog_provider.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/state/catalog_state.dart';
+import 'package:test_shop_task/features/catalog/presentation/widgets/category_list_item.dart';
 
 class CatalogPage extends BasePage {
   const CatalogPage({
@@ -33,26 +34,14 @@ class CatalogPageState extends BasePageState<CatalogPage> {
   Widget buildGrid() {
     final state = ref.watch(catalogProvider);
 
-    return GridView.builder(
-      gridDelegate: createGridDelegate(),
+    return ListView.separated(
       itemCount: state.list.length,
       padding: const EdgeInsets.all(16),
-      itemBuilder: (context, index) => const Placeholder(),
+      itemBuilder: (context, index) => CategoryListItem(
+        state.list[index],
+      ),
+      separatorBuilder: (BuildContext context, int index) =>
+          const SizedBox(height: 10),
     );
-  }
-
-  @protected
-  SliverGridDelegate createGridDelegate() {
-    return SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: getCrossAxisCount(context),
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      childAspectRatio: 1.0,
-    );
-  }
-
-  @protected
-  int getCrossAxisCount(BuildContext context) {
-    return 2;
   }
 }

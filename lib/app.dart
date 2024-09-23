@@ -42,7 +42,7 @@ class AppState extends ConsumerState<App> {
       key: appNavigator.materialAppKey,
       navigatorKey: appNavigator.key,
       home: prepareStartPage(context),
-      theme: appTheme(context),
+      theme: ThemeBuilder.themeData,
       debugShowCheckedModeBanner: false,
       builder: BotToastInit(),
       // theme: AppTheme().buildThemeData(),

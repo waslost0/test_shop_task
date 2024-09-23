@@ -24,6 +24,7 @@ class AppColors {
   static const Color red = Color(0xFFE23646);
   static const Color amaranthRed = Color(0xFFD51F30);
   static const Color rubyRed = Color(0xFFA11522);
+  static const Color lightRed = Color(0xFFEEE1CD);
   static const Color yellow = Color(0xFFFFDD61);
   static const Color lightGrey = Color.fromRGBO(238, 238, 238, 1);
   static const Color highLightGrey = Color.fromRGBO(255, 255, 255, 0.1);
@@ -100,7 +101,7 @@ class AppColors {
   static const Color onErrorColor = white;
 
   /// Цвета для элементов
-  static const Color defaultText = lotion;
+  static const Color defaultText = black2;
   static const Color divider = Color(0xFFCED2DC);
   static const Color border = charcoal;
   static const Color disabledBorder = Color(0xFFB9BECB);
