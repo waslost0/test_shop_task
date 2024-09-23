@@ -31,6 +31,12 @@ import 'package:test_shop_task/features/catalog/domain/repositories/catalog_repo
     as _i496;
 import 'package:test_shop_task/features/catalog/domain/usecases/category_list_usecase.dart'
     as _i993;
+import 'package:test_shop_task/features/product/data/datasources/remote/product_remote_data_source.dart'
+    as _i257;
+import 'package:test_shop_task/features/product/domain/repositories/product_repository.dart'
+    as _i289;
+import 'package:test_shop_task/features/product/domain/usecases/product_list_usecase.dart'
+    as _i60;
 import 'package:test_shop_task/features/user/data/datasources/remote/user_remote_data_source.dart'
     as _i406;
 import 'package:test_shop_task/features/user/domain/repositories/user_repository.dart'
@@ -50,11 +56,11 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
+    gh.factory<_i60.BaseApi>(() => _i60.BaseApi());
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs,
       preResolve: true,
     );
-    gh.factory<_i60.BaseApi>(() => _i60.BaseApi());
     gh.singleton<_i788.LocalStorageService>(
         () => _i788.LocalStorageService(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i839.AuthRemoteDataSource>(
@@ -75,14 +81,20 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i840.CatalogRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
     gh.lazySingleton<_i406.UserRemoteDataSource>(
         () => _i406.UserRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
+    gh.lazySingleton<_i257.ProductRemoteDataSource>(
+        () => _i257.CatalogRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
     gh.lazySingleton<_i563.UserRepository>(
         () => _i563.UserRepositoryImpl(gh<_i406.UserRemoteDataSource>()));
     gh.lazySingleton<_i496.CatalogRepository>(
         () => _i496.CatalogRepositoryImpl(gh<_i840.CatalogRemoteDataSource>()));
+    gh.lazySingleton<_i289.ProductRepository>(
+        () => _i289.ProductRepositoryImpl(gh<_i257.ProductRemoteDataSource>()));
     gh.factory<_i107.LoadProfileUseCase>(
         () => _i107.LoadProfileUseCase(gh<_i563.UserRepository>()));
     gh.factory<_i993.CatalogRepositoryUseCase>(
         () => _i993.CatalogRepositoryUseCase(gh<_i496.CatalogRepository>()));
+    gh.factory<_i60.LoadProductUseCase>(
+        () => _i60.LoadProductUseCase(gh<_i289.ProductRepository>()));
     return this;
   }
 }

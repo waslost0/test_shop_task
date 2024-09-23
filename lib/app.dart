@@ -35,8 +35,8 @@ class AppState extends ConsumerState<App> {
 
   @override
   Widget build(BuildContext context) {
-    final model = ref.watch(appModelProvider);
-    final router = ref.watch(routerProvider);
+    ref.watch(appModelProvider);
+    ref.watch(routerProvider);
     return MaterialApp(
       title: "Shop",
       key: appNavigator.materialAppKey,

@@ -5,6 +5,7 @@ import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/catalog_provider.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/state/catalog_state.dart';
 import 'package:test_shop_task/features/catalog/presentation/widgets/category_list_item.dart';
+import 'package:test_shop_task/features/product/presentation/screens/product_screen.dart';
 
 class CatalogPage extends BasePage {
   const CatalogPage({
@@ -37,8 +38,24 @@ class CatalogPageState extends BasePageState<CatalogPage> {
     return ListView.separated(
       itemCount: state.list.length,
       padding: const EdgeInsets.all(16),
-      itemBuilder: (context, index) => CategoryListItem(
-        state.list[index],
+      itemBuilder: (context, index) => GestureDetector(
+        onTap: () {
+          final category = state.list[index];
+          if (category.hasSubcategories) {
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ProductListPage(
+                  category: category,
+                ),
+              ),
+            );
+          }
+        },
+        child: CategoryListItem(
+          state.list[index],
+        ),
       ),
       separatorBuilder: (BuildContext context, int index) =>
           const SizedBox(height: 10),

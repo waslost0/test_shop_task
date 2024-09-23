@@ -21,13 +21,4 @@ class UserRepositoryImpl extends UserRepository {
       );
     }
   }
-
-  @override
-  Future<Either<AppException, bool>> sendConfirmationCode({
-    required String phone,
-  }) async {
-    ApiResponse? response;
-    try {} catch (e, s) {}
-    return const Right(false);
-  }
 }
