@@ -15,3 +15,16 @@ class AuthParams extends Equatable {
         code,
       ];
 }
+
+class SendSmsCodeParams extends Equatable {
+  final String phone;
+
+  const SendSmsCodeParams({
+    required this.phone,
+  });
+
+  @override
+  List<Object?> get props => [
+        phone,
+      ];
+}

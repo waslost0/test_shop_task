@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:test_shop_task/core/api/dio_network_service.dart';
-import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/features/auth/domain/repositories/auth_repository.dart';
 
 @injectable

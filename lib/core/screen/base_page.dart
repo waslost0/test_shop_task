@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_shop_task/core/widgets/keyboard_dismisser.dart';
 
 abstract class BasePage extends ConsumerStatefulWidget {
   final String? title;
@@ -27,9 +28,12 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
   @override
   Widget build(BuildContext context) {
     var scaffold = buildScaffold(context);
-    return buildDecorateScaffold(
+    return decorateKeyboardUnfocusing(
       context,
-      scaffold,
+      buildDecorateScaffold(
+        context,
+        scaffold,
+      ),
     );
   }
 
@@ -64,6 +68,11 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
       title: buildTitle(context),
       actions: buildAppBarActions(),
     );
+  }
+
+  @protected
+  Widget decorateKeyboardUnfocusing(BuildContext context, Widget child) {
+    return KeyboardDismisser(child: child);
   }
 
   @protected

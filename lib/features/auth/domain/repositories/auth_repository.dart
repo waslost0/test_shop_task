@@ -15,6 +15,10 @@ abstract class AuthRepository {
     required String code,
   });
 
+  Future<Either<Failure, bool>> sendSmsCode({
+    required String phone,
+  });
+
   String? getAccessToken();
 
   Future<void> deleteAccessToken();

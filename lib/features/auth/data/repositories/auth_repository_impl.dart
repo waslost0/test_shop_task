@@ -35,6 +35,21 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
+  Future<Either<Failure, bool>> sendSmsCode({required String phone}) async {
+    try {
+      final response = await _remoteDataSource.sendConfirmationCode(
+        phone: phone,
+      );
+      if (response) {
+        return const Right(true);
+      }
+      return const Left(AppException(message: "Failed to send sms"));
+    } catch (e, s) {
+      return Left(ExceptionToFailureConverter.convert(e, s));
+    }
+  }
+
+  @override
   String? getAccessToken() {
     return _localDataSource.getAccessToken();
   }

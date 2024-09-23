@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/logic/navigation_provider.dart';
 import 'package:test_shop_task/core/router/router.dart';
+import 'package:test_shop_task/core/theme/theme.dart';
 import 'package:test_shop_task/features/auth/presentation/screen/auth_by_phone.dart';
 import 'package:test_shop_task/features/navigation/bottom_navigation.dart';
 
@@ -40,6 +41,7 @@ class AppState extends ConsumerState<App> {
       key: appNavigator.materialAppKey,
       navigatorKey: appNavigator.key,
       home: prepareStartPage(context),
+      theme: appTheme(context),
 
       // theme: AppTheme().buildThemeData(),
       // builder: BotToastInit(),

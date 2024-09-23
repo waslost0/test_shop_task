@@ -37,11 +37,17 @@ class AppColors {
   static const Color lightViolet = Color(0xFF7A879C);
   static const Color glaucous = Color(0xFF7B8595);
 
-  static const buttonGradient = LinearGradient(
-    colors: [rubyRed, amaranthRed],
-    begin: Alignment(-0.6, 1),
-    end: Alignment.topRight,
-  );
+  static const Color background = Color(0xFFFEFFFF);
+  static const Color dialogBackgroundColor = Color(0xFFFAFBFB);
+  static const Color textFieldError = Color(0xFFFBE8E8);
+  static const Color textFieldGray = Color(0xFFF5F6F7);
+  static const Color lightGray = Color(0xFFC4C9D2);
+  static const Color midGray = Color(0xFFA2AABB);
+  static const Color focusedBorder = Color(0xFF7A8699);
+  static const Color errorBorder = Color(0xFFD9141B);
+  static const Color textButtonGray = Color(0xFF5D6B82);
+  static const Color dividerLightGray = Color(0xFFEBEDF0);
+  static const Color buttonShadow = Color(0xFFF4F4F7);
 
   /// Основной цвет, который чаще всего отображается на экранах и компонентах
   /// приложения.
