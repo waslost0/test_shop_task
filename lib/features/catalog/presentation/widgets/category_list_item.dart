@@ -77,6 +77,7 @@ class CategoryListItem extends StatelessWidget {
         color: Colors.white,
         width: 70,
         height: 70,
+        padding: const EdgeInsets.all(5),
         child: SafeNetworkImage(
           imageUrl: category.icon,
           fit: BoxFit.fitHeight,

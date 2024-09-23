@@ -43,6 +43,7 @@ class AuthByPhonePageState extends BasePageState<AuthByPhonePage>
               decoration: const InputDecoration(
                 hintText: '+7 (988) 756-55-55',
               ),
+              onFieldSubmitted: (value) => trySubmitForm(context),
               validator: validatePhone,
             ),
             const SizedBox(height: 16),
