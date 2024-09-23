@@ -77,24 +77,24 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i801.LoginByPhoneCodeUseCase(gh<_i405.AuthRepository>()));
     gh.factory<_i475.SendSmsCodeUseCase>(
         () => _i475.SendSmsCodeUseCase(gh<_i405.AuthRepository>()));
+    gh.lazySingleton<_i257.ProductRemoteDataSource>(
+        () => _i257.ProductRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
     gh.lazySingleton<_i840.CatalogRemoteDataSource>(
         () => _i840.CatalogRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
+    gh.lazySingleton<_i289.ProductRepository>(
+        () => _i289.ProductRepositoryImpl(gh<_i257.ProductRemoteDataSource>()));
     gh.lazySingleton<_i406.UserRemoteDataSource>(
         () => _i406.UserRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
-    gh.lazySingleton<_i257.ProductRemoteDataSource>(
-        () => _i257.CatalogRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
     gh.lazySingleton<_i563.UserRepository>(
         () => _i563.UserRepositoryImpl(gh<_i406.UserRemoteDataSource>()));
     gh.lazySingleton<_i496.CatalogRepository>(
         () => _i496.CatalogRepositoryImpl(gh<_i840.CatalogRemoteDataSource>()));
-    gh.lazySingleton<_i289.ProductRepository>(
-        () => _i289.ProductRepositoryImpl(gh<_i257.ProductRemoteDataSource>()));
+    gh.factory<_i60.LoadProductUseCase>(
+        () => _i60.LoadProductUseCase(gh<_i289.ProductRepository>()));
     gh.factory<_i107.LoadProfileUseCase>(
         () => _i107.LoadProfileUseCase(gh<_i563.UserRepository>()));
     gh.factory<_i993.CatalogRepositoryUseCase>(
         () => _i993.CatalogRepositoryUseCase(gh<_i496.CatalogRepository>()));
-    gh.factory<_i60.LoadProductUseCase>(
-        () => _i60.LoadProductUseCase(gh<_i289.ProductRepository>()));
     return this;
   }
 }

@@ -12,6 +12,9 @@ class CatalogRemoteDataSourceImpl implements CatalogRemoteDataSource {
   Future<List<CategoryEntity>> list({required int offset}) async {
     final response = await _appHttpService.get(
       'category/list',
+      queryParameters: {
+        'offset': offset,
+      },
     );
     final categories = response.data['categories'] as List;
     return categories.map((e) => Category.fromJson(e).toEntity()).toList();

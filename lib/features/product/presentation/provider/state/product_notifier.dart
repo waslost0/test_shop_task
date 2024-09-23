@@ -4,20 +4,23 @@ import 'package:test_shop_task/features/product/domain/usecases/product_list_use
 import 'package:test_shop_task/features/product/presentation/provider/state/product_state.dart';
 
 class ProductNotifier extends StateNotifier<ProductState> {
-  final LoadProductUseCase loadList;
+  final LoadProductUseCase _loadList;
 
   ProductNotifier(
-    this.loadList,
-  ) : super(const Initial());
-
-  Future<void> loginList({
+    this._loadList,
     CategoryEntity? category,
-  }) async {
+  ) : super(
+          Initial(
+            listParams: ProductListParams(categoryId: category?.categoryId),
+          ),
+        );
+
+  Future<void> loginList() async {
     if (state.list.isEmpty) {
       state = Loading(listParams: state.listParams);
     }
 
-    final result = await loadList.call(
+    final result = await _loadList.call(
       state.listParams,
     );
 
@@ -35,7 +38,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
   Future<void> reloadData() async {
     state = state.copyWith(listParams: const ProductListParams());
 
-    final result = await loadList.call(
+    final result = await _loadList.call(
       const ProductListParams(),
     );
 

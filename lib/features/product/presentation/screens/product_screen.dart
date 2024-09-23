@@ -24,8 +24,8 @@ class ProductListPageState extends BasePageState<ProductListPage> {
 
   @override
   Widget buildBody(BuildContext context) {
-    final model = ref.read(productProvider.notifier);
-    final state = ref.watch(productProvider);
+    final model = ref.read(productProvider(widget.category).notifier);
+    final state = ref.watch(productProvider(widget.category));
     return RefreshIndicator(
       onRefresh: () => model.reloadData(),
       child: state is Loading
@@ -35,7 +35,7 @@ class ProductListPageState extends BasePageState<ProductListPage> {
   }
 
   Widget buildGrid() {
-    final state = ref.watch(productProvider);
+    final state = ref.watch(productProvider(widget.category));
     return GridView.builder(
       itemCount: state.list.length,
       itemBuilder: (context, index) => Placeholder(),

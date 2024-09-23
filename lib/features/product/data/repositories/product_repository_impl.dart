@@ -11,9 +11,15 @@ class ProductRepositoryImpl extends ProductRepository {
   );
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getList(int offset) async {
+  Future<Either<Failure, List<ProductEntity>>> getList({
+    int offset = 0,
+    int? categoryId,
+  }) async {
     try {
-      final response = await _remoteDataSource.list(offset: offset);
+      final response = await _remoteDataSource.list(
+        offset: offset,
+        categoryId: categoryId,
+      );
       return Right(response);
     } catch (e, s) {
       return Left(
