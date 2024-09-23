@@ -28,7 +28,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
       (l) => ProductState.failure(exception: l),
       (r) => ProductState.success(
         list: [...state.list, ...r],
-        listParams: ProductListParams(
+        listParams:  state.listParams.copyWith(
           offset: state.listParams.offset + r.length,
         ),
       ),
@@ -36,10 +36,14 @@ class ProductNotifier extends StateNotifier<ProductState> {
   }
 
   Future<void> reloadData() async {
-    state = state.copyWith(listParams: const ProductListParams());
+    state = state.copyWith(
+      listParams: ProductListParams(
+        categoryId: state.listParams.categoryId,
+      ),
+    );
 
     final result = await _loadList.call(
-      const ProductListParams(),
+      state.listParams,
     );
 
     state = await result.fold(

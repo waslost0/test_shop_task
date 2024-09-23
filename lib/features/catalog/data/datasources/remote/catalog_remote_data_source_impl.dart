@@ -9,11 +9,15 @@ class CatalogRemoteDataSourceImpl implements CatalogRemoteDataSource {
   CatalogRemoteDataSourceImpl(this._appHttpService);
 
   @override
-  Future<List<CategoryEntity>> list({required int offset}) async {
+  Future<List<CategoryEntity>> list({
+    required int offset,
+    int? parentId,
+  }) async {
     final response = await _appHttpService.get(
       'category/list',
       queryParameters: {
         'offset': offset,
+        if (parentId != null) 'parentId': parentId,
       },
     );
     final categories = response.data['categories'] as List;

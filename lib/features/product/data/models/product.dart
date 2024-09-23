@@ -11,7 +11,7 @@ class Product with _$Product {
     required int productId,
     required String name,
     required int createdAt,
-    String? price,
+    num? price,
     String? imageUrl,
     String? productDescription,
     num? rating,
@@ -28,6 +28,7 @@ extension ProductX on Product {
     return ProductEntity(
       productId: productId,
       name: name,
+      imageUrl: imageUrl,
     );
   }
 }

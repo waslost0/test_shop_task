@@ -23,7 +23,7 @@ mixin _$Product {
   int get productId => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   int get createdAt => throw _privateConstructorUsedError;
-  String? get price => throw _privateConstructorUsedError;
+  num? get price => throw _privateConstructorUsedError;
   String? get imageUrl => throw _privateConstructorUsedError;
   String? get productDescription => throw _privateConstructorUsedError;
   num? get rating => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $ProductCopyWith<$Res> {
       {int productId,
       String name,
       int createdAt,
-      String? price,
+      num? price,
       String? imageUrl,
       String? productDescription,
       num? rating,
@@ -98,7 +98,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       {int productId,
       String name,
       int createdAt,
-      String? price,
+      num? price,
       String? imageUrl,
       String? productDescription,
       num? rating,
@@ -181,7 +181,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       price: freezed == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as num?,
       imageUrl: freezed == imageUrl
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -228,7 +228,7 @@ class _$ProductImpl implements _Product {
   @override
   final int createdAt;
   @override
-  final String? price;
+  final num? price;
   @override
   final String? imageUrl;
   @override
@@ -309,7 +309,7 @@ abstract class _Product implements Product {
       {required final int productId,
       required final String name,
       required final int createdAt,
-      final String? price,
+      final num? price,
       final String? imageUrl,
       final String? productDescription,
       final num? rating,
@@ -325,7 +325,7 @@ abstract class _Product implements Product {
   @override
   int get createdAt;
   @override
-  String? get price;
+  num? get price;
   @override
   String? get imageUrl;
   @override

@@ -11,9 +11,15 @@ class CatalogRepositoryImpl extends CatalogRepository {
   );
 
   @override
-  Future<Either<Failure, List<CategoryEntity>>> getList(int offset) async {
+  Future<Either<Failure, List<CategoryEntity>>> getList({
+    int offset = 0,
+    int? parentId,
+  }) async {
     try {
-      final response = await _remoteDataSource.list(offset: offset);
+      final response = await _remoteDataSource.list(
+        offset: offset,
+        parentId: parentId,
+      );
       return Right(response);
     } catch (e, s) {
       return Left(

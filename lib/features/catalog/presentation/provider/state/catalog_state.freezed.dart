@@ -17,41 +17,47 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CatalogState {
   List<CategoryEntity> get list => throw _privateConstructorUsedError;
-  ListParams get listParams => throw _privateConstructorUsedError;
+  CategoryListParams get listParams => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        initial,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        loading,
     required TResult Function(
-            List<CategoryEntity> list, ListParams listParams, Failure exception)
+            List<CategoryEntity> list, CategoryListParams listParams)
+        initial,
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
+        loading,
+    required TResult Function(List<CategoryEntity> list,
+            CategoryListParams listParams, Failure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         initial,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams,
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? initial,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? loading,
-    TResult Function(List<CategoryEntity> list, ListParams listParams,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        initial,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        loading,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? success,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -94,7 +100,7 @@ abstract class $CatalogStateCopyWith<$Res> {
           CatalogState value, $Res Function(CatalogState) then) =
       _$CatalogStateCopyWithImpl<$Res, CatalogState>;
   @useResult
-  $Res call({List<CategoryEntity> list, ListParams listParams});
+  $Res call({List<CategoryEntity> list, CategoryListParams listParams});
 }
 
 /// @nodoc
@@ -123,7 +129,7 @@ class _$CatalogStateCopyWithImpl<$Res, $Val extends CatalogState>
       listParams: null == listParams
           ? _value.listParams
           : listParams // ignore: cast_nullable_to_non_nullable
-              as ListParams,
+              as CategoryListParams,
     ) as $Val);
   }
 }
@@ -136,7 +142,7 @@ abstract class _$$InitialImplCopyWith<$Res>
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CategoryEntity> list, ListParams listParams});
+  $Res call({List<CategoryEntity> list, CategoryListParams listParams});
 }
 
 /// @nodoc
@@ -163,7 +169,7 @@ class __$$InitialImplCopyWithImpl<$Res>
       listParams: null == listParams
           ? _value.listParams
           : listParams // ignore: cast_nullable_to_non_nullable
-              as ListParams,
+              as CategoryListParams,
     ));
   }
 }
@@ -173,7 +179,7 @@ class __$$InitialImplCopyWithImpl<$Res>
 class _$InitialImpl implements Initial {
   const _$InitialImpl(
       {final List<CategoryEntity> list = const [],
-      this.listParams = const ListParams()})
+      this.listParams = const CategoryListParams()})
       : _list = list;
 
   final List<CategoryEntity> _list;
@@ -187,7 +193,7 @@ class _$InitialImpl implements Initial {
 
   @override
   @JsonKey()
-  final ListParams listParams;
+  final CategoryListParams listParams;
 
   @override
   String toString() {
@@ -219,14 +225,17 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        initial,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        loading,
     required TResult Function(
-            List<CategoryEntity> list, ListParams listParams, Failure exception)
+            List<CategoryEntity> list, CategoryListParams listParams)
+        initial,
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
+        loading,
+    required TResult Function(List<CategoryEntity> list,
+            CategoryListParams listParams, Failure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) {
     return initial(list, listParams);
@@ -235,14 +244,14 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         initial,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams,
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) {
     return initial?.call(list, listParams);
@@ -251,12 +260,15 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? initial,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? loading,
-    TResult Function(List<CategoryEntity> list, ListParams listParams,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        initial,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        loading,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? success,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        success,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -306,12 +318,12 @@ class _$InitialImpl implements Initial {
 abstract class Initial implements CatalogState {
   const factory Initial(
       {final List<CategoryEntity> list,
-      final ListParams listParams}) = _$InitialImpl;
+      final CategoryListParams listParams}) = _$InitialImpl;
 
   @override
   List<CategoryEntity> get list;
   @override
-  ListParams get listParams;
+  CategoryListParams get listParams;
 
   /// Create a copy of CatalogState
   /// with the given fields replaced by the non-null parameter values.
@@ -329,7 +341,7 @@ abstract class _$$LoadingImplCopyWith<$Res>
       __$$LoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CategoryEntity> list, ListParams listParams});
+  $Res call({List<CategoryEntity> list, CategoryListParams listParams});
 }
 
 /// @nodoc
@@ -356,7 +368,7 @@ class __$$LoadingImplCopyWithImpl<$Res>
       listParams: null == listParams
           ? _value.listParams
           : listParams // ignore: cast_nullable_to_non_nullable
-              as ListParams,
+              as CategoryListParams,
     ));
   }
 }
@@ -366,7 +378,7 @@ class __$$LoadingImplCopyWithImpl<$Res>
 class _$LoadingImpl implements Loading {
   const _$LoadingImpl(
       {final List<CategoryEntity> list = const [],
-      this.listParams = const ListParams()})
+      this.listParams = const CategoryListParams()})
       : _list = list;
 
   final List<CategoryEntity> _list;
@@ -380,7 +392,7 @@ class _$LoadingImpl implements Loading {
 
   @override
   @JsonKey()
-  final ListParams listParams;
+  final CategoryListParams listParams;
 
   @override
   String toString() {
@@ -412,14 +424,17 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        initial,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        loading,
     required TResult Function(
-            List<CategoryEntity> list, ListParams listParams, Failure exception)
+            List<CategoryEntity> list, CategoryListParams listParams)
+        initial,
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
+        loading,
+    required TResult Function(List<CategoryEntity> list,
+            CategoryListParams listParams, Failure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) {
     return loading(list, listParams);
@@ -428,14 +443,14 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         initial,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams,
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) {
     return loading?.call(list, listParams);
@@ -444,12 +459,15 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? initial,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? loading,
-    TResult Function(List<CategoryEntity> list, ListParams listParams,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        initial,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        loading,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? success,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        success,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -499,12 +517,12 @@ class _$LoadingImpl implements Loading {
 abstract class Loading implements CatalogState {
   const factory Loading(
       {final List<CategoryEntity> list,
-      final ListParams listParams}) = _$LoadingImpl;
+      final CategoryListParams listParams}) = _$LoadingImpl;
 
   @override
   List<CategoryEntity> get list;
   @override
-  ListParams get listParams;
+  CategoryListParams get listParams;
 
   /// Create a copy of CatalogState
   /// with the given fields replaced by the non-null parameter values.
@@ -523,7 +541,9 @@ abstract class _$$CatalogFailureImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<CategoryEntity> list, ListParams listParams, Failure exception});
+      {List<CategoryEntity> list,
+      CategoryListParams listParams,
+      Failure exception});
 }
 
 /// @nodoc
@@ -551,7 +571,7 @@ class __$$CatalogFailureImplCopyWithImpl<$Res>
       listParams: null == listParams
           ? _value.listParams
           : listParams // ignore: cast_nullable_to_non_nullable
-              as ListParams,
+              as CategoryListParams,
       exception: null == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -565,7 +585,7 @@ class __$$CatalogFailureImplCopyWithImpl<$Res>
 class _$CatalogFailureImpl implements CatalogFailure {
   const _$CatalogFailureImpl(
       {final List<CategoryEntity> list = const [],
-      this.listParams = const ListParams(),
+      this.listParams = const CategoryListParams(),
       required this.exception})
       : _list = list;
 
@@ -580,7 +600,7 @@ class _$CatalogFailureImpl implements CatalogFailure {
 
   @override
   @JsonKey()
-  final ListParams listParams;
+  final CategoryListParams listParams;
   @override
   final Failure exception;
 
@@ -617,14 +637,17 @@ class _$CatalogFailureImpl implements CatalogFailure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        initial,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        loading,
     required TResult Function(
-            List<CategoryEntity> list, ListParams listParams, Failure exception)
+            List<CategoryEntity> list, CategoryListParams listParams)
+        initial,
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
+        loading,
+    required TResult Function(List<CategoryEntity> list,
+            CategoryListParams listParams, Failure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) {
     return failure(list, listParams, exception);
@@ -633,14 +656,14 @@ class _$CatalogFailureImpl implements CatalogFailure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         initial,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams,
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) {
     return failure?.call(list, listParams, exception);
@@ -649,12 +672,15 @@ class _$CatalogFailureImpl implements CatalogFailure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? initial,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? loading,
-    TResult Function(List<CategoryEntity> list, ListParams listParams,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        initial,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        loading,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? success,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        success,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -704,13 +730,13 @@ class _$CatalogFailureImpl implements CatalogFailure {
 abstract class CatalogFailure implements CatalogState {
   const factory CatalogFailure(
       {final List<CategoryEntity> list,
-      final ListParams listParams,
+      final CategoryListParams listParams,
       required final Failure exception}) = _$CatalogFailureImpl;
 
   @override
   List<CategoryEntity> get list;
   @override
-  ListParams get listParams;
+  CategoryListParams get listParams;
   Failure get exception;
 
   /// Create a copy of CatalogState
@@ -729,7 +755,7 @@ abstract class _$$SuccessImplCopyWith<$Res>
       __$$SuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<CategoryEntity> list, ListParams listParams});
+  $Res call({List<CategoryEntity> list, CategoryListParams listParams});
 }
 
 /// @nodoc
@@ -756,7 +782,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
       listParams: null == listParams
           ? _value.listParams
           : listParams // ignore: cast_nullable_to_non_nullable
-              as ListParams,
+              as CategoryListParams,
     ));
   }
 }
@@ -777,7 +803,7 @@ class _$SuccessImpl implements Success {
   }
 
   @override
-  final ListParams listParams;
+  final CategoryListParams listParams;
 
   @override
   String toString() {
@@ -809,14 +835,17 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        initial,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
-        loading,
     required TResult Function(
-            List<CategoryEntity> list, ListParams listParams, Failure exception)
+            List<CategoryEntity> list, CategoryListParams listParams)
+        initial,
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
+        loading,
+    required TResult Function(List<CategoryEntity> list,
+            CategoryListParams listParams, Failure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list, ListParams listParams)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) {
     return success(list, listParams);
@@ -825,14 +854,14 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         initial,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams,
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, ListParams listParams)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) {
     return success?.call(list, listParams);
@@ -841,12 +870,15 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? initial,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? loading,
-    TResult Function(List<CategoryEntity> list, ListParams listParams,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        initial,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        loading,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             Failure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, ListParams listParams)? success,
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -896,12 +928,12 @@ class _$SuccessImpl implements Success {
 abstract class Success implements CatalogState {
   const factory Success(
       {required final List<CategoryEntity> list,
-      required final ListParams listParams}) = _$SuccessImpl;
+      required final CategoryListParams listParams}) = _$SuccessImpl;
 
   @override
   List<CategoryEntity> get list;
   @override
-  ListParams get listParams;
+  CategoryListParams get listParams;
 
   /// Create a copy of CatalogState
   /// with the given fields replaced by the non-null parameter values.

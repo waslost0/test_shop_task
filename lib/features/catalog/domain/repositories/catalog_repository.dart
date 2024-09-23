@@ -10,5 +10,8 @@ import 'package:test_shop_task/features/catalog/domain/entities/category_entity.
 part 'package:test_shop_task/features/catalog/data/repositories/catalog_repository_impl.dart';
 
 abstract class CatalogRepository {
-  Future<Either<Failure, List<CategoryEntity>>> getList(int offset);
+  Future<Either<Failure, List<CategoryEntity>>> getList({
+    int offset = 0,
+    int? parentId,
+  });
 }

@@ -41,7 +41,7 @@ class ThemeBuilder {
 
   static SystemUiOverlayStyle get systemUiOverlayStyle =>
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
+        statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
         systemNavigationBarIconBrightness: Brightness.light,
@@ -153,6 +153,7 @@ class ThemeBuilder {
         selectionColor: AppColors.focusedBorder,
         selectionHandleColor: AppColors.focusedBorder,
       ),
+      pageTransitionsTheme: _buildPageTransitionsTheme(),
       dialogTheme: DialogTheme(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.0),
@@ -161,6 +162,15 @@ class ThemeBuilder {
       dividerTheme: const DividerThemeData(
         color: AppColors.dividerLightGray,
       ),
+    );
+  }
+
+  static PageTransitionsTheme _buildPageTransitionsTheme() {
+    return const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+      },
     );
   }
 

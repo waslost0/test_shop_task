@@ -5,7 +5,8 @@ import 'package:test_shop_task/features/auth/domain/usecases/send_sms_code.dart'
 import 'package:test_shop_task/features/auth/presentation/provider/state/auth_notifier.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/state/auth_state.dart';
 
-final authNotifierProvider = StateNotifierProvider<AuthNotifier, AuthState>(
+final authNotifierProvider =
+    AutoDisposeStateNotifierProvider<AuthNotifier, AuthState>(
   (ref) {
     return AuthNotifier(
       getIt<LoginByPhoneCodeUseCase>(),

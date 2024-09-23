@@ -5,7 +5,7 @@ import 'package:test_shop_task/features/product/domain/usecases/product_list_use
 import 'package:test_shop_task/features/product/presentation/provider/state/product_notifier.dart';
 import 'package:test_shop_task/features/product/presentation/provider/state/product_state.dart';
 
-final productProvider = StateNotifierProvider.family<ProductNotifier,
+final productProvider = AutoDisposeStateNotifierProvider.family<ProductNotifier,
     ProductState, CategoryEntity?>(
   (ref, data) {
     return ProductNotifier(

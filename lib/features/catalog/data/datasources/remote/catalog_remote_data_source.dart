@@ -6,5 +6,8 @@ import 'package:test_shop_task/features/catalog/domain/entities/category_entity.
 part 'catalog_remote_data_source_impl.dart';
 
 abstract class CatalogRemoteDataSource {
-  Future<List<CategoryEntity>> list({required int offset});
+  Future<List<CategoryEntity>> list({
+    required int offset,
+    int? parentId,
+  });
 }

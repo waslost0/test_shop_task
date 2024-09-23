@@ -8,7 +8,10 @@ import 'package:test_shop_task/features/catalog/presentation/widgets/category_li
 import 'package:test_shop_task/features/product/presentation/screens/product_screen.dart';
 
 class CatalogPage extends BasePage {
+  final int? parentId;
+
   const CatalogPage({
+    this.parentId,
     super.key,
     super.title = 'Каталог',
   });
@@ -22,19 +25,17 @@ class CatalogPageState extends BasePageState<CatalogPage> {
 
   @override
   Widget buildBody(BuildContext context) {
-    final model = ref.read(catalogProvider.notifier);
-    final state = ref.watch(catalogProvider);
+    final model = ref.read(catalogProvider(widget.parentId).notifier);
+    final state = ref.watch(catalogProvider(widget.parentId));
     return RefreshIndicator(
       onRefresh: () => model.reloadData(),
       child: state is Loading
           ? const Center(child: CircularProgressIndicator())
-          : buildGrid(),
+          : buildGrid(state),
     );
   }
 
-  Widget buildGrid() {
-    final state = ref.watch(catalogProvider);
-
+  Widget buildGrid(CatalogState state) {
     return ListView.separated(
       itemCount: state.list.length,
       padding: const EdgeInsets.all(16),
@@ -42,6 +43,13 @@ class CatalogPageState extends BasePageState<CatalogPage> {
         onTap: () {
           final category = state.list[index];
           if (category.hasSubcategories) {
+            Navigator.of(context, rootNavigator: true).push(
+              MaterialPageRoute(
+                builder: (context) => CatalogPage(
+                  parentId: category.categoryId,
+                ),
+              ),
+            );
           } else {
             Navigator.push(
               context,
