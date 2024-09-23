@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
@@ -42,7 +43,8 @@ class AppState extends ConsumerState<App> {
       navigatorKey: appNavigator.key,
       home: prepareStartPage(context),
       theme: appTheme(context),
-
+      debugShowCheckedModeBanner: false,
+      builder: BotToastInit(),
       // theme: AppTheme().buildThemeData(),
       // builder: BotToastInit(),
       // navigatorObservers: [BotToastNavigatorObserver()],
@@ -52,7 +54,6 @@ class AppState extends ConsumerState<App> {
       //   GlobalCupertinoLocalizations.delegate,
       // ],
       // supportedLocales: S.delegate.supportedLocales,
-
     );
   }
 

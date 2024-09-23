@@ -23,6 +23,8 @@ import 'package:test_shop_task/features/auth/domain/repositories/auth_repository
     as _i405;
 import 'package:test_shop_task/features/auth/domain/usecases/login_by_phone_code.dart'
     as _i801;
+import 'package:test_shop_task/features/auth/domain/usecases/send_sms_code.dart'
+    as _i475;
 import 'package:test_shop_task/features/catalog/data/datasources/remote/catalog_remote_data_source.dart'
     as _i840;
 import 'package:test_shop_task/features/catalog/domain/repositories/catalog_repository.dart'
@@ -48,11 +50,11 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i60.BaseApi>(() => _i60.BaseApi());
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs,
       preResolve: true,
     );
+    gh.factory<_i60.BaseApi>(() => _i60.BaseApi());
     gh.singleton<_i788.LocalStorageService>(
         () => _i788.LocalStorageService(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i839.AuthRemoteDataSource>(
@@ -67,6 +69,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i423.PrivateApi(gh<_i405.AuthRepository>()));
     gh.factory<_i801.LoginByPhoneCodeUseCase>(
         () => _i801.LoginByPhoneCodeUseCase(gh<_i405.AuthRepository>()));
+    gh.factory<_i475.SendSmsCodeUseCase>(
+        () => _i475.SendSmsCodeUseCase(gh<_i405.AuthRepository>()));
     gh.lazySingleton<_i840.CatalogRemoteDataSource>(
         () => _i840.CatalogRemoteDataSourceImpl(gh<_i423.PrivateApi>()));
     gh.lazySingleton<_i406.UserRemoteDataSource>(

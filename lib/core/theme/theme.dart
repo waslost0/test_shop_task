@@ -48,6 +48,9 @@ ThemeData appTheme(BuildContext context) {
         borderRadius: BorderRadius.circular(10.0),
         borderSide: BorderSide.none,
       ),
+      hintStyle: const TextStyle(
+        color: AppColors.hint,
+      ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
         borderSide: const BorderSide(color: AppColors.focusedBorder),

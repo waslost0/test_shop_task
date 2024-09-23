@@ -15,9 +15,12 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String phone,
   }) async {
     final response = await _appHttpService.post(
-      '',
+      'auth/phone/send-sms',
+      data: {
+        'phone': phone,
+      },
     );
-    return false;
+    return response.meta.success;
   }
 
   @override

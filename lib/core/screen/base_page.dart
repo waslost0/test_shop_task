@@ -19,7 +19,7 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
   @protected
   bool withSafeArea = true;
   @protected
-  bool resizeToAvoidBottomInset = false;
+  bool resizeToAvoidBottomInset = true;
   @protected
   bool hasConnection = true;
 

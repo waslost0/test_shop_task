@@ -1,12 +1,17 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/auth_provider.dart';
-import 'package:test_shop_task/features/auth/presentation/screen/auth_by_phone.dart';
 
-mixin AuthByPhoneMixin on BasePageState<AuthByPhonePage> {
+mixin AuthByPhoneMixin<T extends BasePage> on BasePageState<T> {
   late final pageModel = ref.read(authNotifierProvider.notifier);
+  final MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
+    mask: '+# (###) ###-##-##',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController phoneController = TextEditingController();
@@ -20,11 +25,25 @@ mixin AuthByPhoneMixin on BasePageState<AuthByPhonePage> {
     await pageModel.sendSmsCode(phoneController.text.trim());
   }
 
-  Future<void> login() async {
+  Future<void> login(String phone) async {
     await pageModel.loginUser(
-      phoneController.text.trim(),
+      phone,
       codeController.text.trim(),
     );
+  }
+
+  String? validatePhone(String? value) {
+    if (value?.isEmpty ?? true) {
+      return 'Необходимо заполнить номер телефона';
+    }
+    return null;
+  }
+
+  String? validateCode(String? value) {
+    if (value?.isEmpty ?? true) {
+      return 'Введите код';
+    }
+    return null;
   }
 
   @protected
@@ -51,4 +70,11 @@ mixin AuthByPhoneMixin on BasePageState<AuthByPhonePage> {
   }
 
   Future<void> submitForm();
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    codeController.dispose();
+    super.dispose();
+  }
 }

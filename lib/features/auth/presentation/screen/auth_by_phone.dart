@@ -4,7 +4,7 @@ import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/features/auth/presentation/mixins/auth_by_phone_mixin.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/auth_provider.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/state/auth_state.dart';
-import 'package:test_shop_task/features/navigation/bottom_navigation.dart';
+import 'package:test_shop_task/features/auth/presentation/screen/phone_confirmation_page.dart';
 
 class AuthByPhonePage extends BasePage {
   const AuthByPhonePage({
@@ -20,23 +20,16 @@ class AuthByPhonePageState extends BasePageState<AuthByPhonePage>
     with AuthByPhoneMixin {
   @override
   Widget buildBody(BuildContext context) {
-    final model = ref.watch(authNotifierProvider.notifier);
-    ref.listen(
-      authNotifierProvider,
-      (previous, next) {
-        if (next is Success) {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const BottomNavigation()),
-            (route) => route.isFirst,
-          );
-        }
-      },
-    );
+    ref.watch(authNotifierProvider.notifier);
+    listenForState();
     return Form(
       key: formKey,
       autovalidateMode: autovalidateMode,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
+        padding: const EdgeInsets.only(
+          left: 16,
+          right: 16,
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -46,9 +39,11 @@ class AuthByPhonePageState extends BasePageState<AuthByPhonePage>
             const SizedBox(height: 10),
             TextFormField(
               controller: phoneController,
-              validator: (value) {
-                return "test";
-              },
+              inputFormatters: [maskFormatter],
+              decoration: const InputDecoration(
+                hintText: '+7 (988) 756-55-55',
+              ),
+              validator: validatePhone,
             ),
             const SizedBox(height: 16),
             ElevatedButton(
@@ -59,6 +54,24 @@ class AuthByPhonePageState extends BasePageState<AuthByPhonePage>
           ],
         ),
       ),
+    );
+  }
+
+  void listenForState() {
+    ref.listen(
+      authNotifierProvider,
+      (previous, next) {
+        if (next is Success) {
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+              builder: (context) => PhoneConfirmationFormPage(
+                phoneNumber: phoneController.text,
+              ),
+            ),
+            (route) => route.isFirst,
+          );
+        }
+      },
     );
   }
 

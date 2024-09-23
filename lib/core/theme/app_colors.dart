@@ -5,6 +5,7 @@ class AppColors {
   static const Color black = Color(0xFF1C1C1C);
   static const Color black2 = Color(0xFF2A2A2A);
   static const Color black3 = Color(0xFF353535);
+  static const Color hint = Color(0xB58C95E6);
 
   static const Color lightBlack = Color(0xFF191919);
   static const Color fullBlack = Color(0xFF000000);
@@ -103,7 +104,6 @@ class AppColors {
   static const Color divider = Color(0xFFCED2DC);
   static const Color border = charcoal;
   static const Color disabledBorder = Color(0xFFB9BECB);
-  static const Color hint = Color(0xFF9E9E9E);
   static const Color defaultShadow = Color(0x5E020202);
   static const Color iosAlertButtonTextColor = white;
   static const Color alertDialogColor = black3;
