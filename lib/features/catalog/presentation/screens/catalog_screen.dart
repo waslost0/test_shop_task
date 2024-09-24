@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
+import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/catalog_provider.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/state/catalog_state.dart';
 import 'package:test_shop_task/features/catalog/presentation/widgets/category_list_item.dart';
@@ -31,11 +32,19 @@ class CatalogPageState extends BasePageState<CatalogPage> {
       onRefresh: () => model.reloadData(),
       child: state is Loading
           ? const Center(child: CircularProgressIndicator())
-          : buildGrid(state),
+          : buildListView(state),
     );
   }
 
-  Widget buildGrid(CatalogState state) {
+  Widget buildListView(CatalogState state) {
+    if (state.list.isEmpty) {
+      return const Center(
+        child: Text(
+          'Список пуст',
+          style: AppTextStyle.title,
+        ),
+      );
+    }
     return ListView.separated(
       itemCount: state.list.length,
       padding: const EdgeInsets.all(16),
