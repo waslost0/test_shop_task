@@ -15,7 +15,7 @@ class Product with _$Product {
     String? imageUrl,
     String? productDescription,
     num? rating,
-    @BoolJsonConverter() @Default(false) isFavorite,
+    @BoolJsonConverter() @Default(false) bool isFavorite,
     @Default([]) List<String> images,
   }) = _Product;
 
@@ -28,7 +28,11 @@ extension ProductX on Product {
     return ProductEntity(
       productId: productId,
       name: name,
+      images: images,
       imageUrl: imageUrl,
+      isFavorite: isFavorite,
+      price: price,
+      productDescription: productDescription,
     );
   }
 }

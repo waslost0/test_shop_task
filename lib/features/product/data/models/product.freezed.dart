@@ -28,7 +28,7 @@ mixin _$Product {
   String? get productDescription => throw _privateConstructorUsedError;
   num? get rating => throw _privateConstructorUsedError;
   @BoolJsonConverter()
-  dynamic get isFavorite => throw _privateConstructorUsedError;
+  bool get isFavorite => throw _privateConstructorUsedError;
   List<String> get images => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
@@ -53,7 +53,7 @@ abstract class $ProductCopyWith<$Res> {
       String? imageUrl,
       String? productDescription,
       num? rating,
-      @BoolJsonConverter() dynamic isFavorite,
+      @BoolJsonConverter() bool isFavorite,
       List<String> images});
 }
 
@@ -79,7 +79,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? imageUrl = freezed,
     Object? productDescription = freezed,
     Object? rating = freezed,
-    Object? isFavorite = freezed,
+    Object? isFavorite = null,
     Object? images = null,
   }) {
     return _then(_value.copyWith(
@@ -111,10 +111,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as num?,
-      isFavorite: freezed == isFavorite
+      isFavorite: null == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as bool,
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
@@ -138,7 +138,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String? imageUrl,
       String? productDescription,
       num? rating,
-      @BoolJsonConverter() dynamic isFavorite,
+      @BoolJsonConverter() bool isFavorite,
       List<String> images});
 }
 
@@ -162,7 +162,7 @@ class __$$ProductImplCopyWithImpl<$Res>
     Object? imageUrl = freezed,
     Object? productDescription = freezed,
     Object? rating = freezed,
-    Object? isFavorite = freezed,
+    Object? isFavorite = null,
     Object? images = null,
   }) {
     return _then(_$ProductImpl(
@@ -194,7 +194,10 @@ class __$$ProductImplCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as num?,
-      isFavorite: freezed == isFavorite ? _value.isFavorite! : isFavorite,
+      isFavorite: null == isFavorite
+          ? _value.isFavorite
+          : isFavorite // ignore: cast_nullable_to_non_nullable
+              as bool,
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
@@ -238,7 +241,7 @@ class _$ProductImpl implements _Product {
   @override
   @JsonKey()
   @BoolJsonConverter()
-  final dynamic isFavorite;
+  final bool isFavorite;
   final List<String> _images;
   @override
   @JsonKey()
@@ -269,8 +272,8 @@ class _$ProductImpl implements _Product {
             (identical(other.productDescription, productDescription) ||
                 other.productDescription == productDescription) &&
             (identical(other.rating, rating) || other.rating == rating) &&
-            const DeepCollectionEquality()
-                .equals(other.isFavorite, isFavorite) &&
+            (identical(other.isFavorite, isFavorite) ||
+                other.isFavorite == isFavorite) &&
             const DeepCollectionEquality().equals(other._images, _images));
   }
 
@@ -285,7 +288,7 @@ class _$ProductImpl implements _Product {
       imageUrl,
       productDescription,
       rating,
-      const DeepCollectionEquality().hash(isFavorite),
+      isFavorite,
       const DeepCollectionEquality().hash(_images));
 
   /// Create a copy of Product
@@ -313,7 +316,7 @@ abstract class _Product implements Product {
       final String? imageUrl,
       final String? productDescription,
       final num? rating,
-      @BoolJsonConverter() final dynamic isFavorite,
+      @BoolJsonConverter() final bool isFavorite,
       final List<String> images}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
@@ -334,7 +337,7 @@ abstract class _Product implements Product {
   num? get rating;
   @override
   @BoolJsonConverter()
-  dynamic get isFavorite;
+  bool get isFavorite;
   @override
   List<String> get images;
 

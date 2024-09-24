@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
-import 'package:test_shop_task/core/widgets/safe_networkImage.dart';
 import 'package:test_shop_task/features/catalog/domain/entities/category_entity.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/state/catalog_state.dart';
 import 'package:test_shop_task/features/product/presentation/provider/product_provider.dart';
+import 'package:test_shop_task/features/product/presentation/widgets/product_grid_item.dart';
 
 class ProductListPage extends BasePage {
   final CategoryEntity? category;
@@ -45,8 +45,9 @@ class ProductListPageState extends BasePageState<ProductListPage> {
     }
     return GridView.builder(
       itemCount: state.list.length,
-      itemBuilder: (context, index) => SafeNetworkImage(
-        imageUrl: state.list[index].imageUrl,
+      itemBuilder: (context, index) => ProductGridItem(
+        onBuyTap: () {},
+        product: state.list[index],
       ),
       gridDelegate: createGridDelegate(context),
       padding: const EdgeInsets.all(16),
@@ -72,5 +73,5 @@ class ProductListPageState extends BasePageState<ProductListPage> {
 
   double get crossAxisSpacing => 10;
 
-  double get childAspectRatio => 1.0;
+  double get childAspectRatio => 0.65;
 }

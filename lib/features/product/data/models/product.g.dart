@@ -15,7 +15,9 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
       imageUrl: json['imageUrl'] as String?,
       productDescription: json['productDescription'] as String?,
       rating: json['rating'] as num?,
-      isFavorite: json['isFavorite'] ?? false,
+      isFavorite: json['isFavorite'] == null
+          ? false
+          : const BoolJsonConverter().fromJson(json['isFavorite']),
       images: (json['images'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
@@ -31,6 +33,6 @@ Map<String, dynamic> _$$ProductImplToJson(_$ProductImpl instance) =>
       'imageUrl': instance.imageUrl,
       'productDescription': instance.productDescription,
       'rating': instance.rating,
-      'isFavorite': instance.isFavorite,
+      'isFavorite': const BoolJsonConverter().toJson(instance.isFavorite),
       'images': instance.images,
     };
