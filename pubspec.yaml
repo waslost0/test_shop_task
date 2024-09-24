@@ -55,6 +55,7 @@ dependencies:
   extended_image: ^8.2.4
   mask_text_input_formatter: ^2.9.0
   smooth_page_indicator: ^1.2.0+3
+  drift_flutter: ^0.2.0
 
 dev_dependencies:
   flutter_test:
@@ -66,11 +67,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
-  build_runner:
+  build_runner: ^2.4.12
   riverpod_generator: ^2.4.3
   riverpod_lint: ^2.3.13
   go_router_builder: ^2.7.1
   injectable_generator: ^2.6.2
+  drift_dev: ^2.20.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

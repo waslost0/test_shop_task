@@ -1,4 +1,6 @@
+import 'package:drift/drift.dart';
 import 'package:equatable/equatable.dart';
+import 'package:test_shop_task/core/database/database.dart';
 
 class ProductEntity extends Equatable {
   final int productId;
@@ -21,4 +23,14 @@ class ProductEntity extends Equatable {
 
   @override
   List<Object?> get props => [productId];
+}
+
+extension ProductEntityDbExtensions on ProductEntity {
+  ProductTableCompanion toCompanion() {
+    return ProductTableCompanion(
+      productId: Value(productId),
+      name: Value(name),
+      productDescription: Value.absentIfNull(productDescription),
+    );
+  }
 }
