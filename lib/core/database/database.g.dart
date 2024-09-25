@@ -50,7 +50,7 @@ class $ProductTableTable extends ProductTable
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'product_table';
+  static const String $name = 'product';
   @override
   VerificationContext validateIntegrity(Insertable<ProductEntity> instance,
       {bool isInserting = false}) {
@@ -255,14 +255,14 @@ class $CartItemTableTable extends CartItemTable
       type: DriftSqlType.int,
       requiredDuringInsert: true,
       defaultConstraints: GeneratedColumn.constraintIsAlways(
-          'REFERENCES product_table (product_id)'));
+          'REFERENCES product (product_id)'));
   @override
   List<GeneratedColumn> get $columns => [id, count, productId];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
   String get actualTableName => $name;
-  static const String $name = 'cart_item_table';
+  static const String $name = 'cart_item';
   @override
   VerificationContext validateIntegrity(Insertable<CartItemTableData> instance,
       {bool isInserting = false}) {

@@ -5,6 +5,9 @@ import 'package:test_shop_task/features/product/domain/entities/product_entity.d
 
 @UseRowClass(ProductEntity)
 class ProductTable extends Table {
+  @override
+  String get tableName => 'product';
+
   IntColumn get productId => integer()();
 
   TextColumn get name => text()();

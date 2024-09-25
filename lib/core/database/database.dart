@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:injectable/injectable.dart';
-import 'package:test_shop_task/core/database/entities/cart_item.dart';
+import 'package:test_shop_task/core/database/entities/cart_item_table.dart';
 import 'package:test_shop_task/core/database/entities/product_table.dart';
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
 
