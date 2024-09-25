@@ -30,6 +30,9 @@ extension ProductEntityDbExtensions on ProductEntity {
     return ProductTableCompanion(
       productId: Value(productId),
       name: Value(name),
+      imageUrl: Value.absentIfNull(imageUrl),
+      images: Value.absentIfNull(images),
+      price: Value.absentIfNull(price?.toDouble()),
       productDescription: Value.absentIfNull(productDescription),
     );
   }

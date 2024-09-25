@@ -26,6 +26,8 @@ import 'package:test_shop_task/features/auth/domain/usecases/login_by_phone_code
     as _i801;
 import 'package:test_shop_task/features/auth/domain/usecases/send_sms_code.dart'
     as _i475;
+import 'package:test_shop_task/features/cart/domain/repositories/cart_repository.dart'
+    as _i360;
 import 'package:test_shop_task/features/catalog/data/datasources/remote/catalog_remote_data_source.dart'
     as _i840;
 import 'package:test_shop_task/features/catalog/domain/repositories/catalog_repository.dart'
@@ -57,14 +59,16 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
+    gh.factory<_i60.BaseApi>(() => _i60.BaseApi());
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs,
       preResolve: true,
     );
-    gh.factory<_i60.BaseApi>(() => _i60.BaseApi());
     gh.singleton<_i493.AppDatabase>(() => _i493.AppDatabase());
     gh.singleton<_i788.LocalStorageService>(
         () => _i788.LocalStorageService(gh<_i460.SharedPreferences>()));
+    gh.lazySingleton<_i360.CartRepository>(
+        () => _i360.CartRepositoryImpl(gh<_i493.AppDatabase>()));
     gh.lazySingleton<_i839.AuthRemoteDataSource>(
         () => _i839.AuthRemoteDataSourceImpl(gh<_i60.BaseApi>()));
     gh.lazySingleton<_i12.AuthLocalDataSource>(

@@ -8,6 +8,8 @@ class ProductTable extends Table {
   @override
   String get tableName => 'product';
 
+  IntColumn get id => integer().autoIncrement()();
+
   IntColumn get productId => integer()();
 
   TextColumn get name => text()();
