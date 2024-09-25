@@ -35,14 +35,57 @@ class CartRepositoryImpl extends CartRepository {
   }
 
   @override
+  Future<Either<AppFailure, CartItemEntity?>> getCartItemByProductId({
+    required int productId,
+  }) async {
+    try {
+      final cartItem = await _db.managers.cartItemTable
+          .filter((f) => f.productId.productId.equals(productId))
+          .getSingleOrNull();
+      return Right(cartItem);
+    } catch (e, s) {
+      return Left(
+        ExceptionToFailureConverter.convert(e, s),
+      );
+    }
+  }
+
+  @override
+  Future<Either<AppFailure, CartItemEntity?>> getCartItemByProductIdRef({
+    required int productId,
+  }) async {
+    try {
+      CartItemEntity? cartItem;
+      final response = await _db.managers.cartItemTable
+          .filter((f) {
+            return f.productId.productId.equals(productId);
+          })
+          .withReferences((prefetch) => prefetch(productId: true))
+          .getSingleOrNull();
+
+      cartItem = response?.$1.copyWith(
+        product: await response.$2.productId?.getSingle(),
+      );
+
+      return Right(cartItem);
+    } catch (e, s) {
+      return Left(
+        ExceptionToFailureConverter.convert(e, s),
+      );
+    }
+  }
+
+  @override
   Future<Either<AppFailure, bool>> addCartItem({
     required CartItemEntity cartItem,
   }) async {
     try {
       await _db.transaction(() async {
-        await _db
-            .into(_db.productTable)
-            .insertOnConflictUpdate(cartItem.product!.toCompanion());
+        if (cartItem.product != null) {
+          await _db
+              .into(_db.productTable)
+              .insertOnConflictUpdate(cartItem.product!.toCompanion());
+        }
         await _db
             .into(_db.cartItemTable)
             .insertOnConflictUpdate(cartItem.toCompanion());

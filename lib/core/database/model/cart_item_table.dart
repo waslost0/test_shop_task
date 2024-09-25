@@ -5,9 +5,10 @@ import 'package:test_shop_task/features/cart/domain/entities/cart_entity.dart';
 @UseRowClass(CartItemEntity)
 class CartItemTable extends Table {
   @override
-  String get tableName => 'cart_item';
+  Set<Column> get primaryKey => {productId};
 
-  IntColumn get id => integer().autoIncrement()();
+  @override
+  String get tableName => 'cart_item';
 
   IntColumn get count => integer()();
 

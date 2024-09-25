@@ -9,21 +9,12 @@ class $ProductTableTable extends ProductTable
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $ProductTableTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
   static const VerificationMeta _productIdMeta =
       const VerificationMeta('productId');
   @override
   late final GeneratedColumn<int> productId = GeneratedColumn<int>(
       'product_id', aliasedName, false,
-      type: DriftSqlType.int, requiredDuringInsert: true);
+      type: DriftSqlType.int, requiredDuringInsert: false);
   static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
   late final GeneratedColumn<String> name = GeneratedColumn<String>(
@@ -54,7 +45,7 @@ class $ProductTableTable extends ProductTable
           .withConverter<List<String>>($ProductTableTable.$converterimages);
   @override
   List<GeneratedColumn> get $columns =>
-      [id, productId, name, productDescription, imageUrl, price, images];
+      [productId, name, productDescription, imageUrl, price, images];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -65,14 +56,9 @@ class $ProductTableTable extends ProductTable
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
     if (data.containsKey('product_id')) {
       context.handle(_productIdMeta,
           productId.isAcceptableOrUnknown(data['product_id']!, _productIdMeta));
-    } else if (isInserting) {
-      context.missing(_productIdMeta);
     }
     if (data.containsKey('name')) {
       context.handle(
@@ -99,7 +85,7 @@ class $ProductTableTable extends ProductTable
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => {productId};
   @override
   ProductEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -130,7 +116,6 @@ class $ProductTableTable extends ProductTable
 }
 
 class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
-  final Value<int> id;
   final Value<int> productId;
   final Value<String> name;
   final Value<String?> productDescription;
@@ -138,7 +123,6 @@ class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
   final Value<double?> price;
   final Value<List<String>> images;
   const ProductTableCompanion({
-    this.id = const Value.absent(),
     this.productId = const Value.absent(),
     this.name = const Value.absent(),
     this.productDescription = const Value.absent(),
@@ -147,18 +131,15 @@ class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
     this.images = const Value.absent(),
   });
   ProductTableCompanion.insert({
-    this.id = const Value.absent(),
-    required int productId,
+    this.productId = const Value.absent(),
     required String name,
     this.productDescription = const Value.absent(),
     this.imageUrl = const Value.absent(),
     this.price = const Value.absent(),
     required List<String> images,
-  })  : productId = Value(productId),
-        name = Value(name),
+  })  : name = Value(name),
         images = Value(images);
   static Insertable<ProductEntity> custom({
-    Expression<int>? id,
     Expression<int>? productId,
     Expression<String>? name,
     Expression<String>? productDescription,
@@ -167,7 +148,6 @@ class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
     Expression<String>? images,
   }) {
     return RawValuesInsertable({
-      if (id != null) 'id': id,
       if (productId != null) 'product_id': productId,
       if (name != null) 'name': name,
       if (productDescription != null) 'product_description': productDescription,
@@ -178,15 +158,13 @@ class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
   }
 
   ProductTableCompanion copyWith(
-      {Value<int>? id,
-      Value<int>? productId,
+      {Value<int>? productId,
       Value<String>? name,
       Value<String?>? productDescription,
       Value<String?>? imageUrl,
       Value<double?>? price,
       Value<List<String>>? images}) {
     return ProductTableCompanion(
-      id: id ?? this.id,
       productId: productId ?? this.productId,
       name: name ?? this.name,
       productDescription: productDescription ?? this.productDescription,
@@ -199,9 +177,6 @@ class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<int>(id.value);
-    }
     if (productId.present) {
       map['product_id'] = Variable<int>(productId.value);
     }
@@ -227,7 +202,6 @@ class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
   @override
   String toString() {
     return (StringBuffer('ProductTableCompanion(')
-          ..write('id: $id, ')
           ..write('productId: $productId, ')
           ..write('name: $name, ')
           ..write('productDescription: $productDescription, ')
@@ -245,15 +219,6 @@ class $CartItemTableTable extends CartItemTable
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $CartItemTableTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<int> id = GeneratedColumn<int>(
-      'id', aliasedName, false,
-      hasAutoIncrement: true,
-      type: DriftSqlType.int,
-      requiredDuringInsert: false,
-      defaultConstraints:
-          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
   static const VerificationMeta _countMeta = const VerificationMeta('count');
   @override
   late final GeneratedColumn<int> count = GeneratedColumn<int>(
@@ -265,11 +230,11 @@ class $CartItemTableTable extends CartItemTable
   late final GeneratedColumn<int> productId = GeneratedColumn<int>(
       'product_id', aliasedName, false,
       type: DriftSqlType.int,
-      requiredDuringInsert: true,
+      requiredDuringInsert: false,
       defaultConstraints: GeneratedColumn.constraintIsAlways(
           'REFERENCES product (product_id)'));
   @override
-  List<GeneratedColumn> get $columns => [id, count, productId];
+  List<GeneratedColumn> get $columns => [count, productId];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -280,9 +245,6 @@ class $CartItemTableTable extends CartItemTable
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
     if (data.containsKey('count')) {
       context.handle(
           _countMeta, count.isAcceptableOrUnknown(data['count']!, _countMeta));
@@ -292,14 +254,12 @@ class $CartItemTableTable extends CartItemTable
     if (data.containsKey('product_id')) {
       context.handle(_productIdMeta,
           productId.isAcceptableOrUnknown(data['product_id']!, _productIdMeta));
-    } else if (isInserting) {
-      context.missing(_productIdMeta);
     }
     return context;
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => {productId};
   @override
   CartItemEntity map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
@@ -318,36 +278,28 @@ class $CartItemTableTable extends CartItemTable
 }
 
 class CartItemTableCompanion extends UpdateCompanion<CartItemEntity> {
-  final Value<int> id;
   final Value<int> count;
   final Value<int> productId;
   const CartItemTableCompanion({
-    this.id = const Value.absent(),
     this.count = const Value.absent(),
     this.productId = const Value.absent(),
   });
   CartItemTableCompanion.insert({
-    this.id = const Value.absent(),
     required int count,
-    required int productId,
-  })  : count = Value(count),
-        productId = Value(productId);
+    this.productId = const Value.absent(),
+  }) : count = Value(count);
   static Insertable<CartItemEntity> custom({
-    Expression<int>? id,
     Expression<int>? count,
     Expression<int>? productId,
   }) {
     return RawValuesInsertable({
-      if (id != null) 'id': id,
       if (count != null) 'count': count,
       if (productId != null) 'product_id': productId,
     });
   }
 
-  CartItemTableCompanion copyWith(
-      {Value<int>? id, Value<int>? count, Value<int>? productId}) {
+  CartItemTableCompanion copyWith({Value<int>? count, Value<int>? productId}) {
     return CartItemTableCompanion(
-      id: id ?? this.id,
       count: count ?? this.count,
       productId: productId ?? this.productId,
     );
@@ -356,9 +308,6 @@ class CartItemTableCompanion extends UpdateCompanion<CartItemEntity> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<int>(id.value);
-    }
     if (count.present) {
       map['count'] = Variable<int>(count.value);
     }
@@ -371,7 +320,6 @@ class CartItemTableCompanion extends UpdateCompanion<CartItemEntity> {
   @override
   String toString() {
     return (StringBuffer('CartItemTableCompanion(')
-          ..write('id: $id, ')
           ..write('count: $count, ')
           ..write('productId: $productId')
           ..write(')'))
@@ -394,8 +342,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
 
 typedef $$ProductTableTableCreateCompanionBuilder = ProductTableCompanion
     Function({
-  Value<int> id,
-  required int productId,
+  Value<int> productId,
   required String name,
   Value<String?> productDescription,
   Value<String?> imageUrl,
@@ -404,7 +351,6 @@ typedef $$ProductTableTableCreateCompanionBuilder = ProductTableCompanion
 });
 typedef $$ProductTableTableUpdateCompanionBuilder = ProductTableCompanion
     Function({
-  Value<int> id,
   Value<int> productId,
   Value<String> name,
   Value<String?> productDescription,
@@ -436,11 +382,6 @@ final class $$ProductTableTableReferences
 class $$ProductTableTableFilterComposer
     extends FilterComposer<_$AppDatabase, $ProductTableTable> {
   $$ProductTableTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
   ColumnFilters<int> get productId => $state.composableBuilder(
       column: $state.table.productId,
       builder: (column, joinBuilders) =>
@@ -490,11 +431,6 @@ class $$ProductTableTableFilterComposer
 class $$ProductTableTableOrderingComposer
     extends OrderingComposer<_$AppDatabase, $ProductTableTable> {
   $$ProductTableTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-
   ColumnOrderings<int> get productId => $state.composableBuilder(
       column: $state.table.productId,
       builder: (column, joinBuilders) =>
@@ -546,7 +482,6 @@ class $$ProductTableTableTableManager extends RootTableManager<
           orderingComposer:
               $$ProductTableTableOrderingComposer(ComposerState(db, table)),
           updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
             Value<int> productId = const Value.absent(),
             Value<String> name = const Value.absent(),
             Value<String?> productDescription = const Value.absent(),
@@ -555,7 +490,6 @@ class $$ProductTableTableTableManager extends RootTableManager<
             Value<List<String>> images = const Value.absent(),
           }) =>
               ProductTableCompanion(
-            id: id,
             productId: productId,
             name: name,
             productDescription: productDescription,
@@ -564,8 +498,7 @@ class $$ProductTableTableTableManager extends RootTableManager<
             images: images,
           ),
           createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
-            required int productId,
+            Value<int> productId = const Value.absent(),
             required String name,
             Value<String?> productDescription = const Value.absent(),
             Value<String?> imageUrl = const Value.absent(),
@@ -573,7 +506,6 @@ class $$ProductTableTableTableManager extends RootTableManager<
             required List<String> images,
           }) =>
               ProductTableCompanion.insert(
-            id: id,
             productId: productId,
             name: name,
             productDescription: productDescription,
@@ -628,13 +560,11 @@ typedef $$ProductTableTableProcessedTableManager = ProcessedTableManager<
     PrefetchHooks Function({bool cartItemTableRefs})>;
 typedef $$CartItemTableTableCreateCompanionBuilder = CartItemTableCompanion
     Function({
-  Value<int> id,
   required int count,
-  required int productId,
+  Value<int> productId,
 });
 typedef $$CartItemTableTableUpdateCompanionBuilder = CartItemTableCompanion
     Function({
-  Value<int> id,
   Value<int> count,
   Value<int> productId,
 });
@@ -662,11 +592,6 @@ final class $$CartItemTableTableReferences
 class $$CartItemTableTableFilterComposer
     extends FilterComposer<_$AppDatabase, $CartItemTableTable> {
   $$CartItemTableTableFilterComposer(super.$state);
-  ColumnFilters<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnFilters(column, joinBuilders: joinBuilders));
-
   ColumnFilters<int> get count => $state.composableBuilder(
       column: $state.table.count,
       builder: (column, joinBuilders) =>
@@ -688,11 +613,6 @@ class $$CartItemTableTableFilterComposer
 class $$CartItemTableTableOrderingComposer
     extends OrderingComposer<_$AppDatabase, $CartItemTableTable> {
   $$CartItemTableTableOrderingComposer(super.$state);
-  ColumnOrderings<int> get id => $state.composableBuilder(
-      column: $state.table.id,
-      builder: (column, joinBuilders) =>
-          ColumnOrderings(column, joinBuilders: joinBuilders));
-
   ColumnOrderings<int> get count => $state.composableBuilder(
       column: $state.table.count,
       builder: (column, joinBuilders) =>
@@ -731,22 +651,18 @@ class $$CartItemTableTableTableManager extends RootTableManager<
           orderingComposer:
               $$CartItemTableTableOrderingComposer(ComposerState(db, table)),
           updateCompanionCallback: ({
-            Value<int> id = const Value.absent(),
             Value<int> count = const Value.absent(),
             Value<int> productId = const Value.absent(),
           }) =>
               CartItemTableCompanion(
-            id: id,
             count: count,
             productId: productId,
           ),
           createCompanionCallback: ({
-            Value<int> id = const Value.absent(),
             required int count,
-            required int productId,
+            Value<int> productId = const Value.absent(),
           }) =>
               CartItemTableCompanion.insert(
-            id: id,
             count: count,
             productId: productId,
           ),

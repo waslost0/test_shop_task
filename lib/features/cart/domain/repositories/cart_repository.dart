@@ -19,4 +19,12 @@ abstract class CartRepository {
   Future<Either<AppFailure, bool>> addCartItem({
     required CartItemEntity cartItem,
   });
+
+  Future<Either<AppFailure, CartItemEntity?>> getCartItemByProductId({
+    required int productId,
+  });
+
+  Future<Either<AppFailure, CartItemEntity?>> getCartItemByProductIdRef({
+    required int productId,
+  });
 }

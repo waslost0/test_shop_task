@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_shop_task/core/widgets/safe_network_Image.dart';
 import 'package:test_shop_task/features/cart/domain/entities/cart_entity.dart';
 
 class CartListItem extends StatefulWidget {
@@ -16,7 +17,13 @@ class CartListItem extends StatefulWidget {
 class _CartListItemState extends State<CartListItem> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Column(
+      children: [
+        Text('Count: ${widget.item.count}'),
+        SafeNetworkImage(
+          imageUrl: widget.item.product?.imageUrl,
+        ),
+      ],
+    );
   }
 }
