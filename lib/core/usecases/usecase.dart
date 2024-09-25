@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:test_shop_task/core/errors/errors.dart';
 
 abstract interface class UseCase<Type, Params> {
-  Future<Either<Failure, Type>> call(Params params);
+  Future<Either<AppFailure, Type>> call(Params params);
 }
 
 class NoParams extends Equatable {

@@ -9,7 +9,7 @@ class CardWidget extends StatelessWidget {
   final Color? color;
   final List<BoxShadow>? boxShadow;
 
-  CardWidget({
+  const CardWidget({
     this.child,
     this.boxShadow,
     this.margin = const EdgeInsets.symmetric(

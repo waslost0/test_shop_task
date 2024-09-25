@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-import 'package:test_shop_task/features/navigation/bottom_navigationItem.dart';
+import 'package:test_shop_task/features/navigation/bottom_navigation_Item.dart';
 
 class BottomNavigation extends ConsumerStatefulWidget {
   const BottomNavigation({super.key});

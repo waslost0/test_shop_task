@@ -42,7 +42,7 @@ abstract class CatalogState with _$CatalogState {
   const factory CatalogState.failure({
     @Default([]) List<CategoryEntity> list,
     @Default(CategoryListParams()) CategoryListParams listParams,
-    required Failure exception,
+    required AppFailure exception,
   }) = CatalogFailure;
 
   const factory CatalogState.success({

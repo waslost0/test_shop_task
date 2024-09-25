@@ -11,7 +11,7 @@ class Product with _$Product {
     required int productId,
     required String name,
     required int createdAt,
-    num? price,
+    double? price,
     String? imageUrl,
     String? productDescription,
     num? rating,

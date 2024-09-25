@@ -27,7 +27,7 @@ mixin _$CatalogState {
             List<CategoryEntity> list, CategoryListParams listParams)
         loading,
     required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, Failure exception)
+            CategoryListParams listParams, AppFailure exception)
         failure,
     required TResult Function(
             List<CategoryEntity> list, CategoryListParams listParams)
@@ -41,7 +41,7 @@ mixin _$CatalogState {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
@@ -54,7 +54,7 @@ mixin _$CatalogState {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
@@ -232,7 +232,7 @@ class _$InitialImpl implements Initial {
             List<CategoryEntity> list, CategoryListParams listParams)
         loading,
     required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, Failure exception)
+            CategoryListParams listParams, AppFailure exception)
         failure,
     required TResult Function(
             List<CategoryEntity> list, CategoryListParams listParams)
@@ -249,7 +249,7 @@ class _$InitialImpl implements Initial {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
@@ -265,7 +265,7 @@ class _$InitialImpl implements Initial {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
@@ -431,7 +431,7 @@ class _$LoadingImpl implements Loading {
             List<CategoryEntity> list, CategoryListParams listParams)
         loading,
     required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, Failure exception)
+            CategoryListParams listParams, AppFailure exception)
         failure,
     required TResult Function(
             List<CategoryEntity> list, CategoryListParams listParams)
@@ -448,7 +448,7 @@ class _$LoadingImpl implements Loading {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
@@ -464,7 +464,7 @@ class _$LoadingImpl implements Loading {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
@@ -543,7 +543,7 @@ abstract class _$$CatalogFailureImplCopyWith<$Res>
   $Res call(
       {List<CategoryEntity> list,
       CategoryListParams listParams,
-      Failure exception});
+      AppFailure exception});
 }
 
 /// @nodoc
@@ -575,7 +575,7 @@ class __$$CatalogFailureImplCopyWithImpl<$Res>
       exception: null == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
-              as Failure,
+              as AppFailure,
     ));
   }
 }
@@ -602,7 +602,7 @@ class _$CatalogFailureImpl implements CatalogFailure {
   @JsonKey()
   final CategoryListParams listParams;
   @override
-  final Failure exception;
+  final AppFailure exception;
 
   @override
   String toString() {
@@ -644,7 +644,7 @@ class _$CatalogFailureImpl implements CatalogFailure {
             List<CategoryEntity> list, CategoryListParams listParams)
         loading,
     required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, Failure exception)
+            CategoryListParams listParams, AppFailure exception)
         failure,
     required TResult Function(
             List<CategoryEntity> list, CategoryListParams listParams)
@@ -661,7 +661,7 @@ class _$CatalogFailureImpl implements CatalogFailure {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
@@ -677,7 +677,7 @@ class _$CatalogFailureImpl implements CatalogFailure {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
@@ -731,13 +731,13 @@ abstract class CatalogFailure implements CatalogState {
   const factory CatalogFailure(
       {final List<CategoryEntity> list,
       final CategoryListParams listParams,
-      required final Failure exception}) = _$CatalogFailureImpl;
+      required final AppFailure exception}) = _$CatalogFailureImpl;
 
   @override
   List<CategoryEntity> get list;
   @override
   CategoryListParams get listParams;
-  Failure get exception;
+  AppFailure get exception;
 
   /// Create a copy of CatalogState
   /// with the given fields replaced by the non-null parameter values.
@@ -842,7 +842,7 @@ class _$SuccessImpl implements Success {
             List<CategoryEntity> list, CategoryListParams listParams)
         loading,
     required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, Failure exception)
+            CategoryListParams listParams, AppFailure exception)
         failure,
     required TResult Function(
             List<CategoryEntity> list, CategoryListParams listParams)
@@ -859,7 +859,7 @@ class _$SuccessImpl implements Success {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
@@ -875,7 +875,7 @@ class _$SuccessImpl implements Success {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         loading,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            Failure exception)?
+            AppFailure exception)?
         failure,
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,

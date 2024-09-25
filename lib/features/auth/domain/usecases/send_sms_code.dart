@@ -12,7 +12,7 @@ class SendSmsCodeUseCase implements UseCase<bool, SendSmsCodeParams> {
   const SendSmsCodeUseCase(this._authRepository);
 
   @override
-  Future<Either<Failure, bool>> call(SendSmsCodeParams params) async {
+  Future<Either<AppFailure, bool>> call(SendSmsCodeParams params) async {
     return await _authRepository.sendSmsCode(phone: params.phone);
   }
 }

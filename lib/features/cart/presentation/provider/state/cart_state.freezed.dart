@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'product_state.dart';
+part of 'cart_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,49 +15,31 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ProductState {
-  List<ProductEntity> get list => throw _privateConstructorUsedError;
-  ProductListParams get listParams => throw _privateConstructorUsedError;
+mixin _$CartState {
+  List<CartItemEntity> get list => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        initial,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        loading,
-    required TResult Function(List<ProductEntity> list,
-            ProductListParams listParams, AppFailure exception)
+    required TResult Function(List<CartItemEntity> list) initial,
+    required TResult Function(List<CartItemEntity> list) loading,
+    required TResult Function(List<CartItemEntity> list, AppFailure exception)
         failure,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        success,
+    required TResult Function(List<CartItemEntity> list) success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult? Function(List<CartItemEntity> list)? initial,
+    TResult? Function(List<CartItemEntity> list)? loading,
+    TResult? Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult? Function(List<CartItemEntity> list)? success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult Function(List<CartItemEntity> list)? initial,
+    TResult Function(List<CartItemEntity> list)? loading,
+    TResult Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult Function(List<CartItemEntity> list)? success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -87,89 +69,78 @@ mixin _$ProductState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProductStateCopyWith<ProductState> get copyWith =>
+  $CartStateCopyWith<CartState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductStateCopyWith<$Res> {
-  factory $ProductStateCopyWith(
-          ProductState value, $Res Function(ProductState) then) =
-      _$ProductStateCopyWithImpl<$Res, ProductState>;
+abstract class $CartStateCopyWith<$Res> {
+  factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
+      _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({List<ProductEntity> list, ProductListParams listParams});
+  $Res call({List<CartItemEntity> list});
 }
 
 /// @nodoc
-class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
-    implements $ProductStateCopyWith<$Res> {
-  _$ProductStateCopyWithImpl(this._value, this._then);
+class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
+    implements $CartStateCopyWith<$Res> {
+  _$CartStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? list = null,
-    Object? listParams = null,
   }) {
     return _then(_value.copyWith(
       list: null == list
           ? _value.list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntity>,
-      listParams: null == listParams
-          ? _value.listParams
-          : listParams // ignore: cast_nullable_to_non_nullable
-              as ProductListParams,
+              as List<CartItemEntity>,
     ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$InitialImplCopyWith<$Res>
-    implements $ProductStateCopyWith<$Res> {
+    implements $CartStateCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProductEntity> list, ProductListParams listParams});
+  $Res call({List<CartItemEntity> list});
 }
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$CartStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? list = null,
-    Object? listParams = null,
   }) {
     return _then(_$InitialImpl(
       list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntity>,
-      listParams: null == listParams
-          ? _value.listParams
-          : listParams // ignore: cast_nullable_to_non_nullable
-              as ProductListParams,
+              as List<CartItemEntity>,
     ));
   }
 }
@@ -177,27 +148,21 @@ class __$$InitialImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitialImpl implements Initial {
-  const _$InitialImpl(
-      {final List<ProductEntity> list = const [],
-      this.listParams = const ProductListParams()})
+  const _$InitialImpl({final List<CartItemEntity> list = const []})
       : _list = list;
 
-  final List<ProductEntity> _list;
+  final List<CartItemEntity> _list;
   @override
   @JsonKey()
-  List<ProductEntity> get list {
+  List<CartItemEntity> get list {
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_list);
   }
 
   @override
-  @JsonKey()
-  final ProductListParams listParams;
-
-  @override
   String toString() {
-    return 'ProductState.initial(list: $list, listParams: $listParams)';
+    return 'CartState.initial(list: $list)';
   }
 
   @override
@@ -205,16 +170,14 @@ class _$InitialImpl implements Initial {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitialImpl &&
-            const DeepCollectionEquality().equals(other._list, _list) &&
-            (identical(other.listParams, listParams) ||
-                other.listParams == listParams));
+            const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_list), listParams);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -225,54 +188,37 @@ class _$InitialImpl implements Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        initial,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        loading,
-    required TResult Function(List<ProductEntity> list,
-            ProductListParams listParams, AppFailure exception)
+    required TResult Function(List<CartItemEntity> list) initial,
+    required TResult Function(List<CartItemEntity> list) loading,
+    required TResult Function(List<CartItemEntity> list, AppFailure exception)
         failure,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        success,
+    required TResult Function(List<CartItemEntity> list) success,
   }) {
-    return initial(list, listParams);
+    return initial(list);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult? Function(List<CartItemEntity> list)? initial,
+    TResult? Function(List<CartItemEntity> list)? loading,
+    TResult? Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult? Function(List<CartItemEntity> list)? success,
   }) {
-    return initial?.call(list, listParams);
+    return initial?.call(list);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult Function(List<CartItemEntity> list)? initial,
+    TResult Function(List<CartItemEntity> list)? loading,
+    TResult Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult Function(List<CartItemEntity> list)? success,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(list, listParams);
+      return initial(list);
     }
     return orElse();
   }
@@ -315,17 +261,13 @@ class _$InitialImpl implements Initial {
   }
 }
 
-abstract class Initial implements ProductState {
-  const factory Initial(
-      {final List<ProductEntity> list,
-      final ProductListParams listParams}) = _$InitialImpl;
+abstract class Initial implements CartState {
+  const factory Initial({final List<CartItemEntity> list}) = _$InitialImpl;
 
   @override
-  List<ProductEntity> get list;
-  @override
-  ProductListParams get listParams;
+  List<CartItemEntity> get list;
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -335,40 +277,35 @@ abstract class Initial implements ProductState {
 
 /// @nodoc
 abstract class _$$LoadingImplCopyWith<$Res>
-    implements $ProductStateCopyWith<$Res> {
+    implements $CartStateCopyWith<$Res> {
   factory _$$LoadingImplCopyWith(
           _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
       __$$LoadingImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProductEntity> list, ProductListParams listParams});
+  $Res call({List<CartItemEntity> list});
 }
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$CartStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? list = null,
-    Object? listParams = null,
   }) {
     return _then(_$LoadingImpl(
       list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntity>,
-      listParams: null == listParams
-          ? _value.listParams
-          : listParams // ignore: cast_nullable_to_non_nullable
-              as ProductListParams,
+              as List<CartItemEntity>,
     ));
   }
 }
@@ -376,27 +313,21 @@ class __$$LoadingImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$LoadingImpl implements Loading {
-  const _$LoadingImpl(
-      {final List<ProductEntity> list = const [],
-      this.listParams = const ProductListParams()})
+  const _$LoadingImpl({final List<CartItemEntity> list = const []})
       : _list = list;
 
-  final List<ProductEntity> _list;
+  final List<CartItemEntity> _list;
   @override
   @JsonKey()
-  List<ProductEntity> get list {
+  List<CartItemEntity> get list {
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_list);
   }
 
   @override
-  @JsonKey()
-  final ProductListParams listParams;
-
-  @override
   String toString() {
-    return 'ProductState.loading(list: $list, listParams: $listParams)';
+    return 'CartState.loading(list: $list)';
   }
 
   @override
@@ -404,16 +335,14 @@ class _$LoadingImpl implements Loading {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadingImpl &&
-            const DeepCollectionEquality().equals(other._list, _list) &&
-            (identical(other.listParams, listParams) ||
-                other.listParams == listParams));
+            const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_list), listParams);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -424,54 +353,37 @@ class _$LoadingImpl implements Loading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        initial,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        loading,
-    required TResult Function(List<ProductEntity> list,
-            ProductListParams listParams, AppFailure exception)
+    required TResult Function(List<CartItemEntity> list) initial,
+    required TResult Function(List<CartItemEntity> list) loading,
+    required TResult Function(List<CartItemEntity> list, AppFailure exception)
         failure,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        success,
+    required TResult Function(List<CartItemEntity> list) success,
   }) {
-    return loading(list, listParams);
+    return loading(list);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult? Function(List<CartItemEntity> list)? initial,
+    TResult? Function(List<CartItemEntity> list)? loading,
+    TResult? Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult? Function(List<CartItemEntity> list)? success,
   }) {
-    return loading?.call(list, listParams);
+    return loading?.call(list);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult Function(List<CartItemEntity> list)? initial,
+    TResult Function(List<CartItemEntity> list)? loading,
+    TResult Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult Function(List<CartItemEntity> list)? success,
     required TResult orElse(),
   }) {
     if (loading != null) {
-      return loading(list, listParams);
+      return loading(list);
     }
     return orElse();
   }
@@ -514,17 +426,13 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements ProductState {
-  const factory Loading(
-      {final List<ProductEntity> list,
-      final ProductListParams listParams}) = _$LoadingImpl;
+abstract class Loading implements CartState {
+  const factory Loading({final List<CartItemEntity> list}) = _$LoadingImpl;
 
   @override
-  List<ProductEntity> get list;
-  @override
-  ProductListParams get listParams;
+  List<CartItemEntity> get list;
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -534,44 +442,36 @@ abstract class Loading implements ProductState {
 
 /// @nodoc
 abstract class _$$FailureImplCopyWith<$Res>
-    implements $ProductStateCopyWith<$Res> {
+    implements $CartStateCopyWith<$Res> {
   factory _$$FailureImplCopyWith(
           _$FailureImpl value, $Res Function(_$FailureImpl) then) =
       __$$FailureImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<ProductEntity> list,
-      ProductListParams listParams,
-      AppFailure exception});
+  $Res call({List<CartItemEntity> list, AppFailure exception});
 }
 
 /// @nodoc
 class __$$FailureImplCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res, _$FailureImpl>
+    extends _$CartStateCopyWithImpl<$Res, _$FailureImpl>
     implements _$$FailureImplCopyWith<$Res> {
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? list = null,
-    Object? listParams = null,
     Object? exception = null,
   }) {
     return _then(_$FailureImpl(
       list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntity>,
-      listParams: null == listParams
-          ? _value.listParams
-          : listParams // ignore: cast_nullable_to_non_nullable
-              as ProductListParams,
+              as List<CartItemEntity>,
       exception: null == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -584,29 +484,24 @@ class __$$FailureImplCopyWithImpl<$Res>
 
 class _$FailureImpl implements Failure {
   const _$FailureImpl(
-      {final List<ProductEntity> list = const [],
-      this.listParams = const ProductListParams(),
-      required this.exception})
+      {final List<CartItemEntity> list = const [], required this.exception})
       : _list = list;
 
-  final List<ProductEntity> _list;
+  final List<CartItemEntity> _list;
   @override
   @JsonKey()
-  List<ProductEntity> get list {
+  List<CartItemEntity> get list {
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_list);
   }
 
   @override
-  @JsonKey()
-  final ProductListParams listParams;
-  @override
   final AppFailure exception;
 
   @override
   String toString() {
-    return 'ProductState.failure(list: $list, listParams: $listParams, exception: $exception)';
+    return 'CartState.failure(list: $list, exception: $exception)';
   }
 
   @override
@@ -615,17 +510,15 @@ class _$FailureImpl implements Failure {
         (other.runtimeType == runtimeType &&
             other is _$FailureImpl &&
             const DeepCollectionEquality().equals(other._list, _list) &&
-            (identical(other.listParams, listParams) ||
-                other.listParams == listParams) &&
             (identical(other.exception, exception) ||
                 other.exception == exception));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_list), listParams, exception);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_list), exception);
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -636,54 +529,37 @@ class _$FailureImpl implements Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        initial,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        loading,
-    required TResult Function(List<ProductEntity> list,
-            ProductListParams listParams, AppFailure exception)
+    required TResult Function(List<CartItemEntity> list) initial,
+    required TResult Function(List<CartItemEntity> list) loading,
+    required TResult Function(List<CartItemEntity> list, AppFailure exception)
         failure,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        success,
+    required TResult Function(List<CartItemEntity> list) success,
   }) {
-    return failure(list, listParams, exception);
+    return failure(list, exception);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult? Function(List<CartItemEntity> list)? initial,
+    TResult? Function(List<CartItemEntity> list)? loading,
+    TResult? Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult? Function(List<CartItemEntity> list)? success,
   }) {
-    return failure?.call(list, listParams, exception);
+    return failure?.call(list, exception);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult Function(List<CartItemEntity> list)? initial,
+    TResult Function(List<CartItemEntity> list)? loading,
+    TResult Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult Function(List<CartItemEntity> list)? success,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(list, listParams, exception);
+      return failure(list, exception);
     }
     return orElse();
   }
@@ -726,19 +602,16 @@ class _$FailureImpl implements Failure {
   }
 }
 
-abstract class Failure implements ProductState {
+abstract class Failure implements CartState {
   const factory Failure(
-      {final List<ProductEntity> list,
-      final ProductListParams listParams,
+      {final List<CartItemEntity> list,
       required final AppFailure exception}) = _$FailureImpl;
 
   @override
-  List<ProductEntity> get list;
-  @override
-  ProductListParams get listParams;
+  List<CartItemEntity> get list;
   AppFailure get exception;
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -748,40 +621,35 @@ abstract class Failure implements ProductState {
 
 /// @nodoc
 abstract class _$$SuccessImplCopyWith<$Res>
-    implements $ProductStateCopyWith<$Res> {
+    implements $CartStateCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProductEntity> list, ProductListParams listParams});
+  $Res call({List<CartItemEntity> list});
 }
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$CartStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? list = null,
-    Object? listParams = null,
   }) {
     return _then(_$SuccessImpl(
       list: null == list
           ? _value._list
           : list // ignore: cast_nullable_to_non_nullable
-              as List<ProductEntity>,
-      listParams: null == listParams
-          ? _value.listParams
-          : listParams // ignore: cast_nullable_to_non_nullable
-              as ProductListParams,
+              as List<CartItemEntity>,
     ));
   }
 }
@@ -789,24 +657,20 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements Success {
-  const _$SuccessImpl(
-      {required final List<ProductEntity> list, required this.listParams})
+  const _$SuccessImpl({required final List<CartItemEntity> list})
       : _list = list;
 
-  final List<ProductEntity> _list;
+  final List<CartItemEntity> _list;
   @override
-  List<ProductEntity> get list {
+  List<CartItemEntity> get list {
     if (_list is EqualUnmodifiableListView) return _list;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_list);
   }
 
   @override
-  final ProductListParams listParams;
-
-  @override
   String toString() {
-    return 'ProductState.success(list: $list, listParams: $listParams)';
+    return 'CartState.success(list: $list)';
   }
 
   @override
@@ -814,16 +678,14 @@ class _$SuccessImpl implements Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._list, _list) &&
-            (identical(other.listParams, listParams) ||
-                other.listParams == listParams));
+            const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_list), listParams);
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_list));
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -834,54 +696,37 @@ class _$SuccessImpl implements Success {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        initial,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        loading,
-    required TResult Function(List<ProductEntity> list,
-            ProductListParams listParams, AppFailure exception)
+    required TResult Function(List<CartItemEntity> list) initial,
+    required TResult Function(List<CartItemEntity> list) loading,
+    required TResult Function(List<CartItemEntity> list, AppFailure exception)
         failure,
-    required TResult Function(
-            List<ProductEntity> list, ProductListParams listParams)
-        success,
+    required TResult Function(List<CartItemEntity> list) success,
   }) {
-    return success(list, listParams);
+    return success(list);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult? Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult? Function(List<CartItemEntity> list)? initial,
+    TResult? Function(List<CartItemEntity> list)? loading,
+    TResult? Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult? Function(List<CartItemEntity> list)? success,
   }) {
-    return success?.call(list, listParams);
+    return success?.call(list);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        initial,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        loading,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams,
-            AppFailure exception)?
-        failure,
-    TResult Function(List<ProductEntity> list, ProductListParams listParams)?
-        success,
+    TResult Function(List<CartItemEntity> list)? initial,
+    TResult Function(List<CartItemEntity> list)? loading,
+    TResult Function(List<CartItemEntity> list, AppFailure exception)? failure,
+    TResult Function(List<CartItemEntity> list)? success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(list, listParams);
+      return success(list);
     }
     return orElse();
   }
@@ -924,17 +769,14 @@ class _$SuccessImpl implements Success {
   }
 }
 
-abstract class Success implements ProductState {
-  const factory Success(
-      {required final List<ProductEntity> list,
-      required final ProductListParams listParams}) = _$SuccessImpl;
+abstract class Success implements CartState {
+  const factory Success({required final List<CartItemEntity> list}) =
+      _$SuccessImpl;
 
   @override
-  List<ProductEntity> get list;
-  @override
-  ProductListParams get listParams;
+  List<CartItemEntity> get list;
 
-  /// Create a copy of ProductState
+  /// Create a copy of CartState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

@@ -14,7 +14,7 @@ class CatalogRepositoryUseCase
   CatalogRepositoryUseCase(this._catalogRepository);
 
   @override
-  Future<Either<Failure, List<CategoryEntity>>> call(CategoryListParams params) async {
+  Future<Either<AppFailure, List<CategoryEntity>>> call(CategoryListParams params) async {
     return await _catalogRepository.getList(
       offset: params.offset,
       parentId: params.parentId,

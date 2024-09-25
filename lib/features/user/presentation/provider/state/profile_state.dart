@@ -10,7 +10,7 @@ abstract class ProfileState with _$ProfileState {
 
   const factory ProfileState.loading() = Loading;
 
-  const factory ProfileState.failure(Failure exception) = ProfileFailure;
+  const factory ProfileState.failure(AppFailure exception) = ProfileFailure;
 
   const factory ProfileState.success(UserEntity user) = Success;
 }

@@ -11,5 +11,5 @@ import 'package:test_shop_task/features/user/domain/entities/user_entity.dart';
 part 'package:test_shop_task/features/user/data/repositories/user_repository_impl.dart';
 
 abstract class UserRepository {
-  Future<Either<Failure, UserEntity>> getUser();
+  Future<Either<AppFailure, UserEntity>> getUser();
 }

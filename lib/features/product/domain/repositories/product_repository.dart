@@ -10,7 +10,7 @@ import 'package:test_shop_task/features/product/domain/entities/product_entity.d
 part 'package:test_shop_task/features/product/data/repositories/product_repository_impl.dart';
 
 abstract class ProductRepository {
-  Future<Either<Failure, List<ProductEntity>>> getList({
+  Future<Either<AppFailure, List<ProductEntity>>> getList({
     int offset = 0,
     int? categoryId,
   });

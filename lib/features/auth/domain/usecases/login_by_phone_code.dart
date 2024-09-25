@@ -13,7 +13,7 @@ class LoginByPhoneCodeUseCase implements UseCase<AuthResponse, AuthParams> {
   const LoginByPhoneCodeUseCase(this._authRepository);
 
   @override
-  Future<Either<Failure, AuthResponse>> call(AuthParams params) async {
+  Future<Either<AppFailure, AuthResponse>> call(AuthParams params) async {
     return await _authRepository.login(
       phone: params.phone,
       code: params.code,

@@ -42,8 +42,8 @@ abstract class ProductState with _$ProductState {
   const factory ProductState.failure({
     @Default([]) List<ProductEntity> list,
     @Default(ProductListParams()) ProductListParams listParams,
-    required Failure exception,
-  }) = CatalogFailure;
+    required AppFailure exception,
+  }) = Failure;
 
   const factory ProductState.success({
     required List<ProductEntity> list,

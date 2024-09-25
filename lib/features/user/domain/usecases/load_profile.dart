@@ -14,7 +14,7 @@ class LoadProfileUseCase implements UseCase<UserEntity, NoParams> {
   );
 
   @override
-  Future<Either<Failure, UserEntity>> call(NoParams _) async {
+  Future<Either<AppFailure, UserEntity>> call(NoParams _) async {
     return await _userRepository.getUser();
   }
 }

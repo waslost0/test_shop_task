@@ -34,6 +34,8 @@ abstract class $CartItemEntityCopyWith<$Res> {
       _$CartItemEntityCopyWithImpl<$Res, CartItemEntity>;
   @useResult
   $Res call({int count, int productId, ProductEntity? product});
+
+  $ProductEntityCopyWith<$Res>? get product;
 }
 
 /// @nodoc
@@ -70,6 +72,20 @@ class _$CartItemEntityCopyWithImpl<$Res, $Val extends CartItemEntity>
               as ProductEntity?,
     ) as $Val);
   }
+
+  /// Create a copy of CartItemEntity
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ProductEntityCopyWith<$Res>? get product {
+    if (_value.product == null) {
+      return null;
+    }
+
+    return $ProductEntityCopyWith<$Res>(_value.product!, (value) {
+      return _then(_value.copyWith(product: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -81,6 +97,9 @@ abstract class _$$CartItemEntityImplCopyWith<$Res>
   @override
   @useResult
   $Res call({int count, int productId, ProductEntity? product});
+
+  @override
+  $ProductEntityCopyWith<$Res>? get product;
 }
 
 /// @nodoc

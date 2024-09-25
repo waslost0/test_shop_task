@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/widgets/card_widget.dart';
-import 'package:test_shop_task/core/widgets/safe_networkImage.dart';
+import 'package:test_shop_task/core/widgets/safe_network_image.dart';
 import 'package:test_shop_task/features/catalog/domain/entities/category_entity.dart';
 
 class CategoryListItem extends StatelessWidget {

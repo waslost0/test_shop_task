@@ -11,7 +11,7 @@ class CatalogRepositoryImpl extends CatalogRepository {
   );
 
   @override
-  Future<Either<Failure, List<CategoryEntity>>> getList({
+  Future<Either<AppFailure, List<CategoryEntity>>> getList({
     int offset = 0,
     int? parentId,
   }) async {

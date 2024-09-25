@@ -28,6 +28,10 @@ import 'package:test_shop_task/features/auth/domain/usecases/send_sms_code.dart'
     as _i475;
 import 'package:test_shop_task/features/cart/domain/repositories/cart_repository.dart'
     as _i360;
+import 'package:test_shop_task/features/cart/domain/usecases/cart_add_update_usecase.dart'
+    as _i771;
+import 'package:test_shop_task/features/cart/domain/usecases/cart_load_usecase.dart'
+    as _i655;
 import 'package:test_shop_task/features/catalog/data/datasources/remote/catalog_remote_data_source.dart'
     as _i840;
 import 'package:test_shop_task/features/catalog/domain/repositories/catalog_repository.dart'
@@ -69,6 +73,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i788.LocalStorageService(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i360.CartRepository>(
         () => _i360.CartRepositoryImpl(gh<_i493.AppDatabase>()));
+    gh.factory<_i771.CartAddUpdateUseCase>(
+        () => _i771.CartAddUpdateUseCase(gh<_i360.CartRepository>()));
+    gh.factory<_i655.CartLoadUseCase>(
+        () => _i655.CartLoadUseCase(gh<_i360.CartRepository>()));
     gh.lazySingleton<_i839.AuthRemoteDataSource>(
         () => _i839.AuthRemoteDataSourceImpl(gh<_i60.BaseApi>()));
     gh.lazySingleton<_i12.AuthLocalDataSource>(

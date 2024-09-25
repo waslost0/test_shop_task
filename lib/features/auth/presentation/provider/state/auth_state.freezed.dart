@@ -20,7 +20,7 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Failure exception) failure,
+    required TResult Function(AppFailure exception) failure,
     required TResult Function() success,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Failure exception)? failure,
+    TResult? Function(AppFailure exception)? failure,
     TResult? Function()? success,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Failure exception)? failure,
+    TResult Function(AppFailure exception)? failure,
     TResult Function()? success,
     required TResult orElse(),
   }) =>
@@ -131,7 +131,7 @@ class _$InitialImpl implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Failure exception) failure,
+    required TResult Function(AppFailure exception) failure,
     required TResult Function() success,
   }) {
     return initial();
@@ -142,7 +142,7 @@ class _$InitialImpl implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Failure exception)? failure,
+    TResult? Function(AppFailure exception)? failure,
     TResult? Function()? success,
   }) {
     return initial?.call();
@@ -153,7 +153,7 @@ class _$InitialImpl implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Failure exception)? failure,
+    TResult Function(AppFailure exception)? failure,
     TResult Function()? success,
     required TResult orElse(),
   }) {
@@ -248,7 +248,7 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Failure exception) failure,
+    required TResult Function(AppFailure exception) failure,
     required TResult Function() success,
   }) {
     return loading();
@@ -259,7 +259,7 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Failure exception)? failure,
+    TResult? Function(AppFailure exception)? failure,
     TResult? Function()? success,
   }) {
     return loading?.call();
@@ -270,7 +270,7 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Failure exception)? failure,
+    TResult Function(AppFailure exception)? failure,
     TResult Function()? success,
     required TResult orElse(),
   }) {
@@ -328,7 +328,7 @@ abstract class _$$AuthFailureImplCopyWith<$Res> {
           _$AuthFailureImpl value, $Res Function(_$AuthFailureImpl) then) =
       __$$AuthFailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({Failure exception});
+  $Res call({AppFailure exception});
 }
 
 /// @nodoc
@@ -350,7 +350,7 @@ class __$$AuthFailureImplCopyWithImpl<$Res>
       null == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
-              as Failure,
+              as AppFailure,
     ));
   }
 }
@@ -361,7 +361,7 @@ class _$AuthFailureImpl implements AuthFailure {
   const _$AuthFailureImpl(this.exception);
 
   @override
-  final Failure exception;
+  final AppFailure exception;
 
   @override
   String toString() {
@@ -393,7 +393,7 @@ class _$AuthFailureImpl implements AuthFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Failure exception) failure,
+    required TResult Function(AppFailure exception) failure,
     required TResult Function() success,
   }) {
     return failure(exception);
@@ -404,7 +404,7 @@ class _$AuthFailureImpl implements AuthFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Failure exception)? failure,
+    TResult? Function(AppFailure exception)? failure,
     TResult? Function()? success,
   }) {
     return failure?.call(exception);
@@ -415,7 +415,7 @@ class _$AuthFailureImpl implements AuthFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Failure exception)? failure,
+    TResult Function(AppFailure exception)? failure,
     TResult Function()? success,
     required TResult orElse(),
   }) {
@@ -464,9 +464,9 @@ class _$AuthFailureImpl implements AuthFailure {
 }
 
 abstract class AuthFailure implements AuthState {
-  const factory AuthFailure(final Failure exception) = _$AuthFailureImpl;
+  const factory AuthFailure(final AppFailure exception) = _$AuthFailureImpl;
 
-  Failure get exception;
+  AppFailure get exception;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -518,7 +518,7 @@ class _$SuccessImpl implements Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(Failure exception) failure,
+    required TResult Function(AppFailure exception) failure,
     required TResult Function() success,
   }) {
     return success();
@@ -529,7 +529,7 @@ class _$SuccessImpl implements Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(Failure exception)? failure,
+    TResult? Function(AppFailure exception)? failure,
     TResult? Function()? success,
   }) {
     return success?.call();
@@ -540,7 +540,7 @@ class _$SuccessImpl implements Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(Failure exception)? failure,
+    TResult Function(AppFailure exception)? failure,
     TResult Function()? success,
     required TResult orElse(),
   }) {

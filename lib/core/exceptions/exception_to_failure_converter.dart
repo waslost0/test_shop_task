@@ -6,7 +6,7 @@ import 'package:test_shop_task/core/exceptions/app_exceptions.dart';
 import 'package:test_shop_task/core/exceptions/exceptions.dart';
 
 abstract class ExceptionToFailureConverter {
-  static Failure convert(
+  static AppFailure convert(
     Object exception,
     StackTrace stackTrace,
   ) {
@@ -35,7 +35,7 @@ abstract class ExceptionToFailureConverter {
     };
   }
 
-  static Failure _handleDioException(DioException dioException) {
+  static AppFailure _handleDioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:

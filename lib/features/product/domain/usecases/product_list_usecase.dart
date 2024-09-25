@@ -14,7 +14,7 @@ class LoadProductUseCase
   LoadProductUseCase(this._productRepository);
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> call(
+  Future<Either<AppFailure, List<ProductEntity>>> call(
     ProductListParams params,
   ) async {
     return await _productRepository.getList(

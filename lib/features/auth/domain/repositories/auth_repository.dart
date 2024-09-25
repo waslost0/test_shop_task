@@ -10,12 +10,12 @@ import 'package:test_shop_task/features/auth/data/models/auth_response.dart';
 part 'package:test_shop_task/features/auth/data/repositories/auth_repository_impl.dart';
 
 abstract class AuthRepository {
-  Future<Either<Failure, AuthResponse>> login({
+  Future<Either<AppFailure, AuthResponse>> login({
     required String phone,
     required String code,
   });
 
-  Future<Either<Failure, bool>> sendSmsCode({
+  Future<Either<AppFailure, bool>> sendSmsCode({
     required String phone,
   });
 

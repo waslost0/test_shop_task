@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
@@ -11,11 +12,11 @@ import 'package:test_shop_task/features/product/domain/entities/product_entity.d
 part 'package:test_shop_task/features/cart/data/repositories/cart_repository_impl.dart';
 
 abstract class CartRepository {
-  Future<Either<Failure, List<CartItemEntity>>> getList({
+  Future<Either<AppFailure, List<CartItemEntity>>> getList({
     int offset = 0,
   });
 
-  Future<Either<Failure, bool>> addCartItem({
+  Future<Either<AppFailure, bool>> addCartItem({
     required CartItemEntity cartItem,
   });
 }

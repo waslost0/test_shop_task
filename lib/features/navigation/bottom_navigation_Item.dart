@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:test_shop_task/features/cart/presentation/screens/cart_screen.dart';
 import 'package:test_shop_task/features/catalog/presentation/screens/catalog_screen.dart';
 import 'package:test_shop_task/features/user/presentation/screen/profile_page.dart';
 
@@ -58,7 +59,7 @@ enum BottomNavigationItem {
       case BottomNavigationItem.main:
         return const CatalogPage();
       case BottomNavigationItem.cart:
-        return const Placeholder();
+        return const CartListPage();
       case BottomNavigationItem.profile:
         return const ProfilePage();
       default:

@@ -11,7 +11,7 @@ class ProductRepositoryImpl extends ProductRepository {
   );
 
   @override
-  Future<Either<Failure, List<ProductEntity>>> getList({
+  Future<Either<AppFailure, List<ProductEntity>>> getList({
     int offset = 0,
     int? categoryId,
   }) async {

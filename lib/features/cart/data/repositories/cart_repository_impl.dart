@@ -11,7 +11,7 @@ class CartRepositoryImpl extends CartRepository {
   );
 
   @override
-  Future<Either<Failure, List<CartItemEntity>>> getList({
+  Future<Either<AppFailure, List<CartItemEntity>>> getList({
     int offset = 0,
     int? parentId,
   }) async {
@@ -25,6 +25,7 @@ class CartRepositoryImpl extends CartRepository {
         var item = cartItem.copyWith(product: product);
         cartItems.add(item);
       }
+      log('Loaded cart items $cartItems}');
       return Right(cartItems);
     } catch (e, s) {
       return Left(
@@ -34,7 +35,7 @@ class CartRepositoryImpl extends CartRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> addCartItem({
+  Future<Either<AppFailure, bool>> addCartItem({
     required CartItemEntity cartItem,
   }) async {
     try {

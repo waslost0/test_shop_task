@@ -13,7 +13,7 @@ class AuthRepositoryImpl extends AuthRepository {
   final AuthLocalDataSource _localDataSource;
 
   @override
-  Future<Either<Failure, AuthResponse>> login({
+  Future<Either<AppFailure, AuthResponse>> login({
     required String phone,
     required String code,
   }) async {
@@ -35,7 +35,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> sendSmsCode({required String phone}) async {
+  Future<Either<AppFailure, bool>> sendSmsCode({required String phone}) async {
     try {
       final response = await _remoteDataSource.sendConfirmationCode(
         phone: phone,
