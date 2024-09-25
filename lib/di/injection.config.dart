@@ -13,6 +13,7 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 import 'package:test_shop_task/core/api/base_api.dart' as _i60;
 import 'package:test_shop_task/core/api/private_api.dart' as _i423;
+import 'package:test_shop_task/core/database/database.dart' as _i493;
 import 'package:test_shop_task/core/logic/key_value_storage.dart' as _i788;
 import 'package:test_shop_task/di/injection.dart' as _i794;
 import 'package:test_shop_task/features/auth/data/datasources/local/auth_local_data_source.dart'
@@ -56,11 +57,12 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final registerModule = _$RegisterModule();
-    gh.factory<_i60.BaseApi>(() => _i60.BaseApi());
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => registerModule.prefs,
       preResolve: true,
     );
+    gh.factory<_i60.BaseApi>(() => _i60.BaseApi());
+    gh.singleton<_i493.AppDatabase>(() => _i493.AppDatabase());
     gh.singleton<_i788.LocalStorageService>(
         () => _i788.LocalStorageService(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i839.AuthRemoteDataSource>(

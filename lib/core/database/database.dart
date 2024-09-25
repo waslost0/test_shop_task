@@ -1,11 +1,14 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
+import 'package:injectable/injectable.dart';
+import 'package:test_shop_task/core/database/entities/cart_item.dart';
 import 'package:test_shop_task/core/database/entities/product_table.dart';
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
 
 part 'database.g.dart';
 
-@DriftDatabase(tables: [ProductTable])
+@Singleton()
+@DriftDatabase(tables: [ProductTable, CartItemTable])
 class AppDatabase extends _$AppDatabase {
   // After generating code, this class needs to define a `schemaVersion` getter
   // and a constructor telling drift where the database should be stored.
