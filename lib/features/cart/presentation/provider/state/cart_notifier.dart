@@ -11,7 +11,7 @@ class CartNotifier extends StateNotifier<CartState> {
   CartNotifier(
     this._loadList,
     this._addItem,
-  ) : super(const Initial());
+  ) : super(const Loading());
 
   Future<void> loginList() async {
     if (state.list.isEmpty) {

@@ -8,7 +8,7 @@ class ProfileProvider extends StateNotifier<ProfileState> {
 
   ProfileProvider(
     this._loadProfileUseCase,
-  ) : super(const ProfileState.initial());
+  ) : super(const Loading());
 
   Future<void> loginProfile() async {
     state = const ProfileState.loading();
@@ -17,8 +17,8 @@ class ProfileProvider extends StateNotifier<ProfileState> {
     );
 
     state = await response.fold(
-      (failure) => ProfileState.failure(failure),
-      (result) => ProfileState.success(result),
+      (failure) => Failure(failure),
+      (result) => Success(result),
     );
   }
 }

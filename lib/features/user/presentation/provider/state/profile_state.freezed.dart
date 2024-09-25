@@ -45,7 +45,7 @@ mixin _$ProfileState {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(ProfileFailure value) failure,
+    required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
   }) =>
       throw _privateConstructorUsedError;
@@ -53,7 +53,7 @@ mixin _$ProfileState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(ProfileFailure value)? failure,
+    TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
   }) =>
       throw _privateConstructorUsedError;
@@ -61,7 +61,7 @@ mixin _$ProfileState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(ProfileFailure value)? failure,
+    TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     required TResult orElse(),
   }) =>
@@ -169,7 +169,7 @@ class _$InitialImpl implements Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(ProfileFailure value) failure,
+    required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
   }) {
     return initial(this);
@@ -180,7 +180,7 @@ class _$InitialImpl implements Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(ProfileFailure value)? failure,
+    TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
   }) {
     return initial?.call(this);
@@ -191,7 +191,7 @@ class _$InitialImpl implements Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(ProfileFailure value)? failure,
+    TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     required TResult orElse(),
   }) {
@@ -286,7 +286,7 @@ class _$LoadingImpl implements Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(ProfileFailure value) failure,
+    required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
   }) {
     return loading(this);
@@ -297,7 +297,7 @@ class _$LoadingImpl implements Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(ProfileFailure value)? failure,
+    TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
   }) {
     return loading?.call(this);
@@ -308,7 +308,7 @@ class _$LoadingImpl implements Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(ProfileFailure value)? failure,
+    TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     required TResult orElse(),
   }) {
@@ -324,20 +324,20 @@ abstract class Loading implements ProfileState {
 }
 
 /// @nodoc
-abstract class _$$ProfileFailureImplCopyWith<$Res> {
-  factory _$$ProfileFailureImplCopyWith(_$ProfileFailureImpl value,
-          $Res Function(_$ProfileFailureImpl) then) =
-      __$$ProfileFailureImplCopyWithImpl<$Res>;
+abstract class _$$FailureImplCopyWith<$Res> {
+  factory _$$FailureImplCopyWith(
+          _$FailureImpl value, $Res Function(_$FailureImpl) then) =
+      __$$FailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({AppFailure exception});
 }
 
 /// @nodoc
-class __$$ProfileFailureImplCopyWithImpl<$Res>
-    extends _$ProfileStateCopyWithImpl<$Res, _$ProfileFailureImpl>
-    implements _$$ProfileFailureImplCopyWith<$Res> {
-  __$$ProfileFailureImplCopyWithImpl(
-      _$ProfileFailureImpl _value, $Res Function(_$ProfileFailureImpl) _then)
+class __$$FailureImplCopyWithImpl<$Res>
+    extends _$ProfileStateCopyWithImpl<$Res, _$FailureImpl>
+    implements _$$FailureImplCopyWith<$Res> {
+  __$$FailureImplCopyWithImpl(
+      _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ProfileState
@@ -347,7 +347,7 @@ class __$$ProfileFailureImplCopyWithImpl<$Res>
   $Res call({
     Object? exception = null,
   }) {
-    return _then(_$ProfileFailureImpl(
+    return _then(_$FailureImpl(
       null == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -358,8 +358,8 @@ class __$$ProfileFailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProfileFailureImpl implements ProfileFailure {
-  const _$ProfileFailureImpl(this.exception);
+class _$FailureImpl implements Failure {
+  const _$FailureImpl(this.exception);
 
   @override
   final AppFailure exception;
@@ -373,7 +373,7 @@ class _$ProfileFailureImpl implements ProfileFailure {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProfileFailureImpl &&
+            other is _$FailureImpl &&
             (identical(other.exception, exception) ||
                 other.exception == exception));
   }
@@ -386,9 +386,8 @@ class _$ProfileFailureImpl implements ProfileFailure {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProfileFailureImplCopyWith<_$ProfileFailureImpl> get copyWith =>
-      __$$ProfileFailureImplCopyWithImpl<_$ProfileFailureImpl>(
-          this, _$identity);
+  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
+      __$$FailureImplCopyWithImpl<_$FailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -432,7 +431,7 @@ class _$ProfileFailureImpl implements ProfileFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(ProfileFailure value) failure,
+    required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
   }) {
     return failure(this);
@@ -443,7 +442,7 @@ class _$ProfileFailureImpl implements ProfileFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(ProfileFailure value)? failure,
+    TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
   }) {
     return failure?.call(this);
@@ -454,7 +453,7 @@ class _$ProfileFailureImpl implements ProfileFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(ProfileFailure value)? failure,
+    TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     required TResult orElse(),
   }) {
@@ -465,16 +464,15 @@ class _$ProfileFailureImpl implements ProfileFailure {
   }
 }
 
-abstract class ProfileFailure implements ProfileState {
-  const factory ProfileFailure(final AppFailure exception) =
-      _$ProfileFailureImpl;
+abstract class Failure implements ProfileState {
+  const factory Failure(final AppFailure exception) = _$FailureImpl;
 
   AppFailure get exception;
 
   /// Create a copy of ProfileState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProfileFailureImplCopyWith<_$ProfileFailureImpl> get copyWith =>
+  _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -585,7 +583,7 @@ class _$SuccessImpl implements Success {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(ProfileFailure value) failure,
+    required TResult Function(Failure value) failure,
     required TResult Function(Success value) success,
   }) {
     return success(this);
@@ -596,7 +594,7 @@ class _$SuccessImpl implements Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(ProfileFailure value)? failure,
+    TResult? Function(Failure value)? failure,
     TResult? Function(Success value)? success,
   }) {
     return success?.call(this);
@@ -607,7 +605,7 @@ class _$SuccessImpl implements Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(ProfileFailure value)? failure,
+    TResult Function(Failure value)? failure,
     TResult Function(Success value)? success,
     required TResult orElse(),
   }) {

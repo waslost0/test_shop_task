@@ -1,9 +1,8 @@
 import 'dart:async';
 
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:test_shop_task/features/navigation/bottom_navigation_Item.dart';
 
 class BottomNavigation extends ConsumerStatefulWidget {
@@ -15,47 +14,44 @@ class BottomNavigation extends ConsumerStatefulWidget {
 
 class BottomNavigationState extends ConsumerState<BottomNavigation> {
   static const animationTime = Duration(milliseconds: 200);
-  final PersistentTabController _controller = PersistentTabController();
 
-  int previousIndex = 0;
+  late final List<SalomonBottomBarItem> bottomNavigationItems =
+      BottomNavigationItem.values.map((item) => item.item()).toList();
+
+  late final List<Widget> screens =
+      BottomNavigationItem.values.map((item) => item.page()).toList();
+
+  final PageController _controller = PageController();
+
+  int _currentIndex = 0;
 
   Completer? animation;
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screens = BottomNavigationItem.values
-        .map((item) => item.page())
-        .toList();
-
-    List<PersistentBottomNavBarItem> items = BottomNavigationItem.values
-        .mapIndexed((index, item) => item.item(
-              onTap: onTap,
-            ))
-        .toList();
-    return PersistentTabView(
-      context,
-      controller: _controller,
-      screens: screens,
-      items: items,
-      backgroundColor: Colors.white,
-      decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: Colors.white,
+    return Scaffold(
+      body: PageView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        controller: _controller,
+        itemBuilder: (context, index) => screens[index],
       ),
-      navBarHeight: MediaQuery.of(context).viewInsets.bottom > 0
-          ? 0
-          : kBottomNavigationBarHeight,
-      navBarStyle: NavBarStyle.simple,
+      bottomNavigationBar: SalomonBottomBar(
+        margin: const EdgeInsets.all(16),
+        currentIndex: _currentIndex,
+        onTap: onTap,
+        items: bottomNavigationItems,
+      ),
     );
   }
 
   void onTap(int index) {
-    if (mounted && previousIndex != index && (animation?.isCompleted ?? true)) {
+    if (mounted && _currentIndex != index && (animation?.isCompleted ?? true)) {
       animation = Completer();
-      _controller.jumpToTab(index);
+      _controller.jumpToPage(index);
       Future.delayed(animationTime, () {
         animation?.complete(true);
-        previousIndex = index;
+        _currentIndex = index;
+        setState(() {});
       });
     }
   }

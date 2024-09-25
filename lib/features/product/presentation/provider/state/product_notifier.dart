@@ -10,7 +10,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
     this._loadList,
     CategoryEntity? category,
   ) : super(
-          Initial(
+          Loading(
             listParams: ProductListParams(categoryId: category?.categoryId),
           ),
         );
@@ -28,7 +28,7 @@ class ProductNotifier extends StateNotifier<ProductState> {
       (l) => ProductState.failure(exception: l),
       (r) => ProductState.success(
         list: [...state.list, ...r],
-        listParams:  state.listParams.copyWith(
+        listParams: state.listParams.copyWith(
           offset: state.listParams.offset + r.length,
         ),
       ),

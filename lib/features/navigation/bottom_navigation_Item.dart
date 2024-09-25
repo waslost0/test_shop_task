@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/features/cart/presentation/screens/cart_screen.dart';
 import 'package:test_shop_task/features/catalog/presentation/screens/catalog_screen.dart';
 import 'package:test_shop_task/features/user/presentation/screen/profile_page.dart';
@@ -9,47 +10,30 @@ enum BottomNavigationItem {
   cart,
   profile;
 
-  PersistentBottomNavBarItem item({
-    required Function(int index)? onTap,
-  }) {
-    const activeColorPrimary = Colors.red;
-    const inactiveColorPrimary = Colors.grey;
+  SalomonBottomBarItem item() {
+    const activeColorPrimary = AppColors.red;
+    const unselectedColor = AppColors.black;
     switch (this) {
       case BottomNavigationItem.main:
-        return PersistentBottomNavBarItem(
-          icon: const Icon(Icons.person_4_outlined),
-          activeColorPrimary: activeColorPrimary,
-          inactiveColorPrimary: inactiveColorPrimary,
-          onPressed: (context) {
-            onTap?.call(BottomNavigationItem.main.value);
-          },
+        return SalomonBottomBarItem(
+          icon: const Icon(Icons.home),
+          title: const Text("Home"),
+          unselectedColor: unselectedColor,
+          selectedColor: activeColorPrimary,
         );
       case BottomNavigationItem.profile:
-        return PersistentBottomNavBarItem(
-          icon: const Icon(Icons.person_4_outlined),
-          activeColorPrimary: activeColorPrimary,
-          inactiveColorPrimary: inactiveColorPrimary,
-          onPressed: (context) {
-            onTap?.call(BottomNavigationItem.profile.value);
-          },
+        return SalomonBottomBarItem(
+          icon: const Icon(Icons.shopping_cart_rounded),
+          title: const Text("Cart"),
+          unselectedColor: unselectedColor,
+          selectedColor: activeColorPrimary,
         );
       case BottomNavigationItem.cart:
-        return PersistentBottomNavBarItem(
-          icon: const Icon(Icons.shopping_cart_rounded),
-          activeColorPrimary: activeColorPrimary,
-          inactiveColorPrimary: inactiveColorPrimary,
-          onPressed: (context) {
-            onTap?.call(BottomNavigationItem.cart.value);
-          },
-        );
-      default:
-        return PersistentBottomNavBarItem(
-          icon: const Icon(Icons.shopping_bag),
-          activeColorPrimary: activeColorPrimary,
-          inactiveColorPrimary: inactiveColorPrimary,
-          onPressed: (context) {
-            onTap?.call(BottomNavigationItem.main.value);
-          },
+        return SalomonBottomBarItem(
+          icon: const Icon(Icons.person),
+          title: const Text("Profile"),
+          unselectedColor: unselectedColor,
+          selectedColor: activeColorPrimary,
         );
     }
   }
