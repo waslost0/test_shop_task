@@ -52,6 +52,8 @@ import 'package:test_shop_task/features/user/data/datasources/remote/user_remote
     as _i406;
 import 'package:test_shop_task/features/user/domain/repositories/user_repository.dart'
     as _i563;
+import 'package:test_shop_task/features/user/domain/usecases/change_profile.dart'
+    as _i124;
 import 'package:test_shop_task/features/user/domain/usecases/load_profile.dart'
     as _i107;
 
@@ -115,6 +117,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i60.LoadProductUseCase(gh<_i289.ProductRepository>()));
     gh.factory<_i107.LoadProfileUseCase>(
         () => _i107.LoadProfileUseCase(gh<_i563.UserRepository>()));
+    gh.factory<_i124.ChangeProfileUseCase>(
+        () => _i124.ChangeProfileUseCase(gh<_i563.UserRepository>()));
     gh.factory<_i993.CatalogRepositoryUseCase>(
         () => _i993.CatalogRepositoryUseCase(gh<_i496.CatalogRepository>()));
     return this;

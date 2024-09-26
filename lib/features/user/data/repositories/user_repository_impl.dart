@@ -21,4 +21,16 @@ class UserRepositoryImpl extends UserRepository {
       );
     }
   }
+
+  @override
+  Future<Either<AppFailure, UserEntity>> changeProfile(UserEntity user) async {
+    try {
+      final response = await _remoteDataSource.changeProfile(user);
+      return Right(response.toEntity());
+    } catch (e, s) {
+      return Left(
+        ExceptionToFailureConverter.convert(e, s),
+      );
+    }
+  }
 }

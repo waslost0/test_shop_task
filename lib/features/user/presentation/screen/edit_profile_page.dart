@@ -114,9 +114,8 @@ class EditProfilePageState extends BasePageState<EditProfilePage>
   }
 
   @override
-  Future<void> submitForm() {
-    // TODO: implement submitForm
-    throw UnimplementedError();
+  Future<void> submitForm() async {
+    await changeProfile();
   }
 
   Widget _buildSubmitButton() {

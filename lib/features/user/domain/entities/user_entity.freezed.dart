@@ -24,6 +24,8 @@ mixin _$UserEntity {
   String? get phone => throw _privateConstructorUsedError;
   String? get login => throw _privateConstructorUsedError;
   int? get dateOfBirth => throw _privateConstructorUsedError;
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  File? get file => throw _privateConstructorUsedError;
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -46,7 +48,8 @@ abstract class $UserEntityCopyWith<$Res> {
       String? avatar,
       String? phone,
       String? login,
-      int? dateOfBirth});
+      int? dateOfBirth,
+      @JsonKey(includeFromJson: false, includeToJson: false) File? file});
 }
 
 /// @nodoc
@@ -72,6 +75,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? phone = freezed,
     Object? login = freezed,
     Object? dateOfBirth = freezed,
+    Object? file = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -106,6 +110,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as int?,
+      file: freezed == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as File?,
     ) as $Val);
   }
 }
@@ -126,7 +134,8 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       String? avatar,
       String? phone,
       String? login,
-      int? dateOfBirth});
+      int? dateOfBirth,
+      @JsonKey(includeFromJson: false, includeToJson: false) File? file});
 }
 
 /// @nodoc
@@ -150,6 +159,7 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? phone = freezed,
     Object? login = freezed,
     Object? dateOfBirth = freezed,
+    Object? file = freezed,
   }) {
     return _then(_$UserEntityImpl(
       id: null == id
@@ -184,6 +194,10 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
               as int?,
+      file: freezed == file
+          ? _value.file
+          : file // ignore: cast_nullable_to_non_nullable
+              as File?,
     ));
   }
 }
@@ -199,7 +213,8 @@ class _$UserEntityImpl implements _UserEntity {
       this.avatar,
       this.phone,
       this.login,
-      this.dateOfBirth});
+      this.dateOfBirth,
+      @JsonKey(includeFromJson: false, includeToJson: false) this.file});
 
   @override
   final int id;
@@ -217,6 +232,36 @@ class _$UserEntityImpl implements _UserEntity {
   final String? login;
   @override
   final int? dateOfBirth;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  final File? file;
+
+  @override
+  String toString() {
+    return 'UserEntity(id: $id, email: $email, name: $name, lastname: $lastname, avatar: $avatar, phone: $phone, login: $login, dateOfBirth: $dateOfBirth, file: $file)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UserEntityImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.email, email) || other.email == email) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.lastname, lastname) ||
+                other.lastname == lastname) &&
+            (identical(other.avatar, avatar) || other.avatar == avatar) &&
+            (identical(other.phone, phone) || other.phone == phone) &&
+            (identical(other.login, login) || other.login == login) &&
+            (identical(other.dateOfBirth, dateOfBirth) ||
+                other.dateOfBirth == dateOfBirth) &&
+            (identical(other.file, file) || other.file == file));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id, email, name, lastname,
+      avatar, phone, login, dateOfBirth, file);
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -236,7 +281,9 @@ abstract class _UserEntity implements UserEntity {
       final String? avatar,
       final String? phone,
       final String? login,
-      final int? dateOfBirth}) = _$UserEntityImpl;
+      final int? dateOfBirth,
+      @JsonKey(includeFromJson: false, includeToJson: false)
+      final File? file}) = _$UserEntityImpl;
 
   @override
   int get id;
@@ -254,6 +301,9 @@ abstract class _UserEntity implements UserEntity {
   String? get login;
   @override
   int? get dateOfBirth;
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  File? get file;
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.

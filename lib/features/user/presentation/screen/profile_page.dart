@@ -35,9 +35,7 @@ class ProfilePageState extends BasePageState<ProfilePage> {
         onSelected: (value) {
           switch (value) {
             case DetailsContextMenuItems.edit:
-              Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const EditProfilePage(),
-              ));
+              editProfile();
               break;
             case DetailsContextMenuItems.delete:
               break;
@@ -107,34 +105,9 @@ class ProfilePageState extends BasePageState<ProfilePage> {
           ),
           const SizedBox(width: 16),
           Expanded(
-            child: Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(child: _buildName(state)),
-                    _buildEditButton(context),
-                  ],
-                ),
-              ],
-            ),
+            child: _buildName(state),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildEditButton(BuildContext context) {
-    return SizedBox(
-      width: 24,
-      height: 24,
-      child: InkWell(
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const EditProfilePage(),
-          ));
-        },
-        child: const Icon(Icons.edit),
       ),
     );
   }
@@ -160,5 +133,11 @@ class ProfilePageState extends BasePageState<ProfilePage> {
         ),
       ],
     );
+  }
+
+  void editProfile() async {
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => const EditProfilePage(),
+    ));
   }
 }

@@ -35,4 +35,28 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
     // TODO: implement sendConfirmationCode
     throw UnimplementedError();
   }
+
+  @override
+  Future<User> changeProfile(UserEntity user) async {
+    FormData formData = FormData.fromMap(
+      {
+        if (user.file != null)
+          "image": await MultipartFile.fromFile(
+            user.file!.path,
+            filename: "image",
+          ),
+        'name': user.name,
+        if (user.lastname != null) 'lastname': user.lastname,
+        if (user.phone != null) 'phone': user.phone,
+        if (user.dateOfBirth != null) 'dateOfBirth': user.dateOfBirth,
+        if (user.login != null) 'login': user.login,
+        if (user.email != null) 'email': user.email,
+      },
+    );
+    final response = await _appHttpService.postWithFile(
+      'user/change-profile',
+      data: formData,
+    );
+    return User.fromJson(response.data['user']);
+  }
 }

@@ -7,6 +7,9 @@ import 'package:test_shop_task/features/user/presentation/provider/state/profile
 final profileProvider =
     AutoDisposeStateNotifierProvider<ProfileProvider, ProfileState>(
   (ref) {
-    return ProfileProvider(getIt<LoadProfileUseCase>())..loginProfile();
+    return ProfileProvider(
+      getIt<LoadProfileUseCase>(),
+      ref,
+    )..loginProfile();
   },
 );

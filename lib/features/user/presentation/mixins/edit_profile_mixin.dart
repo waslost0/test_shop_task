@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/utils/string_validator.dart';
+import 'package:test_shop_task/features/user/domain/entities/user_entity.dart';
 import 'package:test_shop_task/features/user/presentation/provider/edit_profile_provider.dart';
 
 mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
@@ -29,7 +30,7 @@ mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
     text: pageModel.user.email,
   );
   late final TextEditingController phoneController = TextEditingController(
-    text: maskFormatter.maskText(pageModel.user.phone?? ""),
+    text: maskFormatter.maskText(pageModel.user.phone ?? ""),
   );
 
   bool isFormSubmitting = false;
@@ -84,6 +85,23 @@ mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
   }
 
   Future<void> submitForm();
+
+  Future<void> changeProfile() async {
+    final success = await pageModel.changeProfile(
+      UserEntity(
+        id: pageModel.user.id,
+        email: emailController.text.trim(),
+        lastname: lastNameController.text.trim(),
+        login: loginController.text.trim(),
+        name: nameController.text.trim(),
+        phone: phoneController.text.trim(),
+        // file:
+      ),
+    );
+    if (success && mounted) {
+      Navigator.pop(context, true);
+    }
+  }
 
   @override
   void dispose() {

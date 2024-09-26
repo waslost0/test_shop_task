@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_entity.freezed.dart';
@@ -13,5 +15,6 @@ class UserEntity with _$UserEntity {
     String? phone,
     String? login,
     int? dateOfBirth,
+    File? file,
   }) = _UserEntity;
 }

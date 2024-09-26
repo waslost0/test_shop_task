@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:test_shop_task/core/model/api_response.dart';
 
 abstract class NetworkService {
@@ -15,5 +16,10 @@ abstract class NetworkService {
   Future<ApiResponse> post(
     String endpoint, {
     Map<String, dynamic>? data,
+  });
+
+  Future<ApiResponse> postWithFile(
+    String endpoint, {
+    FormData? data,
   });
 }

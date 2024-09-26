@@ -12,4 +12,6 @@ part 'package:test_shop_task/features/user/data/repositories/user_repository_imp
 
 abstract class UserRepository {
   Future<Either<AppFailure, UserEntity>> getUser();
+
+  Future<Either<AppFailure, UserEntity>> changeProfile(UserEntity user);
 }

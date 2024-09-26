@@ -55,6 +55,21 @@ abstract class DioNetworkService extends NetworkService
   }
 
   @override
+  Future<ApiResponse> postWithFile(
+    String endpoint, {
+    FormData? data,
+  }) {
+    final res = handleException(
+      () => dio.post(
+        endpoint,
+        data: data,
+      ),
+      endpoint: endpoint,
+    );
+    return res;
+  }
+
+  @override
   Future<ApiResponse> get(
     String endpoint, {
     Map<String, dynamic>? queryParameters,
