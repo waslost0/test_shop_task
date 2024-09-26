@@ -3,7 +3,7 @@ import 'package:test_shop_task/core/errors/errors.dart';
 import 'package:test_shop_task/core/params/list_params.dart';
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
 
-part 'product_state.freezed.dart';
+part 'product_list_state.freezed.dart';
 
 class ProductListParams extends ListParams {
   final int? categoryId;
@@ -28,24 +28,24 @@ class ProductListParams extends ListParams {
 }
 
 @freezed
-abstract class ProductState with _$ProductState {
-  const factory ProductState.initial({
+abstract class ProductListState with _$ProductListState {
+  const factory ProductListState.initial({
     @Default([]) List<ProductEntity> list,
     @Default(ProductListParams()) ProductListParams listParams,
   }) = Initial;
 
-  const factory ProductState.loading({
+  const factory ProductListState.loading({
     @Default([]) List<ProductEntity> list,
     @Default(ProductListParams()) ProductListParams listParams,
   }) = Loading;
 
-  const factory ProductState.failure({
+  const factory ProductListState.failure({
     @Default([]) List<ProductEntity> list,
     @Default(ProductListParams()) ProductListParams listParams,
     required AppFailure exception,
   }) = Failure;
 
-  const factory ProductState.success({
+  const factory ProductListState.success({
     required List<ProductEntity> list,
     required ProductListParams listParams,
   }) = Success;

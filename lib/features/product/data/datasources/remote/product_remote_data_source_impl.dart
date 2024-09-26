@@ -23,4 +23,15 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
     final products = response.data['products'] as List;
     return products.map((e) => Product.fromJson(e).toEntity()).toList();
   }
+
+  @override
+  Future<ProductEntity> product({required int productId}) async {
+    final response = await _appHttpService.get(
+      '/shop/product/details',
+      queryParameters: {
+        'productId': productId,
+      },
+    );
+    return  Product.fromJson(response.data['product']).toEntity();
+  }
 }

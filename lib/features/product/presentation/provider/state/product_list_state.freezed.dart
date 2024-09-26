@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'product_state.dart';
+part of 'product_list_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ProductState {
+mixin _$ProductListState {
   List<ProductEntity> get list => throw _privateConstructorUsedError;
   ProductListParams get listParams => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,33 +87,33 @@ mixin _$ProductState {
   }) =>
       throw _privateConstructorUsedError;
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProductStateCopyWith<ProductState> get copyWith =>
+  $ProductListStateCopyWith<ProductListState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ProductStateCopyWith<$Res> {
-  factory $ProductStateCopyWith(
-          ProductState value, $Res Function(ProductState) then) =
-      _$ProductStateCopyWithImpl<$Res, ProductState>;
+abstract class $ProductListStateCopyWith<$Res> {
+  factory $ProductListStateCopyWith(
+          ProductListState value, $Res Function(ProductListState) then) =
+      _$ProductListStateCopyWithImpl<$Res, ProductListState>;
   @useResult
   $Res call({List<ProductEntity> list, ProductListParams listParams});
 }
 
 /// @nodoc
-class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
-    implements $ProductStateCopyWith<$Res> {
-  _$ProductStateCopyWithImpl(this._value, this._then);
+class _$ProductListStateCopyWithImpl<$Res, $Val extends ProductListState>
+    implements $ProductListStateCopyWith<$Res> {
+  _$ProductListStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -136,7 +136,7 @@ class _$ProductStateCopyWithImpl<$Res, $Val extends ProductState>
 
 /// @nodoc
 abstract class _$$InitialImplCopyWith<$Res>
-    implements $ProductStateCopyWith<$Res> {
+    implements $ProductListStateCopyWith<$Res> {
   factory _$$InitialImplCopyWith(
           _$InitialImpl value, $Res Function(_$InitialImpl) then) =
       __$$InitialImplCopyWithImpl<$Res>;
@@ -147,13 +147,13 @@ abstract class _$$InitialImplCopyWith<$Res>
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$ProductListStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -197,7 +197,7 @@ class _$InitialImpl implements Initial {
 
   @override
   String toString() {
-    return 'ProductState.initial(list: $list, listParams: $listParams)';
+    return 'ProductListState.initial(list: $list, listParams: $listParams)';
   }
 
   @override
@@ -214,7 +214,7 @@ class _$InitialImpl implements Initial {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_list), listParams);
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -315,7 +315,7 @@ class _$InitialImpl implements Initial {
   }
 }
 
-abstract class Initial implements ProductState {
+abstract class Initial implements ProductListState {
   const factory Initial(
       {final List<ProductEntity> list,
       final ProductListParams listParams}) = _$InitialImpl;
@@ -325,7 +325,7 @@ abstract class Initial implements ProductState {
   @override
   ProductListParams get listParams;
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -335,7 +335,7 @@ abstract class Initial implements ProductState {
 
 /// @nodoc
 abstract class _$$LoadingImplCopyWith<$Res>
-    implements $ProductStateCopyWith<$Res> {
+    implements $ProductListStateCopyWith<$Res> {
   factory _$$LoadingImplCopyWith(
           _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
       __$$LoadingImplCopyWithImpl<$Res>;
@@ -346,13 +346,13 @@ abstract class _$$LoadingImplCopyWith<$Res>
 
 /// @nodoc
 class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res, _$LoadingImpl>
+    extends _$ProductListStateCopyWithImpl<$Res, _$LoadingImpl>
     implements _$$LoadingImplCopyWith<$Res> {
   __$$LoadingImplCopyWithImpl(
       _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -396,7 +396,7 @@ class _$LoadingImpl implements Loading {
 
   @override
   String toString() {
-    return 'ProductState.loading(list: $list, listParams: $listParams)';
+    return 'ProductListState.loading(list: $list, listParams: $listParams)';
   }
 
   @override
@@ -413,7 +413,7 @@ class _$LoadingImpl implements Loading {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_list), listParams);
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -514,7 +514,7 @@ class _$LoadingImpl implements Loading {
   }
 }
 
-abstract class Loading implements ProductState {
+abstract class Loading implements ProductListState {
   const factory Loading(
       {final List<ProductEntity> list,
       final ProductListParams listParams}) = _$LoadingImpl;
@@ -524,7 +524,7 @@ abstract class Loading implements ProductState {
   @override
   ProductListParams get listParams;
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -534,7 +534,7 @@ abstract class Loading implements ProductState {
 
 /// @nodoc
 abstract class _$$FailureImplCopyWith<$Res>
-    implements $ProductStateCopyWith<$Res> {
+    implements $ProductListStateCopyWith<$Res> {
   factory _$$FailureImplCopyWith(
           _$FailureImpl value, $Res Function(_$FailureImpl) then) =
       __$$FailureImplCopyWithImpl<$Res>;
@@ -548,13 +548,13 @@ abstract class _$$FailureImplCopyWith<$Res>
 
 /// @nodoc
 class __$$FailureImplCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res, _$FailureImpl>
+    extends _$ProductListStateCopyWithImpl<$Res, _$FailureImpl>
     implements _$$FailureImplCopyWith<$Res> {
   __$$FailureImplCopyWithImpl(
       _$FailureImpl _value, $Res Function(_$FailureImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -606,7 +606,7 @@ class _$FailureImpl implements Failure {
 
   @override
   String toString() {
-    return 'ProductState.failure(list: $list, listParams: $listParams, exception: $exception)';
+    return 'ProductListState.failure(list: $list, listParams: $listParams, exception: $exception)';
   }
 
   @override
@@ -625,7 +625,7 @@ class _$FailureImpl implements Failure {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_list), listParams, exception);
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -726,7 +726,7 @@ class _$FailureImpl implements Failure {
   }
 }
 
-abstract class Failure implements ProductState {
+abstract class Failure implements ProductListState {
   const factory Failure(
       {final List<ProductEntity> list,
       final ProductListParams listParams,
@@ -738,7 +738,7 @@ abstract class Failure implements ProductState {
   ProductListParams get listParams;
   AppFailure get exception;
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -748,7 +748,7 @@ abstract class Failure implements ProductState {
 
 /// @nodoc
 abstract class _$$SuccessImplCopyWith<$Res>
-    implements $ProductStateCopyWith<$Res> {
+    implements $ProductListStateCopyWith<$Res> {
   factory _$$SuccessImplCopyWith(
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
@@ -759,13 +759,13 @@ abstract class _$$SuccessImplCopyWith<$Res>
 
 /// @nodoc
 class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$ProductStateCopyWithImpl<$Res, _$SuccessImpl>
+    extends _$ProductListStateCopyWithImpl<$Res, _$SuccessImpl>
     implements _$$SuccessImplCopyWith<$Res> {
   __$$SuccessImplCopyWithImpl(
       _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -806,7 +806,7 @@ class _$SuccessImpl implements Success {
 
   @override
   String toString() {
-    return 'ProductState.success(list: $list, listParams: $listParams)';
+    return 'ProductListState.success(list: $list, listParams: $listParams)';
   }
 
   @override
@@ -823,7 +823,7 @@ class _$SuccessImpl implements Success {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_list), listParams);
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
@@ -924,7 +924,7 @@ class _$SuccessImpl implements Success {
   }
 }
 
-abstract class Success implements ProductState {
+abstract class Success implements ProductListState {
   const factory Success(
       {required final List<ProductEntity> list,
       required final ProductListParams listParams}) = _$SuccessImpl;
@@ -934,7 +934,7 @@ abstract class Success implements ProductState {
   @override
   ProductListParams get listParams;
 
-  /// Create a copy of ProductState
+  /// Create a copy of ProductListState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)

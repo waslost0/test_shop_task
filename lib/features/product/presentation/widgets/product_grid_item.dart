@@ -9,11 +9,9 @@ import 'package:test_shop_task/features/product/domain/entities/product_entity.d
 
 class ProductGridItem extends StatefulWidget {
   final ProductEntity product;
-  final VoidCallback onBuyTap;
 
   const ProductGridItem({
     super.key,
-    required this.onBuyTap,
     required this.product,
   });
 

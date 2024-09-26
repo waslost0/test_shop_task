@@ -24,7 +24,6 @@ mixin _$UserEntity {
   String? get phone => throw _privateConstructorUsedError;
   String? get login => throw _privateConstructorUsedError;
   int? get dateOfBirth => throw _privateConstructorUsedError;
-  @JsonKey(includeFromJson: false, includeToJson: false)
   File? get file => throw _privateConstructorUsedError;
 
   /// Create a copy of UserEntity
@@ -49,7 +48,7 @@ abstract class $UserEntityCopyWith<$Res> {
       String? phone,
       String? login,
       int? dateOfBirth,
-      @JsonKey(includeFromJson: false, includeToJson: false) File? file});
+      File? file});
 }
 
 /// @nodoc
@@ -135,7 +134,7 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       String? phone,
       String? login,
       int? dateOfBirth,
-      @JsonKey(includeFromJson: false, includeToJson: false) File? file});
+      File? file});
 }
 
 /// @nodoc
@@ -214,7 +213,7 @@ class _$UserEntityImpl implements _UserEntity {
       this.phone,
       this.login,
       this.dateOfBirth,
-      @JsonKey(includeFromJson: false, includeToJson: false) this.file});
+      this.file});
 
   @override
   final int id;
@@ -233,7 +232,6 @@ class _$UserEntityImpl implements _UserEntity {
   @override
   final int? dateOfBirth;
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
   final File? file;
 
   @override
@@ -282,7 +280,6 @@ abstract class _UserEntity implements UserEntity {
       final String? phone,
       final String? login,
       final int? dateOfBirth,
-      @JsonKey(includeFromJson: false, includeToJson: false)
       final File? file}) = _$UserEntityImpl;
 
   @override
@@ -302,7 +299,6 @@ abstract class _UserEntity implements UserEntity {
   @override
   int? get dateOfBirth;
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
   File? get file;
 
   /// Create a copy of UserEntity

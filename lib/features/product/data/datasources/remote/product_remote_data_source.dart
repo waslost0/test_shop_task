@@ -10,4 +10,6 @@ abstract class ProductRemoteDataSource {
     required int offset,
     int? categoryId,
   });
+
+  Future<ProductEntity> product({required int productId});
 }

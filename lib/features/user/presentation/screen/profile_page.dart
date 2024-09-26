@@ -131,6 +131,10 @@ class ProfilePageState extends BasePageState<ProfilePage> {
         Text(
           "${state.user.phone}",
         ),
+        if (state.user.email?.isNotEmpty ?? false)
+        Text(
+          "${state.user.email}",
+        ),
       ],
     );
   }

@@ -46,6 +46,8 @@ import 'package:test_shop_task/features/product/data/datasources/remote/product_
     as _i257;
 import 'package:test_shop_task/features/product/domain/repositories/product_repository.dart'
     as _i289;
+import 'package:test_shop_task/features/product/domain/usecases/product_detail_usecase.dart'
+    as _i656;
 import 'package:test_shop_task/features/product/domain/usecases/product_list_usecase.dart'
     as _i60;
 import 'package:test_shop_task/features/user/data/datasources/remote/user_remote_data_source.dart'
@@ -113,8 +115,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i563.UserRepositoryImpl(gh<_i406.UserRemoteDataSource>()));
     gh.lazySingleton<_i496.CatalogRepository>(
         () => _i496.CatalogRepositoryImpl(gh<_i840.CatalogRemoteDataSource>()));
-    gh.factory<_i60.LoadProductUseCase>(
-        () => _i60.LoadProductUseCase(gh<_i289.ProductRepository>()));
+    gh.factory<_i60.LoadProductListUseCase>(
+        () => _i60.LoadProductListUseCase(gh<_i289.ProductRepository>()));
+    gh.factory<_i656.LoadProductDetailUseCase>(
+        () => _i656.LoadProductDetailUseCase(gh<_i289.ProductRepository>()));
     gh.factory<_i107.LoadProfileUseCase>(
         () => _i107.LoadProfileUseCase(gh<_i563.UserRepository>()));
     gh.factory<_i124.ChangeProfileUseCase>(

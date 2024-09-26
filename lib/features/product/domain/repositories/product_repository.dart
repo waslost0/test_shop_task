@@ -14,4 +14,8 @@ abstract class ProductRepository {
     int offset = 0,
     int? categoryId,
   });
+
+  Future<Either<AppFailure, ProductEntity>> getProduct({
+    required int productId,
+  });
 }

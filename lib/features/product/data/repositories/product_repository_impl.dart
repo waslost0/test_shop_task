@@ -27,4 +27,20 @@ class ProductRepositoryImpl extends ProductRepository {
       );
     }
   }
+
+  @override
+  Future<Either<AppFailure, ProductEntity>> getProduct({
+    required int productId,
+  }) async {
+    try {
+      final response = await _remoteDataSource.product(
+        productId: productId,
+      );
+      return Right(response);
+    } catch (e, s) {
+      return Left(
+        ExceptionToFailureConverter.convert(e, s),
+      );
+    }
+  }
 }
