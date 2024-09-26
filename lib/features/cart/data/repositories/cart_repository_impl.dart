@@ -104,11 +104,10 @@ class CartRepositoryImpl extends CartRepository {
   }) async {
     try {
       await _db.transaction(() async {
-        if (cartItem.product != null) {
-          await _db.managers.productTable
-              .filter((f) => f.productId(cartItem.productId))
-              .delete();
-        }
+        await _db.managers.productTable
+            .filter((f) => f.productId(cartItem.productId))
+            .delete();
+
         await _db.managers.cartItemTable
             .filter((f) => f.productId.productId(cartItem.productId))
             .delete();

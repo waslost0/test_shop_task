@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
+import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/widgets/app_slidable.dart';
 import 'package:test_shop_task/core/widgets/card_widget.dart';
 import 'package:test_shop_task/core/widgets/safe_network_Image.dart';
@@ -25,34 +26,95 @@ class CartListItem extends ConsumerWidget {
 
     return AppSlidable(
       actionPaneBuilder: () => [
-        Container(
-          width: 50,
-          decoration: BoxDecoration(
-            color: AppColors.red,
-            borderRadius: BorderRadius.circular(16),
-          ),
-          padding: const EdgeInsets.all(10),
-          child: const Icon(
-            Icons.delete,
-            color: AppColors.white,
+        const SizedBox(width: 10),
+        GestureDetector(
+          onTap: () => model.deleteItem(index),
+          child: AspectRatio(
+            aspectRatio: 0.7,
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.red,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              padding: const EdgeInsets.all(10),
+              child: const Icon(
+                Icons.delete,
+                color: AppColors.white,
+              ),
+            ),
           ),
         ),
       ],
-      // extentRatio: 0.3,
+      extentRatio: 0.2,
       child: CardWidget(
-        color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SafeNetworkImage(
-              imageUrl: item.product?.imageUrl,
-            ),
-            ProductCounterWidget(
-              count: item.count,
-              onDecrement: () => model.decrementItem(index),
-              onIncrement: () => model.increaseItem(index),
-            ),
-          ],
+        color: AppColors.lightRed,
+        margin: EdgeInsets.zero,
+        padding: const EdgeInsets.all(7),
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            color: AppColors.lightRed,
+          ),
+          child: Row(
+            children: [
+              _buildProductImage(),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  children: [
+                    buildTitle(),
+                    const SizedBox(height: 8),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        buildPrice(),
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: ProductCounterWidget(
+                              count: item.count,
+                              onDecrement: () => model.decrementItem(index),
+                              onIncrement: () => model.increaseItem(index),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildTitle() {
+    return Text(
+      item.product?.name ?? 'Name',
+      style: AppTextStyle.body,
+    );
+  }
+
+  Widget buildPrice() {
+    return Text(
+      '${item.product?.price?.toInt() ?? "0"} ₽',
+      style: AppTextStyle.body.copyWith(fontWeight: FontWeight.bold),
+    );
+  }
+
+  Widget _buildProductImage() {
+    return SizedBox(
+      width: 80,
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          color: AppColors.black,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: SafeNetworkImage(
+          imageUrl: item.product?.imageUrl,
+          fit: BoxFit.cover,
         ),
       ),
     );
