@@ -22,7 +22,7 @@ class ProductCounterWidget extends StatelessWidget {
     return Container(
       constraints: BoxConstraints(maxWidth: width),
       decoration: BoxDecoration(
-        color: AppColors.grey.withOpacity(0.3),
+        color: AppColors.red.withOpacity(0.1),
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
