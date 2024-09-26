@@ -1,52 +1,35 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
+import 'package:test_shop_task/core/utils/string_validator.dart';
 import 'package:test_shop_task/features/user/presentation/provider/edit_profile_provider.dart';
 
 mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
-  /*
-  *
-image
-string($binary)
-Аватар пользователя
-
-name
-string
-Имя пользователя
-
-lastname
-string
-Фамилия пользователя
-
-cityId
-integer
-Город пользователя
-
-dateOfBirth
-integer
-Дата рождения
-
-countryId
-integer
-Страна пользователя
-
-login
-string
-Login пользователя
-
-email
-string
-Электронная почта пользователя
-
-phone
-string
-Телефон пользователя */
   late final pageModel = ref.read(editProfileProvider.notifier);
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  final MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
+    mask: '+# (###) ###-##-##',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
   late final TextEditingController nameController = TextEditingController(
     text: pageModel.user.name,
+  );
+  late final TextEditingController lastNameController = TextEditingController(
+    text: pageModel.user.lastname,
+  );
+  late final TextEditingController loginController = TextEditingController(
+    text: pageModel.user.login,
+  );
+  late final TextEditingController emailController = TextEditingController(
+    text: pageModel.user.email,
+  );
+  late final TextEditingController phoneController = TextEditingController(
+    text: maskFormatter.maskText(pageModel.user.phone?? ""),
   );
 
   bool isFormSubmitting = false;
@@ -55,7 +38,24 @@ string
 
   String? validateName(String? value) {
     if (value?.isEmpty ?? true) {
-      return 'Необходимо заполнить имя';
+      return 'Необходимо заполнить Имя';
+    }
+    return null;
+  }
+
+  String? validateLastName(String? value) {
+    if (value?.isEmpty ?? true) {
+      return 'Необходимо заполнить Фимилию';
+    }
+    return null;
+  }
+
+  String? validateEmail(String? value) {
+    if (value?.isEmpty ?? true) {
+      return 'Необходимо заполнить Email';
+    }
+    if (!StringValidator.validateEmail(email: value!)) {
+      return "Введите корректный e-mail";
     }
     return null;
   }

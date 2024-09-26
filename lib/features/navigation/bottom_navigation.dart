@@ -30,6 +30,7 @@ class BottomNavigationState extends ConsumerState<BottomNavigation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: PageView.builder(
         physics: const NeverScrollableScrollPhysics(),
         controller: _controller,

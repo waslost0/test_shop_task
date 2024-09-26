@@ -483,6 +483,8 @@ abstract class _$$SuccessImplCopyWith<$Res> {
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
   $Res call({UserEntity user});
+
+  $UserEntityCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -506,6 +508,16 @@ class __$$SuccessImplCopyWithImpl<$Res>
           : user // ignore: cast_nullable_to_non_nullable
               as UserEntity,
     ));
+  }
+
+  /// Create a copy of ProfileState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res> get user {
+    return $UserEntityCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 

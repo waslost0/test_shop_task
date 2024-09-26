@@ -35,6 +35,9 @@ class ProfilePageState extends BasePageState<ProfilePage> {
         onSelected: (value) {
           switch (value) {
             case DetailsContextMenuItems.edit:
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const EditProfilePage(),
+              ));
               break;
             case DetailsContextMenuItems.delete:
               break;
