@@ -76,7 +76,7 @@ class CartRepositoryImpl extends CartRepository {
   }
 
   @override
-  Future<Either<AppFailure, bool>> addCartItem({
+  Future<Either<AppFailure, CartItemEntity>> addCartItem({
     required CartItemEntity cartItem,
   }) async {
     try {
@@ -89,6 +89,29 @@ class CartRepositoryImpl extends CartRepository {
         await _db
             .into(_db.cartItemTable)
             .insertOnConflictUpdate(cartItem.toCompanion());
+      });
+      return Right(cartItem);
+    } catch (e, s) {
+      return Left(
+        ExceptionToFailureConverter.convert(e, s),
+      );
+    }
+  }
+
+  @override
+  Future<Either<AppFailure, bool>> removeCartItem({
+    required CartItemEntity cartItem,
+  }) async {
+    try {
+      await _db.transaction(() async {
+        if (cartItem.product != null) {
+          await _db.managers.productTable
+              .filter((f) => f.productId(cartItem.productId))
+              .delete();
+        }
+        await _db.managers.cartItemTable
+            .filter((f) => f.productId.productId(cartItem.productId))
+            .delete();
       });
       return const Right(true);
     } catch (e, s) {

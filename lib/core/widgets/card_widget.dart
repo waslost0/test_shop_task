@@ -10,6 +10,7 @@ class CardWidget extends StatelessWidget {
   final List<BoxShadow>? boxShadow;
 
   const CardWidget({
+    super.key,
     this.child,
     this.boxShadow,
     this.margin = const EdgeInsets.symmetric(

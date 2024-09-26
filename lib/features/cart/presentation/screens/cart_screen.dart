@@ -43,6 +43,7 @@ class CartListPageState extends BasePageState<CartListPage> {
       itemCount: state.list.length,
       itemBuilder: (context, index) => CartListItem(
         item: state.list[index],
+        index: index,
       ),
       padding: const EdgeInsets.all(16),
       separatorBuilder: (BuildContext context, int index) =>

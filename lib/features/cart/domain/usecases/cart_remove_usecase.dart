@@ -7,15 +7,15 @@ import 'package:test_shop_task/features/cart/domain/repositories/cart_repository
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
 
 @injectable
-class CartAddUpdateUseCase implements UseCase<CartItemEntity, ProductEntity> {
+class CartRemoveUseCase implements UseCase<CartItemEntity?, ProductEntity> {
   final CartRepository _cartRepository;
 
-  CartAddUpdateUseCase(
+  CartRemoveUseCase(
     this._cartRepository,
   );
 
   @override
-  Future<Either<AppFailure, CartItemEntity>> call(ProductEntity item) async {
+  Future<Either<AppFailure, CartItemEntity?>> call(ProductEntity item) async {
     final result = await _cartRepository.getCartItemByProductIdRef(
       productId: item.productId,
     );
@@ -25,16 +25,16 @@ class CartAddUpdateUseCase implements UseCase<CartItemEntity, ProductEntity> {
 
     CartItemEntity? cartDbItem = (result as Right).value;
     if (cartDbItem != null) {
-      cartDbItem = cartDbItem.copyWith(
-        count: cartDbItem.count + 1,
-        product: item,
-      );
+      if (cartDbItem.count == 1) {
+        return (await _cartRepository.removeCartItem(cartItem: cartDbItem))
+            .fold(
+          (l) => Left(l),
+          (r) => const Right(null),
+        );
+      }
+      cartDbItem = cartDbItem.copyWith(count: cartDbItem.count - 1);
+      return await _cartRepository.addCartItem(cartItem: cartDbItem);
     }
-    cartDbItem ??= CartItemEntity(
-      count: 1,
-      productId: item.productId,
-      product: item,
-    );
-    return await _cartRepository.addCartItem(cartItem: cartDbItem);
+    return const Right(null);
   }
 }

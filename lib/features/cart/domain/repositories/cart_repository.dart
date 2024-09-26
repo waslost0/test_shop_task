@@ -16,7 +16,12 @@ abstract class CartRepository {
     int offset = 0,
   });
 
-  Future<Either<AppFailure, bool>> addCartItem({
+  Future<Either<AppFailure, CartItemEntity>> addCartItem({
+    required CartItemEntity cartItem,
+  });
+
+
+  Future<Either<AppFailure, bool>> removeCartItem({
     required CartItemEntity cartItem,
   });
 

@@ -23,15 +23,15 @@ enum BottomNavigationItem {
         );
       case BottomNavigationItem.profile:
         return SalomonBottomBarItem(
-          icon: const Icon(Icons.shopping_cart_rounded),
-          title: const Text("Cart"),
+          icon: const Icon(Icons.person),
+          title: const Text("Profile"),
           unselectedColor: unselectedColor,
           selectedColor: activeColorPrimary,
         );
       case BottomNavigationItem.cart:
         return SalomonBottomBarItem(
-          icon: const Icon(Icons.person),
-          title: const Text("Profile"),
+          icon: const Icon(Icons.shopping_cart_rounded),
+          title: const Text("Cart"),
           unselectedColor: unselectedColor,
           selectedColor: activeColorPrimary,
         );
