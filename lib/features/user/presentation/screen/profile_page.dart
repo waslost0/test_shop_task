@@ -5,6 +5,7 @@ import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/features/user/presentation/provider/profile_provider.dart';
 import 'package:test_shop_task/features/user/presentation/provider/state/profile_state.dart';
+import 'package:test_shop_task/features/user/presentation/screen/edit_profile_page.dart';
 import 'package:test_shop_task/features/user/presentation/widgets/avatar_image.dart';
 
 enum DetailsContextMenuItems {
@@ -126,7 +127,9 @@ class ProfilePageState extends BasePageState<ProfilePage> {
       height: 24,
       child: InkWell(
         onTap: () {
-          // context.push('/user/edit');
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const EditProfilePage(),
+          ));
         },
         child: const Icon(Icons.edit),
       ),

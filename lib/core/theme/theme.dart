@@ -186,7 +186,7 @@ class ThemeBuilder {
         spreadRadius: 0.0,
       );
 
-  BoxDecoration buildCircleDecoration(BuildContext context) => BoxDecoration(
+  static BoxDecoration get buildCircleDecoration => BoxDecoration(
         shape: BoxShape.circle,
         boxShadow: [buildDefaultShadow],
         color: AppColors.surfaceColor,
