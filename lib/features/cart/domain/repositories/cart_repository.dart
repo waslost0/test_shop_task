@@ -33,4 +33,6 @@ abstract class CartRepository {
   Future<Either<AppFailure, CartItemEntity?>> getCartItemByProductIdRef({
     required int productId,
   });
+
+  Future<Either<AppFailure, int>> getCount();
 }

@@ -32,6 +32,8 @@ import 'package:test_shop_task/features/cart/domain/usecases/cart_add_update_use
     as _i771;
 import 'package:test_shop_task/features/cart/domain/usecases/cart_clear_usecase.dart'
     as _i145;
+import 'package:test_shop_task/features/cart/domain/usecases/cart_count_usecase.dart'
+    as _i20;
 import 'package:test_shop_task/features/cart/domain/usecases/cart_delete_usecase.dart'
     as _i718;
 import 'package:test_shop_task/features/cart/domain/usecases/cart_load_usecase.dart'
@@ -93,6 +95,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i655.CartLoadUseCase(gh<_i360.CartRepository>()));
     gh.factory<_i858.CartRemoveUseCase>(
         () => _i858.CartRemoveUseCase(gh<_i360.CartRepository>()));
+    gh.factory<_i20.CartCountUseCase>(
+        () => _i20.CartCountUseCase(gh<_i360.CartRepository>()));
     gh.lazySingleton<_i839.AuthRemoteDataSource>(
         () => _i839.AuthRemoteDataSourceImpl(gh<_i60.BaseApi>()));
     gh.lazySingleton<_i12.AuthLocalDataSource>(

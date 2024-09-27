@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_shop_task/core/database/database.dart';
 import 'package:test_shop_task/core/usecases/usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_add_update_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_clear_usecase.dart';
+import 'package:test_shop_task/features/cart/domain/usecases/cart_count_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_delete_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_load_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_remove_usecase.dart';
@@ -15,7 +15,7 @@ class CartNotifier extends StateNotifier<CartState> {
   final CartRemoveUseCase _removeItem;
   final CartDeleteUseCase _deleteItem;
   final CartClearUseCase _clearCart;
-  final AppDatabase _db;
+  final CartCountUseCase _cartCount;
 
   CartNotifier(
     this._loadList,
@@ -23,7 +23,7 @@ class CartNotifier extends StateNotifier<CartState> {
     this._removeItem,
     this._deleteItem,
     this._clearCart,
-    this._db,
+    this._cartCount,
   ) : super(const Loading());
 
   Future<void> loadList({bool reload = false}) async {
@@ -100,8 +100,12 @@ class CartNotifier extends StateNotifier<CartState> {
     );
   }
 
-  Future<int> cartItemCountCount() async {
-    return await _db.managers.cartItemTable.count();
+  Future<int?> cartItemCountCount() async {
+    final result = await _cartCount.call(NoParams());
+    return result.fold(
+      (l) => null,
+      (r) => r,
+    );
   }
 
   Future<void> clearCart() async {

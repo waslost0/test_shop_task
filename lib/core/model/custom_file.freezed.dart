@@ -173,7 +173,7 @@ class __$$CustomFileImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$CustomFileImpl implements _CustomFile {
-  const _$CustomFileImpl(
+  _$CustomFileImpl(
       {@JsonKey(includeToJson: false, includeFromJson: false) this.file,
       this.url,
       this.blurHash,
@@ -241,7 +241,7 @@ class _$CustomFileImpl implements _CustomFile {
 }
 
 abstract class _CustomFile implements CustomFile {
-  const factory _CustomFile(
+  factory _CustomFile(
       {@JsonKey(includeToJson: false, includeFromJson: false) final File? file,
       final String? url,
       final String? blurHash,

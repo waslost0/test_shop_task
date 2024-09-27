@@ -132,4 +132,15 @@ class CartRepositoryImpl extends CartRepository {
       );
     }
   }
+
+  @override
+  Future<Either<AppFailure, int>> getCount() async {
+    try {
+      return Right(await _db.managers.cartItemTable.count());
+    } catch (e, s) {
+      return Left(
+        ExceptionToFailureConverter.convert(e, s),
+      );
+    }
+  }
 }
