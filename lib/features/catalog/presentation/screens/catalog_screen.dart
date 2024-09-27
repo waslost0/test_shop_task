@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
+import 'package:test_shop_task/features/cart/presentation/widgets/cart_count_button.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/catalog_provider.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/state/catalog_state.dart';
 import 'package:test_shop_task/features/catalog/presentation/widgets/category_list_item.dart';
@@ -23,6 +24,11 @@ class CatalogPage extends BasePage {
 
 class CatalogPageState extends BasePageState<CatalogPage> {
   late AppModel appModel = ref.read(appModelProvider);
+
+  @override
+  List<Widget> buildAppBarActions() {
+    return [const CartCountButton()];
+  }
 
   @override
   Widget buildBody(BuildContext context) {

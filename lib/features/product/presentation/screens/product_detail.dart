@@ -9,8 +9,8 @@ import 'package:test_shop_task/core/utils/numer_formatter.dart';
 import 'package:test_shop_task/core/widgets/card_widget.dart';
 import 'package:test_shop_task/core/widgets/expandable_text.dart';
 import 'package:test_shop_task/core/widgets/safe_network_image.dart';
-import 'package:test_shop_task/di/injection.dart';
-import 'package:test_shop_task/features/cart/domain/usecases/cart_add_update_usecase.dart';
+import 'package:test_shop_task/features/cart/presentation/provider/cart_provider.dart';
+import 'package:test_shop_task/features/cart/presentation/widgets/cart_count_button.dart';
 import 'package:test_shop_task/features/product/presentation/provider/product_detail_provider.dart';
 import 'package:test_shop_task/features/product/presentation/provider/state/product_detail_state.dart';
 
@@ -32,6 +32,11 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
   final PageController pageController = PageController();
   final ValueNotifier<int> _currentPageNotifier = ValueNotifier<int>(0);
   final NumberFormat priceFormatter = NumberFormatExtension.defaultCurrency;
+
+  @override
+  List<Widget> buildAppBarActions() {
+    return [const CartCountButton()];
+  }
 
   @override
   Widget buildBody(BuildContext context) {
@@ -188,7 +193,7 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
   Widget buildAddToCartButton(Success state) {
     return ElevatedButton(
       onPressed: () {
-        getIt<CartAddUpdateUseCase>().call(state.product);
+        ref.read(cartProvider.notifier).addProduct(state.product);
       },
       child: const Text('Добавить в корзину'),
     );

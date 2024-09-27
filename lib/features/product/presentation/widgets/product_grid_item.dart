@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/widgets/safe_network_image.dart';
-import 'package:test_shop_task/di/injection.dart';
-import 'package:test_shop_task/features/cart/domain/usecases/cart_add_update_usecase.dart';
+import 'package:test_shop_task/features/cart/presentation/provider/cart_provider.dart';
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
 
-class ProductGridItem extends StatefulWidget {
+class ProductGridItem extends ConsumerStatefulWidget {
   final ProductEntity product;
 
   const ProductGridItem({
@@ -16,10 +16,10 @@ class ProductGridItem extends StatefulWidget {
   });
 
   @override
-  State<ProductGridItem> createState() => _ProductGridItemState();
+  ConsumerState<ProductGridItem> createState() => _ProductGridItemState();
 }
 
-class _ProductGridItemState extends State<ProductGridItem> {
+class _ProductGridItemState extends ConsumerState<ProductGridItem> {
   final PageController pageController = PageController();
   final ValueNotifier<int> _currentPageNotifier = ValueNotifier<int>(0);
 
@@ -177,7 +177,7 @@ class _ProductGridItemState extends State<ProductGridItem> {
         minimumSize: const Size(32, 32),
       ),
       onPressed: () {
-        getIt<CartAddUpdateUseCase>().call(widget.product);
+        ref.read(cartProvider.notifier).addProduct(widget.product);
       },
       child: const Icon(
         Icons.add_shopping_cart_rounded,
