@@ -7,12 +7,11 @@ import 'package:test_shop_task/core/router/routes.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 
-GoRouter? _previousRouter;
-
 final routerProvider = Provider((ref) {
   final userState = ref.watch(appModelProvider);
-  return _previousRouter = GoRouter(
-    initialLocation: userState.isAuthenticated ? AppRoutes.catalog : AppRoutes.auth,
+  return GoRouter(
+    initialLocation:
+        userState.isAuthenticated ? AppRoutes.catalog : AppRoutes.auth,
     navigatorKey: navigatorKey,
     debugLogDiagnostics: true,
     observers: [BotToastNavigatorObserver()],

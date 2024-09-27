@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/features/auth/presentation/mixins/auth_by_phone_mixin.dart';
