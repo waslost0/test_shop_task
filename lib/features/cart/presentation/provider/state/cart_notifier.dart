@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/database/database.dart';
 import 'package:test_shop_task/core/usecases/usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_add_update_usecase.dart';
+import 'package:test_shop_task/features/cart/domain/usecases/cart_clear_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_delete_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_load_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_remove_usecase.dart';
@@ -13,6 +14,7 @@ class CartNotifier extends StateNotifier<CartState> {
   final CartAddUpdateUseCase _addItem;
   final CartRemoveUseCase _removeItem;
   final CartDeleteUseCase _deleteItem;
+  final CartClearUseCase _clearCart;
   final AppDatabase _db;
 
   CartNotifier(
@@ -20,6 +22,7 @@ class CartNotifier extends StateNotifier<CartState> {
     this._addItem,
     this._removeItem,
     this._deleteItem,
+    this._clearCart,
     this._db,
   ) : super(const Loading());
 
@@ -99,5 +102,14 @@ class CartNotifier extends StateNotifier<CartState> {
 
   Future<int> cartItemCountCount() async {
     return await _db.managers.cartItemTable.count();
+  }
+
+  Future<void> clearCart() async {
+    final result = await _clearCart.call(NoParams());
+
+    state = await result.fold(
+      (l) => Failure(exception: l),
+      (r) => const Success(list: []),
+    );
   }
 }

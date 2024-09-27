@@ -20,10 +20,11 @@ abstract class CartRepository {
     required CartItemEntity cartItem,
   });
 
-
   Future<Either<AppFailure, bool>> removeCartItem({
     required CartItemEntity cartItem,
   });
+
+  Future<Either<AppFailure, bool>> clearCart();
 
   Future<Either<AppFailure, CartItemEntity?>> getCartItemByProductId({
     required int productId,

@@ -119,4 +119,17 @@ class CartRepositoryImpl extends CartRepository {
       );
     }
   }
+
+  @override
+  Future<Either<AppFailure, bool>> clearCart() async {
+    try {
+      await _db.managers.productTable.delete();
+      await _db.managers.cartItemTable.delete();
+      return const Right(true);
+    } catch (e, s) {
+      return Left(
+        ExceptionToFailureConverter.convert(e, s),
+      );
+    }
+  }
 }

@@ -22,23 +22,45 @@ class CartListPage extends BasePage {
 
 class CartListPageState extends BasePageState<CartListPage> {
   @override
-  Widget buildBody(BuildContext context) {
-    final state = ref.watch(cartProvider);
-    return state is Loading
-        ? const Center(child: CircularProgressIndicator())
-        : buildGrid();
+  List<Widget> buildAppBarActions() {
+    return [
+      TextButton(
+        onPressed: () {
+          ref.read(cartProvider.notifier).clearCart();
+        },
+        child: const Text('Очистить'),
+      ),
+    ];
   }
 
-  Widget buildGrid() {
+  @override
+  Widget buildBody(BuildContext context) {
+    final state = ref.watch(cartProvider);
+    return state.map(
+      initial: (_) => buildLoadingIndicator(),
+      loading: (_) => buildLoadingIndicator(),
+      failure: (value) => buildEmptyPlaceholder(
+        value.exception.message,
+      ),
+      success: (state) => buildList(state),
+    );
+  }
+
+  Widget buildEmptyPlaceholder(String? message) {
+    return Center(
+      child: Text(
+        message ?? 'Список пуст',
+        style: AppTextStyle.title,
+      ),
+    );
+  }
+
+  Widget buildList(Success state) {
     final state = ref.watch(cartProvider);
     if (state.list.isEmpty) {
-      return const Center(
-        child: Text(
-          'Список пуст',
-          style: AppTextStyle.title,
-        ),
-      );
+      return buildEmptyPlaceholder('Список пуст');
     }
+    // TODO: Total count price
     return ListView.separated(
       itemCount: state.list.length,
       itemBuilder: (context, index) => CartListItem(

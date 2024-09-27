@@ -47,8 +47,6 @@ class AppColors {
   static const Color midGray = Color(0xFFA2AABB);
   static const Color focusedBorder = Color(0xFF7A8699);
   static const Color errorBorder = Color(0xFFD9141B);
-  static const Color textButtonGray = Color(0xFF5D6B82);
-  static const Color dividerLightGray = Color(0xFFEBEDF0);
   static const Color buttonShadow = Color(0xFFF4F4F7);
 
   /// Основной цвет, который чаще всего отображается на экранах и компонентах

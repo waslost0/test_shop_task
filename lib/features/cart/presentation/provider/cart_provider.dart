@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/database/database.dart';
 import 'package:test_shop_task/di/injection.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_add_update_usecase.dart';
+import 'package:test_shop_task/features/cart/domain/usecases/cart_clear_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_delete_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_load_usecase.dart';
 import 'package:test_shop_task/features/cart/domain/usecases/cart_remove_usecase.dart';
@@ -15,6 +16,7 @@ final cartProvider = AutoDisposeStateNotifierProvider<CartNotifier, CartState>(
       getIt<CartAddUpdateUseCase>(),
       getIt<CartRemoveUseCase>(),
       getIt<CartDeleteUseCase>(),
+      getIt<CartClearUseCase>(),
       getIt<AppDatabase>(),
     )..loadList();
   },

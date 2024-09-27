@@ -124,15 +124,14 @@ class ThemeBuilder {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           textStyle: const TextStyle(
-            fontSize: 17,
+            fontSize: 15,
             fontWeight: FontWeight.w600,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),
-          foregroundColor: AppColors.textButtonGray,
+          foregroundColor: AppColors.black,
           disabledForegroundColor: AppColors.lightGray,
-          minimumSize: const Size.fromHeight(52),
         ),
       ),
       iconButtonTheme: IconButtonThemeData(
@@ -160,7 +159,7 @@ class ThemeBuilder {
         ),
       ),
       dividerTheme: const DividerThemeData(
-        color: AppColors.dividerLightGray,
+        color: AppColors.divider,
       ),
     );
   }
