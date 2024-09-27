@@ -1,16 +1,42 @@
 # test_shop_task
 
-A new Flutter project.
+Flutter Test Task
 
-## Getting Started
+## Checklist
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [x] Local storage drift
+- [ ] go_router
+---
+- [x] Profile Page
+- [x] Edit fields
+- [ ] Edit avatar
+- [ ] Miltiple avatars
+- [ ] Sliver 
+- [ ] Phone country code 
+- [ ] Validation 
+---
+- [x] Catalog Page 
+- [x] Catalog Page Child
+- [x] Catalog Item Image
+- [x] Catalog Item Name
+- [ ] Catalog Product Count
+- [ ] Catalog Search
+---
+- [x] Product Grid Page 
+- [x] Product Detail Page 
+- [x] Add to cart
+- [x] Product Image
+- [x] Product Name
+- [x] Product Price
+- [x] Product Description
+- [ ] Product Search
+- [ ] Select weight
+- [ ] Select volume
+- [ ] Select volume on grid (why)?
+---
+- [x] Cart page
+- [x] Clear cart
+- [x] Increment, decrement count
+- [x] Delete on slide
+- [x] Total sum
+---

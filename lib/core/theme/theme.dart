@@ -180,7 +180,7 @@ class ThemeBuilder {
 
   static BoxShadow get buildDefaultShadow => BoxShadow(
         color: AppColors.defaultShadow.withOpacity(0.3),
-        blurRadius: 4.0,
+        blurRadius: 3.0,
         spreadRadius: 0.0,
       );
 

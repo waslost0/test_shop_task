@@ -45,15 +45,7 @@ class AppState extends ConsumerState<App> {
       theme: ThemeBuilder.themeData,
       debugShowCheckedModeBanner: false,
       builder: BotToastInit(),
-      // theme: AppTheme().buildThemeData(),
-      // builder: BotToastInit(),
-      // navigatorObservers: [BotToastNavigatorObserver()],
-      // localizationsDelegates: const [
-      //   GlobalMaterialLocalizations.delegate,
-      //   GlobalWidgetsLocalizations.delegate,
-      //   GlobalCupertinoLocalizations.delegate,
-      // ],
-      // supportedLocales: S.delegate.supportedLocales,
+      navigatorObservers: [BotToastNavigatorObserver()],
     );
   }
 

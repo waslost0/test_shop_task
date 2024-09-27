@@ -116,4 +116,18 @@ class CartNotifier extends StateNotifier<CartState> {
       (r) => const Success(list: []),
     );
   }
+
+  double totalPrice() {
+    return state.list.fold(
+      0.0,
+      (previousValue, element) => previousValue + (element.product?.price ?? 0),
+    );
+  }
+
+  int productCount() {
+    return state.list.fold(
+      0,
+      (previousValue, element) => previousValue + element.count,
+    );
+  }
 }

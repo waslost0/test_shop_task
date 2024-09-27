@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
+import 'package:test_shop_task/core/utils/numer_formatter.dart';
 import 'package:test_shop_task/core/widgets/app_slidable.dart';
 import 'package:test_shop_task/core/widgets/card_widget.dart';
 import 'package:test_shop_task/core/widgets/safe_network_Image.dart';
 import 'package:test_shop_task/features/cart/domain/entities/cart_entity.dart';
 import 'package:test_shop_task/features/cart/presentation/provider/cart_provider.dart';
+import 'package:test_shop_task/features/cart/presentation/provider/state/cart_notifier.dart';
 import 'package:test_shop_task/features/cart/presentation/widgets/product_count_widget.dart';
 
 class CartListItem extends ConsumerWidget {
@@ -60,25 +62,11 @@ class CartListItem extends ConsumerWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     buildTitle(),
-                    const SizedBox(height: 8),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        buildPrice(),
-                        Expanded(
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: ProductCounterWidget(
-                              count: item.count,
-                              onDecrement: () => model.decrementItem(index),
-                              onIncrement: () => model.increaseItem(index),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    const SizedBox(height: 18),
+                    buildPriceCounter(model),
                   ],
                 ),
               ),
@@ -96,10 +84,25 @@ class CartListItem extends ConsumerWidget {
     );
   }
 
-  Widget buildPrice() {
-    return Text(
-      '${item.product?.price?.toInt() ?? "0"} ₽',
-      style: AppTextStyle.body.copyWith(fontWeight: FontWeight.bold),
+  Widget buildPriceCounter(CartNotifier model) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          '${item.product?.price?.formatCurrency}',
+          style: AppTextStyle.body.copyWith(fontWeight: FontWeight.bold),
+        ),
+        Expanded(
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: ProductCounterWidget(
+              count: item.count,
+              onDecrement: () => model.decrementItem(index),
+              onIncrement: () => model.increaseItem(index),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

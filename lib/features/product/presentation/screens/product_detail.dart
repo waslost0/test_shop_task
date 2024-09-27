@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_shop_task/core/model/custom_file.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
@@ -33,7 +32,6 @@ class ProductDetailPage extends BasePage {
 class ProductDetailPageState extends BasePageState<ProductDetailPage> {
   final PageController pageController = PageController();
   final ValueNotifier<int> _currentPageNotifier = ValueNotifier<int>(0);
-  final NumberFormat priceFormatter = NumberFormatExtension.defaultCurrency;
 
   @override
   List<Widget> buildAppBarActions() {
@@ -166,7 +164,7 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
           ),
           const SizedBox(height: 5),
           Text(
-            priceFormatter.format(state.product.price),
+            state.product.price?.formatCurrency ?? "",
             style: AppTextStyle.title2.copyWith(
               color: AppColors.red,
               fontWeight: FontWeight.bold,
