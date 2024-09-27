@@ -14,3 +14,16 @@ class BoolJsonConverter implements JsonConverter<bool, dynamic> {
   @override
   int toJson(bool object) => (object) ? 1 : 0;
 }
+
+class DateTimeJsonConverter implements JsonConverter<DateTime, int> {
+  const DateTimeJsonConverter();
+
+  @override
+  DateTime fromJson(int json) {
+    final result = DateTime.fromMillisecondsSinceEpoch(json * 1000);
+    return result;
+  }
+
+  @override
+  int toJson(DateTime object) => (object.millisecondsSinceEpoch) ~/ 1000;
+}

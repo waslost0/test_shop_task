@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:test_shop_task/core/model/custom_file.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/utils/numer_formatter.dart';
 import 'package:test_shop_task/core/widgets/card_widget.dart';
 import 'package:test_shop_task/core/widgets/expandable_text.dart';
+import 'package:test_shop_task/core/widgets/full_screen_photo_page.dart';
 import 'package:test_shop_task/core/widgets/safe_network_image.dart';
 import 'package:test_shop_task/features/cart/presentation/provider/cart_provider.dart';
 import 'package:test_shop_task/features/cart/presentation/widgets/cart_count_button.dart';
@@ -53,6 +55,7 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           buildHeader(state),
           const SizedBox(height: 16),
@@ -128,9 +131,21 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
       },
       itemBuilder: (BuildContext context, int index) {
         var image = state.product.images[index];
-        return SafeNetworkImage(
-          imageUrl: image,
-          fit: BoxFit.contain,
+        return GestureDetector(
+          onTap: () {
+            FullscreenPhotoPage.openPage(
+              context,
+              state.product.images.map((e) => CustomFile(url: e)).toList(),
+              initialIndex: index,
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SafeNetworkImage(
+              imageUrl: image,
+              fit: BoxFit.contain,
+            ),
+          ),
         );
       },
     );

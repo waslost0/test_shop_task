@@ -136,7 +136,6 @@ class ThemeBuilder {
       ),
       iconButtonTheme: IconButtonThemeData(
         style: IconButton.styleFrom(
-          backgroundColor: AppColors.white,
           minimumSize: const Size(52, 52),
         ),
       ),

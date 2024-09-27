@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/widgets/safe_network_image.dart';
@@ -20,9 +19,6 @@ class ProductGridItem extends ConsumerStatefulWidget {
 }
 
 class _ProductGridItemState extends ConsumerState<ProductGridItem> {
-  final PageController pageController = PageController();
-  final ValueNotifier<int> _currentPageNotifier = ValueNotifier<int>(0);
-
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -54,57 +50,22 @@ class _ProductGridItemState extends ConsumerState<ProductGridItem> {
         topLeft: Radius.circular(20),
         topRight: Radius.circular(20),
       ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          AspectRatio(
-            aspectRatio: 1,
-            child: buildProductGallery(),
-          ),
-          if (widget.product.images.length > 1)
-            buildPageIndicator(widget.product.images.length),
-        ],
-      ),
-    );
-  }
-
-  Widget buildPageIndicator(int length) {
-    return Positioned(
-      bottom: 12,
-      child: SmoothPageIndicator(
-        controller: pageController,
-        count: widget.product.images.length,
-        effect: const WormEffect(
-          spacing: 4,
-          dotWidth: 8,
-          dotHeight: 2,
-          activeDotColor: AppColors.secondaryColor,
-          dotColor: AppColors.lightGrey,
-        ),
+      child: AspectRatio(
+        aspectRatio: 1,
+        child: buildProductGallery(),
       ),
     );
   }
 
   Widget buildProductGallery() {
     var imageList = widget.product.images;
-    if (imageList.length < 2) {
-      return SafeNetworkImage(
+
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: SafeNetworkImage(
         imageUrl: imageList.firstOrNull,
-      );
-    }
-    return PageView.builder(
-      padEnds: false,
-      controller: pageController,
-      itemCount: imageList.length,
-      onPageChanged: (value) {
-        _currentPageNotifier.value = value;
-      },
-      itemBuilder: (BuildContext context, int index) {
-        var item = imageList[index];
-        return SafeNetworkImage(
-          imageUrl: item,
-        );
-      },
+        fit: BoxFit.contain,
+      ),
     );
   }
 
@@ -180,7 +141,8 @@ class _ProductGridItemState extends ConsumerState<ProductGridItem> {
         ref.read(cartProvider.notifier).addProduct(widget.product);
       },
       child: const Icon(
-        Icons.add_shopping_cart_rounded,
+        Icons.shopping_cart,
+        size: 18,
       ),
     );
   }
