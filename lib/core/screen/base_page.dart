@@ -79,6 +79,10 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
     return widget.title?.isEmpty ?? true ? null : Text(widget.title!);
   }
 
+  Widget buildLoadingIndicator() {
+    return const Center(child: CircularProgressIndicator());
+  }
+
   @protected
   Widget buildBody(BuildContext context);
 

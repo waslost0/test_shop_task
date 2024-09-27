@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
+import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
+import 'package:test_shop_task/core/utils/numer_formatter.dart';
+import 'package:test_shop_task/core/widgets/card_widget.dart';
+import 'package:test_shop_task/core/widgets/expandable_text.dart';
+import 'package:test_shop_task/core/widgets/safe_network_image.dart';
+import 'package:test_shop_task/di/injection.dart';
+import 'package:test_shop_task/features/cart/domain/usecases/cart_add_update_usecase.dart';
 import 'package:test_shop_task/features/product/presentation/provider/product_detail_provider.dart';
 import 'package:test_shop_task/features/product/presentation/provider/state/product_detail_state.dart';
 
@@ -20,24 +29,168 @@ class ProductDetailPage extends BasePage {
 }
 
 class ProductDetailPageState extends BasePageState<ProductDetailPage> {
+  final PageController pageController = PageController();
+  final ValueNotifier<int> _currentPageNotifier = ValueNotifier<int>(0);
+  final NumberFormat priceFormatter = NumberFormatExtension.defaultCurrency;
+
   @override
   Widget buildBody(BuildContext context) {
-    final state = ref.watch(productProvider(widget.productId));
-    return state is Loading
-        ? const Center(child: CircularProgressIndicator())
-        : buildGrid();
+    final state = ref.watch(productDetailProvider(widget.productId));
+    return state.map(
+      initial: (value) => buildLoadingIndicator(),
+      loading: (value) => buildLoadingIndicator(),
+      failure: (value) => buildEmptyPlaceholder(value.exception.message),
+      success: (value) => buildContent(value),
+    );
   }
 
-  Widget buildGrid() {
-    final state = ref.watch(productProvider(widget.productId));
-    if (state is Failure) {
-      return const Center(
-        child: Text(
-          'Список пуст',
-          style: AppTextStyle.title,
+  Widget buildContent(Success state) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: [
+          buildHeader(state),
+          const SizedBox(height: 16),
+          buildName(state),
+          const SizedBox(height: 16),
+          buildDescription(state),
+          const SizedBox(height: 16),
+          buildAddToCartButton(state),
+        ],
+      ),
+    );
+  }
+
+  Widget buildEmptyPlaceholder(String? message) {
+    return Center(
+      child: Text(
+        message ?? 'Не удалось загрузить товар',
+        style: AppTextStyle.title,
+      ),
+    );
+  }
+
+  Widget buildHeader(Success state) {
+    return CardWidget(
+      margin: EdgeInsets.zero,
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          AspectRatio(
+            aspectRatio: 1.8,
+            child: buildProductGallery(),
+          ),
+          if (state.product.images.length > 1)
+            buildPageIndicator(
+              state.product.images.length,
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPageIndicator(int length) {
+    return Positioned(
+      bottom: 8,
+      child: SmoothPageIndicator(
+        controller: pageController,
+        count: length,
+        effect: const WormEffect(
+          spacing: 4,
+          dotWidth: 22,
+          dotHeight: 3,
+          radius: 4,
+          activeDotColor: AppColors.secondaryColor,
+          dotColor: AppColors.lightGrey,
         ),
+      ),
+    );
+  }
+
+  Widget buildProductGallery() {
+    final state = ref.read(productDetailProvider(widget.productId)) as Success;
+    if (state.product.images.length < 2) {
+      return SafeNetworkImage(
+        imageUrl: state.product.imageUrl,
       );
     }
-    return Placeholder();
+    return PageView.builder(
+      padEnds: false,
+      controller: pageController,
+      itemCount: state.product.images.length,
+      onPageChanged: (value) {
+        _currentPageNotifier.value = value;
+      },
+      itemBuilder: (BuildContext context, int index) {
+        var image = state.product.images[index];
+        return SafeNetworkImage(
+          imageUrl: image,
+          fit: BoxFit.contain,
+        );
+      },
+    );
+  }
+
+  Widget buildName(Success state) {
+    return CardWidget(
+      margin: EdgeInsets.zero,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            state.product.name,
+            style: AppTextStyle.body.copyWith(
+              fontSize: 16,
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            priceFormatter.format(state.product.price),
+            style: AppTextStyle.title2.copyWith(
+              color: AppColors.red,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildDescription(Success state) {
+    return CardWidget(
+      margin: EdgeInsets.zero,
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Описание',
+            style: AppTextStyle.title2,
+          ),
+          const SizedBox(height: 5),
+          ExpandableTextWidget(
+            state.product.productDescription ?? '',
+            moreStyle: AppTextStyle.body.copyWith(
+              color: AppColors.red,
+              fontWeight: FontWeight.w500,
+            ),
+            lessStyle: AppTextStyle.body.copyWith(
+              color: AppColors.red,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildAddToCartButton(Success state) {
+    return ElevatedButton(
+      onPressed: () {
+        getIt<CartAddUpdateUseCase>().call(state.product);
+      },
+      child: const Text('Добавить в корзину'),
+    );
   }
 }

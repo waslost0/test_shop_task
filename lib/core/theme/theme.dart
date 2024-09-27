@@ -176,7 +176,7 @@ class ThemeBuilder {
 
   static BoxDecoration get buildCardDecoration => BoxDecoration(
         boxShadow: [buildDefaultShadow],
-        color: AppColors.surfaceColor,
+        color: AppColors.white,
         borderRadius: BorderRadius.circular(cardBorderRadius),
       );
 
