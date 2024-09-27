@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
+import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/features/user/presentation/provider/profile_provider.dart';
 import 'package:test_shop_task/features/user/presentation/provider/state/profile_state.dart';
-import 'package:test_shop_task/features/user/presentation/screen/edit_profile_page.dart';
 import 'package:test_shop_task/features/user/presentation/widgets/avatar_image.dart';
 
 enum DetailsContextMenuItems {
@@ -132,16 +132,14 @@ class ProfilePageState extends BasePageState<ProfilePage> {
           "${state.user.phone}",
         ),
         if (state.user.email?.isNotEmpty ?? false)
-        Text(
-          "${state.user.email}",
-        ),
+          Text(
+            "${state.user.email}",
+          ),
       ],
     );
   }
 
-  void editProfile() async {
-    await Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => const EditProfilePage(),
-    ));
+  void editProfile() {
+    const EditProfileRouteData().push(context);
   }
 }

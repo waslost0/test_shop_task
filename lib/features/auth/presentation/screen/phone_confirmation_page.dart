@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/features/auth/presentation/mixins/auth_by_phone_mixin.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/auth_provider.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/state/auth_state.dart';
-import 'package:test_shop_task/features/navigation/bottom_navigation.dart';
 
 class PhoneConfirmationFormPage extends BasePage {
   final String phoneNumber;
@@ -78,12 +79,7 @@ class PhoneConfirmationFormPageState
       authNotifierProvider,
       (previous, next) {
         if (next is Success) {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => const BottomNavigation(),
-            ),
-            (route) => false,
-          );
+          const CatalogRouteData().push(context);
         }
       },
     );

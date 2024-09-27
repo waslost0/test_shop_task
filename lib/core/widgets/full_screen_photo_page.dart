@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_shop_task/core/model/custom_file.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
@@ -29,7 +30,7 @@ class FullscreenPhotoPage extends StatefulWidget {
     int initialIndex = 0,
     bool useHeroAnimation = true,
   }) {
-    Navigator.of(context).push(
+    Navigator.of(context, rootNavigator: true).push(
       PageRouteBuilder(
         opaque: false,
         transitionsBuilder: (_, a1, __, child) => FadeTransition(
@@ -101,8 +102,7 @@ class FullscreenPhotoPageState extends State<FullscreenPhotoPage>
     return IconButton(
       color: AppColors.white.withOpacity(_opacity),
       icon: const Icon(Icons.close),
-
-      onPressed: () => Navigator.of(context).pop(),
+      onPressed: () => context.pop(),
     );
   }
 

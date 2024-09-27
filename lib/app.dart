@@ -5,8 +5,6 @@ import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/logic/navigation_provider.dart';
 import 'package:test_shop_task/core/router/router.dart';
 import 'package:test_shop_task/core/theme/theme.dart';
-import 'package:test_shop_task/features/auth/presentation/screen/auth_by_phone.dart';
-import 'package:test_shop_task/features/navigation/bottom_navigation.dart';
 
 class App extends ConsumerStatefulWidget {
   const App({
@@ -36,29 +34,14 @@ class AppState extends ConsumerState<App> {
   @override
   Widget build(BuildContext context) {
     ref.watch(appModelProvider);
-    ref.watch(routerProvider);
-    return MaterialApp(
+    final router = ref.watch(routerProvider);
+    return MaterialApp.router(
       title: "Shop",
+      routerConfig: router,
       key: appNavigator.materialAppKey,
-      navigatorKey: appNavigator.key,
-      home: prepareStartPage(context),
       theme: ThemeBuilder.themeData,
       debugShowCheckedModeBanner: false,
       builder: BotToastInit(),
-      navigatorObservers: [BotToastNavigatorObserver()],
     );
-  }
-
-  Widget prepareStartPage(context) {
-    final model = ref.watch(appModelProvider);
-    if (!model.isInitialized) {
-      return const Material(
-        child: Center(child: CircularProgressIndicator()),
-      );
-    }
-    if (model.isAuthenticated) {
-      return const BottomNavigation();
-    }
-    return const AuthByPhonePage();
   }
 }

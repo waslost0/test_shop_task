@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/features/auth/presentation/mixins/auth_by_phone_mixin.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/auth_provider.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/state/auth_state.dart';
-import 'package:test_shop_task/features/auth/presentation/screen/phone_confirmation_page.dart';
 
 class AuthByPhonePage extends BasePage {
   const AuthByPhonePage({
@@ -48,7 +48,9 @@ class AuthByPhonePageState extends BasePageState<AuthByPhonePage>
             ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () => trySubmitForm(context),
+              onPressed: () {
+                trySubmitForm(context);
+              },
               child: const Text('Отправить СМС код'),
             ),
             const Spacer(flex: 2),
@@ -63,14 +65,7 @@ class AuthByPhonePageState extends BasePageState<AuthByPhonePage>
       authNotifierProvider,
       (previous, next) {
         if (next is Success) {
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(
-              builder: (context) => PhoneConfirmationFormPage(
-                phoneNumber: phoneController.text,
-              ),
-            ),
-            (route) => route.isFirst,
-          );
+          PhoneConfirmRoute(phoneNumber: phoneController.text).push(context);
         }
       },
     );

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
+import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/features/cart/presentation/widgets/cart_count_button.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/catalog_provider.dart';
 import 'package:test_shop_task/features/catalog/presentation/provider/state/catalog_state.dart';
 import 'package:test_shop_task/features/catalog/presentation/widgets/category_list_item.dart';
-import 'package:test_shop_task/features/product/presentation/screens/product_screen.dart';
 
 class CatalogPage extends BasePage {
   final int? parentId;
@@ -58,22 +58,9 @@ class CatalogPageState extends BasePageState<CatalogPage> {
         onTap: () {
           final category = state.list[index];
           if (category.hasSubcategories) {
-            Navigator.of(context, rootNavigator: true).push(
-              MaterialPageRoute(
-                builder: (context) => CatalogPage(
-                  parentId: category.categoryId,
-                ),
-              ),
-            );
+            CatalogRouteData(category.categoryId).push(context);
           } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ProductListPage(
-                  category: category,
-                ),
-              ),
-            );
+            ProductListRouteData(category).push(context);
           }
         },
         child: CategoryListItem(
