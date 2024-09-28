@@ -10,45 +10,44 @@ class ProductListNotifier extends StateNotifier<ProductListState> {
     this._loadList,
     CategoryEntity? category,
   ) : super(
-          Loading(
+          ProductListState(
             listParams: ProductListParams(categoryId: category?.categoryId),
+            isLoading: true,
           ),
         );
 
-  Future<void> loginList() async {
-    if (state.list.isEmpty) {
-      state = Loading(listParams: state.listParams);
-    }
+  Future<void> loadList() async {
+    if (state.isAllLoaded) return;
+    state = state.copyWith(isLoading: true);
 
     final result = await _loadList.call(
       state.listParams,
     );
 
     state = await result.fold(
-      (l) => ProductListState.failure(exception: l),
-      (r) => ProductListState.success(
-        list: [...state.list, ...r],
-        listParams: state.listParams.copyWith(
-          offset: state.listParams.offset + r.length,
-        ),
-      ),
+      (l) => state.copyWith(exception: l),
+      (r) {
+        return state.copyWith(
+          list: [...state.list, ...r],
+          isAllLoaded: r.isEmpty,
+          isLoading: false,
+          listParams: state.listParams.copyWith(
+            offset: state.listParams.offset + r.length,
+          ),
+        );
+      },
     );
   }
 
   Future<void> reloadData({String? searchString}) async {
-    state = state.copyWith(
-      listParams: ProductListParams(
-        categoryId: state.listParams.categoryId,
-        searchString: searchString ?? state.listParams.searchString,
-      ),
-    );
+    state = ProductListState(isLoading: true, list: state.list);
     final result = await _loadList.call(
       state.listParams,
     );
 
     state = await result.fold(
-      (l) => ProductListState.failure(exception: l),
-      (r) => ProductListState.success(
+      (l) => ProductListState(exception: l),
+      (r) => ProductListState(
         list: r,
         listParams: state.listParams.copyWith(
           offset: state.listParams.offset + r.length,

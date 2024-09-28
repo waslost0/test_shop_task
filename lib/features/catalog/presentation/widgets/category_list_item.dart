@@ -13,7 +13,6 @@ class CategoryListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CardWidget(
-      margin: EdgeInsets.zero,
       child: Container(
         color: AppColors.lightRed,
         height: 78,

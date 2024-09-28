@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
-import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/utils/numer_formatter.dart';
 import 'package:test_shop_task/core/widgets/card_widget.dart';
@@ -93,13 +92,7 @@ class CartListPageState extends BasePageState<CartListPage> {
   Widget buildSummaryInfo() {
     final model = ref.read(cartProvider.notifier);
     return CardWidget(
-      boxShadow: [
-        BoxShadow(
-          color: AppColors.grey.withOpacity(0.3),
-          blurRadius: 4,
-          spreadRadius: 2,
-        ),
-      ],
+      margin: EdgeInsets.all(16),
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [

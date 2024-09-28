@@ -32,24 +32,18 @@ class ProductListParams extends ListParams {
 
 @freezed
 abstract class ProductListState with _$ProductListState {
-  const factory ProductListState.initial({
+  const factory ProductListState({
     @Default([]) List<ProductEntity> list,
+    AppFailure? exception,
+    @Default(false) bool isLoading,
+    @Default(false) bool isAllLoaded,
     @Default(ProductListParams()) ProductListParams listParams,
-  }) = Initial;
+  }) = _ProductListState;
+}
 
-  const factory ProductListState.loading({
-    @Default([]) List<ProductEntity> list,
-    @Default(ProductListParams()) ProductListParams listParams,
-  }) = Loading;
+extension ProductListStateX on ProductListState {
+  bool get hasError => exception?.message?.isNotEmpty ?? false;
+  String? get searchString => listParams.searchString;
+  String? get errorMessage => exception?.message;
 
-  const factory ProductListState.failure({
-    @Default([]) List<ProductEntity> list,
-    @Default(ProductListParams()) ProductListParams listParams,
-    required AppFailure exception,
-  }) = Failure;
-
-  const factory ProductListState.success({
-    required List<ProductEntity> list,
-    required ProductListParams listParams,
-  }) = Success;
 }

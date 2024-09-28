@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
+import 'package:test_shop_task/core/utils/numer_formatter.dart';
+import 'package:test_shop_task/core/widgets/card_widget.dart';
 import 'package:test_shop_task/core/widgets/safe_network_image.dart';
 import 'package:test_shop_task/features/cart/presentation/provider/cart_provider.dart';
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
@@ -21,19 +23,7 @@ class ProductGridItem extends ConsumerStatefulWidget {
 class _ProductGridItemState extends ConsumerState<ProductGridItem> {
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: AppColors.onPrimaryColor,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            offset: const Offset(0, 8),
-            blurRadius: 28.0,
-            spreadRadius: 0,
-            color: AppColors.black.withOpacity(0.06),
-          ),
-        ],
-      ),
+    return CardWidget(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -111,12 +101,12 @@ class _ProductGridItemState extends ConsumerState<ProductGridItem> {
     );
   }
 
-  Widget buildPrice(num? price) {
+  Widget buildPrice(double? price) {
     if (price == null) {
       return const SizedBox.shrink();
     }
     return Text(
-      price.toString(),
+      price.formatCurrency,
       style: AppTextStyle.small.copyWith(
         fontWeight: FontWeight.w500,
         color: AppColors.black,

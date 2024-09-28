@@ -1,11 +1,11 @@
 import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:talker_flutter/talker_flutter.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/logic/navigation_provider.dart';
+import 'package:test_shop_task/core/model/config.dart';
 import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/di/injection.dart';
 
@@ -19,7 +19,7 @@ final routerProvider = Provider((ref) {
     navigatorKey: ref.read(navigatorProvider).navigatorKey,
     observers: [
       BotToastNavigatorObserver(),
-      if (kDebugMode) TalkerRouteObserver(getIt<Talker>()),
+      if (Config.goRouterLoggerEnabled) TalkerRouteObserver(getIt<Talker>()),
     ],
     redirect: (context, state) {
       if (!userState.isAuthenticated &&

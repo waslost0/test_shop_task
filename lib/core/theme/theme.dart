@@ -53,6 +53,7 @@ class ThemeBuilder {
       dialogBackgroundColor: AppColors.dialogBackgroundColor,
       appBarTheme: AppBarTheme(
         color: AppColors.white,
+        surfaceTintColor: Colors.transparent,
         systemOverlayStyle: ThemeBuilder.systemUiOverlayStyle,
         titleTextStyle: const TextStyle(
           fontSize: 17.0,
@@ -212,9 +213,10 @@ class ThemeBuilder {
       );
 
   static BoxShadow get buildDefaultShadow => BoxShadow(
-        color: AppColors.defaultShadow.withOpacity(0.3),
-        blurRadius: 3.0,
-        spreadRadius: 0.0,
+        offset: Offset(0, 3),
+        blurRadius: 4.0,
+        spreadRadius: 1,
+        color: AppColors.ligthGray,
       );
 
   static BoxDecoration get buildCircleDecoration => BoxDecoration(

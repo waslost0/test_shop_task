@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:talker/talker.dart';
 import 'package:talker_dio_logger/talker_dio_logger.dart';
 import 'package:test_shop_task/core/api/exception_handler_mixin.dart';
@@ -14,7 +13,7 @@ abstract class DioNetworkService extends NetworkService
 
   DioNetworkService() {
     dio.options = dioBaseOptions;
-    if (kDebugMode) {
+    if (Config.dioLoggerEnabled) {
       dio.interceptors.add(
         TalkerDioLogger(
           talker: getIt<Talker>(),

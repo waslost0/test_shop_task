@@ -1,10 +1,10 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
-import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:test_shop_task/core/database/db_interceptopr.dart';
 import 'package:test_shop_task/core/database/model/cart_item_table.dart';
 import 'package:test_shop_task/core/database/model/product_table.dart';
+import 'package:test_shop_task/core/model/config.dart';
 import 'package:test_shop_task/features/cart/domain/entities/cart_entity.dart';
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
 import 'package:universal_io/io.dart';
@@ -33,7 +33,7 @@ class AppDatabase extends _$AppDatabase {
           : null,
     );
 
-    if (kDebugMode) {
+    if (Config.dbLoggerEnabled) {
       return db.interceptWith(DbLogInterceptor());
     }
     return db;

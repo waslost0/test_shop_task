@@ -11,6 +11,6 @@ final productListProvider = AutoDisposeStateNotifierProvider.family<
     return ProductListNotifier(
       getIt<LoadProductListUseCase>(),
       data,
-    )..loginList();
+    )..loadList();
   },
 );

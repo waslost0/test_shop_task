@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/widgets/search_bar.dart';
@@ -8,7 +9,6 @@ import 'package:test_shop_task/features/catalog/domain/entities/category_entity.
 import 'package:test_shop_task/features/product/presentation/mixins/product_list_mixin.dart';
 import 'package:test_shop_task/features/product/presentation/provider/product_list_provider.dart';
 import 'package:test_shop_task/features/product/presentation/provider/state/product_list_state.dart';
-import 'package:test_shop_task/features/product/presentation/screens/product_detail.dart';
 import 'package:test_shop_task/features/product/presentation/widgets/product_grid_item.dart';
 
 class ProductListPage extends BasePage {
@@ -35,14 +35,12 @@ class ProductListPageState extends BasePageState<ProductListPage>
   Widget buildBody(BuildContext context) {
     final model = ref.read(productListProvider(widget.category).notifier);
     final state = ref.watch(productListProvider(widget.category));
+    if (state.isLoading && state.list.isEmpty) {
+      return buildLoadingIndicator();
+    }
     return RefreshIndicator(
       onRefresh: () => model.reloadData(),
-      child: state.map(
-        initial: (_) => buildLoadingIndicator(),
-        loading: (_) => buildLoadingIndicator(),
-        failure: (value) => buildEmptyPlaceholder(value.exception.message),
-        success: (value) => buildGrid(value),
-      ),
+      child: buildGrid(state),
     );
   }
 
@@ -55,39 +53,54 @@ class ProductListPageState extends BasePageState<ProductListPage>
     );
   }
 
-  Widget buildGrid(Success state) {
-    return Column(
+  Widget buildGrid(ProductListState state) {
+    if (state.isAllLoaded && state.list.isEmpty) {
+      return buildEmptyPlaceholder('Список пуст');
+    }
+
+    return Stack(
       children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: AppSearchBar(onChanged: onSearch),
-        ),
         if (state.list.isEmpty)
-          Expanded(child: buildEmptyPlaceholder('Список пуст'))
+          buildEmptyPlaceholder('Список пуст')
         else
-          Expanded(
-            child: GridView.builder(
-              itemCount: state.list.length,
-              itemBuilder: (context, index) => GestureDetector(
+          GridView.builder(
+            itemCount: state.list.length,
+            itemBuilder: (context, index) {
+              WidgetsBinding.instance.addPostFrameCallback(
+                (_) => tryPreloadNextItems(index),
+              );
+              return GestureDetector(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ProductDetailPage(
-                        productId: state.list[index].productId,
-                      ),
-                    ),
-                  );
+                  ProductDetailRouteData(
+                    productId: state.list[index].productId,
+                  ).push(context);
                 },
                 child: ProductGridItem(
                   product: state.list[index],
                 ),
-              ),
-              gridDelegate: createGridDelegate(context),
-              padding: const EdgeInsets.all(16),
+              );
+            },
+            gridDelegate: createGridDelegate(context),
+            padding: const EdgeInsets.only(
+              top: 66,
+              left: 16,
+              right: 16,
+              bottom: 16,
             ),
           ),
+        buildSearchBar(state),
       ],
+    );
+  }
+
+  Widget buildSearchBar(ProductListState state) {
+    if (state.list.isEmpty && state.isAllLoaded && state.searchString == null) {
+      return SizedBox.shrink();
+    }
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+      child: AppSearchBar(onChanged: onSearch),
     );
   }
 

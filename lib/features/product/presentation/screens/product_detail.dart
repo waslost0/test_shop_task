@@ -78,7 +78,6 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
 
   Widget buildHeader(Success state) {
     return CardWidget(
-      margin: EdgeInsets.zero,
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -151,7 +150,6 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
 
   Widget buildName(Success state) {
     return CardWidget(
-      margin: EdgeInsets.zero,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,7 +175,6 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
 
   Widget buildDescription(Success state) {
     return CardWidget(
-      margin: EdgeInsets.zero,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

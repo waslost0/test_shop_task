@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
-import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/utils/debouncer/debouncer.dart';
 
 class AppSearchBar extends StatefulWidget {

@@ -29,8 +29,8 @@ mixin _$CatalogState {
     required TResult Function(List<CategoryEntity> list,
             CategoryListParams listParams, AppFailure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, String? searchString)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -43,8 +43,7 @@ mixin _$CatalogState {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) =>
       throw _privateConstructorUsedError;
@@ -57,8 +56,7 @@ mixin _$CatalogState {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
     required TResult orElse(),
   }) =>
@@ -236,8 +234,8 @@ class _$InitialImpl implements Initial {
     required TResult Function(List<CategoryEntity> list,
             CategoryListParams listParams, AppFailure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, String? searchString)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) {
     return initial(list, listParams);
@@ -253,8 +251,7 @@ class _$InitialImpl implements Initial {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) {
     return initial?.call(list, listParams);
@@ -270,8 +267,7 @@ class _$InitialImpl implements Initial {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
     required TResult orElse(),
   }) {
@@ -437,8 +433,8 @@ class _$LoadingImpl implements Loading {
     required TResult Function(List<CategoryEntity> list,
             CategoryListParams listParams, AppFailure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, String? searchString)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) {
     return loading(list, listParams);
@@ -454,8 +450,7 @@ class _$LoadingImpl implements Loading {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) {
     return loading?.call(list, listParams);
@@ -471,8 +466,7 @@ class _$LoadingImpl implements Loading {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
     required TResult orElse(),
   }) {
@@ -652,8 +646,8 @@ class _$CatalogFailureImpl implements CatalogFailure {
     required TResult Function(List<CategoryEntity> list,
             CategoryListParams listParams, AppFailure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, String? searchString)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) {
     return failure(list, listParams, exception);
@@ -669,8 +663,7 @@ class _$CatalogFailureImpl implements CatalogFailure {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) {
     return failure?.call(list, listParams, exception);
@@ -686,8 +679,7 @@ class _$CatalogFailureImpl implements CatalogFailure {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
     required TResult orElse(),
   }) {
@@ -763,10 +755,7 @@ abstract class _$$SuccessImplCopyWith<$Res>
       __$$SuccessImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<CategoryEntity> list,
-      CategoryListParams listParams,
-      String? searchString});
+  $Res call({List<CategoryEntity> list, CategoryListParams listParams});
 }
 
 /// @nodoc
@@ -784,7 +773,6 @@ class __$$SuccessImplCopyWithImpl<$Res>
   $Res call({
     Object? list = null,
     Object? listParams = null,
-    Object? searchString = freezed,
   }) {
     return _then(_$SuccessImpl(
       list: null == list
@@ -795,10 +783,6 @@ class __$$SuccessImplCopyWithImpl<$Res>
           ? _value.listParams
           : listParams // ignore: cast_nullable_to_non_nullable
               as CategoryListParams,
-      searchString: freezed == searchString
-          ? _value.searchString
-          : searchString // ignore: cast_nullable_to_non_nullable
-              as String?,
     ));
   }
 }
@@ -807,9 +791,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 class _$SuccessImpl implements Success {
   const _$SuccessImpl(
-      {required final List<CategoryEntity> list,
-      required this.listParams,
-      this.searchString})
+      {required final List<CategoryEntity> list, required this.listParams})
       : _list = list;
 
   final List<CategoryEntity> _list;
@@ -822,12 +804,10 @@ class _$SuccessImpl implements Success {
 
   @override
   final CategoryListParams listParams;
-  @override
-  final String? searchString;
 
   @override
   String toString() {
-    return 'CatalogState.success(list: $list, listParams: $listParams, searchString: $searchString)';
+    return 'CatalogState.success(list: $list, listParams: $listParams)';
   }
 
   @override
@@ -837,14 +817,12 @@ class _$SuccessImpl implements Success {
             other is _$SuccessImpl &&
             const DeepCollectionEquality().equals(other._list, _list) &&
             (identical(other.listParams, listParams) ||
-                other.listParams == listParams) &&
-            (identical(other.searchString, searchString) ||
-                other.searchString == searchString));
+                other.listParams == listParams));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_list), listParams, searchString);
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_list), listParams);
 
   /// Create a copy of CatalogState
   /// with the given fields replaced by the non-null parameter values.
@@ -866,11 +844,11 @@ class _$SuccessImpl implements Success {
     required TResult Function(List<CategoryEntity> list,
             CategoryListParams listParams, AppFailure exception)
         failure,
-    required TResult Function(List<CategoryEntity> list,
-            CategoryListParams listParams, String? searchString)
+    required TResult Function(
+            List<CategoryEntity> list, CategoryListParams listParams)
         success,
   }) {
-    return success(list, listParams, searchString);
+    return success(list, listParams);
   }
 
   @override
@@ -883,11 +861,10 @@ class _$SuccessImpl implements Success {
     TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult? Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
   }) {
-    return success?.call(list, listParams, searchString);
+    return success?.call(list, listParams);
   }
 
   @override
@@ -900,13 +877,12 @@ class _$SuccessImpl implements Success {
     TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
             AppFailure exception)?
         failure,
-    TResult Function(List<CategoryEntity> list, CategoryListParams listParams,
-            String? searchString)?
+    TResult Function(List<CategoryEntity> list, CategoryListParams listParams)?
         success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(list, listParams, searchString);
+      return success(list, listParams);
     }
     return orElse();
   }
@@ -952,14 +928,12 @@ class _$SuccessImpl implements Success {
 abstract class Success implements CatalogState {
   const factory Success(
       {required final List<CategoryEntity> list,
-      required final CategoryListParams listParams,
-      final String? searchString}) = _$SuccessImpl;
+      required final CategoryListParams listParams}) = _$SuccessImpl;
 
   @override
   List<CategoryEntity> get list;
   @override
   CategoryListParams get listParams;
-  String? get searchString;
 
   /// Create a copy of CatalogState
   /// with the given fields replaced by the non-null parameter values.

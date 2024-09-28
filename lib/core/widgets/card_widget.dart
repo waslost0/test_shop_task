@@ -13,10 +13,7 @@ class CardWidget extends StatelessWidget {
     super.key,
     this.child,
     this.boxShadow,
-    this.margin = const EdgeInsets.symmetric(
-      vertical: ThemeBuilder.defaultSmallPadding,
-      horizontal: ThemeBuilder.defaultPadding,
-    ),
+    this.margin = EdgeInsets.zero,
     this.padding = EdgeInsets.zero,
     this.color,
   });

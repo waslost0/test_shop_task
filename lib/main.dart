@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:talker/talker.dart';
 import 'package:talker_riverpod_logger/talker_riverpod_logger.dart';
 import 'package:test_shop_task/app.dart';
+import 'package:test_shop_task/core/model/config.dart';
 import 'package:test_shop_task/core/theme/theme.dart';
 
 import 'di/injection.dart';
@@ -19,9 +20,10 @@ void main() async {
   runApp(
     ProviderScope(
       observers: [
-        TalkerRiverpodObserver(
-          talker: getIt<Talker>(),
-        ),
+        if (Config.riverpodLoggerEnabled)
+          TalkerRiverpodObserver(
+            talker: getIt<Talker>(),
+          ),
       ],
       child: App(),
     ),
