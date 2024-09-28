@@ -16,8 +16,14 @@ class AvatarImage extends StatelessWidget {
     super.key,
     this.size = double.infinity,
     this.backgroundColor,
-    this.imageFile,
-  });
+  }) : imageFile = null;
+
+  const AvatarImage.file(
+    this.imageFile, {
+    super.key,
+    this.size = double.infinity,
+    this.backgroundColor,
+  }) : imageUrl = null;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +53,8 @@ class AvatarImage extends StatelessWidget {
 
   Widget image(BuildContext context) {
     if (imageFile != null) {
-      return Image.file(
-        imageFile!,
-        fit: BoxFit.cover,
+      return SafeNetworkImage.file(
+        imageFile: imageFile,
       );
     }
 

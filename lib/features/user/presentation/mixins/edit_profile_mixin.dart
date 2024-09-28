@@ -1,4 +1,4 @@
-import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -9,8 +9,6 @@ import 'package:test_shop_task/features/user/presentation/provider/edit_profile_
 
 mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
   late final pageModel = ref.read(editProfileProvider.notifier);
-
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
     mask: '+# (###) ###-##-##',
@@ -32,10 +30,7 @@ mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
   late final TextEditingController phoneController = TextEditingController(
     text: maskFormatter.maskText(pageModel.user.phone ?? ""),
   );
-
-  bool isFormSubmitting = false;
-
-  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  File? photoFile;
 
   String? validateName(String? value) {
     if (value?.isEmpty ?? true) {
@@ -61,30 +56,6 @@ mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
     return null;
   }
 
-  @protected
-  Future<void> trySubmitForm(BuildContext context) async {
-    if (isFormSubmitting || !context.mounted) {
-      return;
-    }
-    autovalidateMode = AutovalidateMode.always;
-    FocusScope.of(context).unfocus();
-    isFormSubmitting = true;
-    if (await validate()) {
-      formKey.currentState?.save();
-      showLoadingIndicator();
-      await submitForm();
-      hideLoadingIndicator();
-    } else {
-      log("Form validation errors. Form don't submitted.");
-    }
-    isFormSubmitting = false;
-  }
-
-  Future<bool> validate() async {
-    return formKey.currentState?.validate() ?? false;
-  }
-
-  Future<void> submitForm();
 
   Future<void> changeProfile() async {
     final success = await pageModel.changeProfile(
@@ -95,7 +66,7 @@ mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
         login: loginController.text.trim(),
         name: nameController.text.trim(),
         phone: phoneController.text.trim(),
-        // file:
+        file: photoFile,
       ),
     );
     if (success && mounted) {
@@ -106,6 +77,10 @@ mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
   @override
   void dispose() {
     nameController.dispose();
+    phoneController.dispose();
+    lastNameController.dispose();
+    loginController.dispose();
+    emailController.dispose();
     super.dispose();
   }
 }

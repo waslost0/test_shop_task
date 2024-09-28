@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/theme.dart';
@@ -5,6 +7,7 @@ import 'package:test_shop_task/features/user/presentation/widgets/avatar_image.d
 
 class EditProfileHeader extends StatelessWidget {
   final String? avatarUrl;
+  final File? photoFile;
   final VoidCallback onChangeAvatarTap;
 
   static const double _avatarSize = 140;
@@ -12,6 +15,7 @@ class EditProfileHeader extends StatelessWidget {
   const EditProfileHeader({
     super.key,
     this.avatarUrl,
+    this.photoFile,
     required this.onChangeAvatarTap,
   });
 
@@ -42,7 +46,7 @@ class EditProfileHeader extends StatelessWidget {
             border: Border.all(
               color: Colors.black,
             ),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(15),
           ),
           child: const Icon(Icons.edit),
         ),
@@ -55,10 +59,15 @@ class EditProfileHeader extends StatelessWidget {
       onTap: onChangeAvatarTap,
       child: Container(
         decoration: ThemeBuilder.buildCircleDecoration,
-        child: AvatarImage(
-          avatarUrl,
-          size: _avatarSize,
-        ),
+        child: photoFile != null
+            ? AvatarImage.file(
+                photoFile,
+                size: _avatarSize,
+              )
+            : AvatarImage(
+                avatarUrl,
+                size: _avatarSize,
+              ),
       ),
     );
   }

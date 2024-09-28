@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:test_shop_task/core/mixin/image_picker.dart';
 import 'package:test_shop_task/core/screen/base_form_page.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/features/user/presentation/mixins/edit_profile_mixin.dart';
@@ -17,7 +18,7 @@ class EditProfilePage extends BasePage {
 }
 
 class EditProfilePageState extends BaseFormPageState<EditProfilePage>
-    with EditProfileMixin<EditProfilePage> {
+    with EditProfileMixin<EditProfilePage>, ImagePickerProviderStateMixin {
   @override
   Widget buildFormBody(BuildContext context) {
     ref.watch(editProfileProvider);
@@ -46,9 +47,13 @@ class EditProfilePageState extends BaseFormPageState<EditProfilePage>
   Widget _buildAvatar() {
     return EditProfileHeader(
       avatarUrl: pageModel.user.avatar,
-      onChangeAvatarTap: () {
-        // TODO image_picker
-      },
+      photoFile: photoFile,
+      onChangeAvatarTap: () => showImagePickerDialog(
+        context,
+        (image) {
+          setState(() => photoFile = image);
+        },
+      ),
     );
   }
 

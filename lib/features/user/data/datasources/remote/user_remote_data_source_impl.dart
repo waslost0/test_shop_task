@@ -31,12 +31,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   }
 
   @override
-  Future<ApiResponse> sendConfirmationCode({required String phone}) {
-    // TODO: implement sendConfirmationCode
-    throw UnimplementedError();
-  }
-
-  @override
   Future<User> changeProfile(UserEntity user) async {
     FormData formData = FormData.fromMap(
       {

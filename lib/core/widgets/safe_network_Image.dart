@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ class SafeNetworkImage extends StatelessWidget {
 
   final BoxFit fit;
   final BoxFit placeholderFit;
+  final File? imageFile;
 
   const SafeNetworkImage({
     super.key,
@@ -17,14 +20,24 @@ class SafeNetworkImage extends StatelessWidget {
     this.placeholder = AssetsCatalog.placeholder,
     this.fit = BoxFit.cover,
     this.placeholderFit = BoxFit.cover,
-  });
+  }) : imageFile = null;
+
+  const SafeNetworkImage.file({
+    required this.imageFile,
+    super.key,
+    this.placeholder = AssetsCatalog.placeholder,
+    this.fit = BoxFit.cover,
+    this.placeholderFit = BoxFit.cover,
+  }) : imageUrl = null;
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl?.isEmpty ?? true) {
-      return Image.asset(
-        placeholder,
-        fit: placeholderFit,
+    if (imageFile != null) {
+      return ExtendedImage.file(
+        imageFile!,
+        fit: fit,
+        enableLoadState: true,
+        loadStateChanged: onLoadStateChanged,
       );
     }
     return ExtendedImage.network(
