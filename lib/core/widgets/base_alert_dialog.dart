@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 
@@ -124,10 +125,15 @@ class _BaseAlertDialogState extends State<BaseAlertDialog> {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isIOS) {
-      return _buildCupertinoDialog(context);
-    }
-    return _buildCustomMaterialDialog(context);
+    return AnnotatedRegion(
+      sized: false,
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+      ),
+      child: Platform.isIOS
+          ? _buildCupertinoDialog(context)
+          : _buildCustomMaterialDialog(context),
+    );
   }
 
   Widget _buildCupertinoDialog(BuildContext context) {

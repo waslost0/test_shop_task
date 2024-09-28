@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -56,44 +57,50 @@ mixin ImagePickerProviderStateMixin<T extends BasePage> on BasePageState<T> {
     bool isMultiple = false,
     int maxCount = 1,
   }) {
-    return AlertDialog(
-      title: const Text('Выберите фото'),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          TextButton(
-            onPressed: () {
-              context.pop();
-              if (isMultiple) {
-                _showImagesSelector(
-                  ImageSource.gallery,
-                  onImagesSelected!,
-                  maxCount,
-                );
-              } else {
-                showImageSelector(
-                  ImageSource.gallery,
-                  onFileSelected!,
-                );
-              }
-            },
-            child: const Text('Загрузить из галере'),
-          ),
-          TextButton(
-            onPressed: () async {
-              context.pop();
-              await showImageSelector(ImageSource.camera, onFileSelected!);
-            },
-            child: const Text('Сделать снимок'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: const Text('Отмена'),
-          ),
-        ],
+    return AnnotatedRegion(
+      sized: false,
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+      ),
+      child: AlertDialog(
+        title: const Text('Выберите фото'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            TextButton(
+              onPressed: () {
+                context.pop();
+                if (isMultiple) {
+                  _showImagesSelector(
+                    ImageSource.gallery,
+                    onImagesSelected!,
+                    maxCount,
+                  );
+                } else {
+                  showImageSelector(
+                    ImageSource.gallery,
+                    onFileSelected!,
+                  );
+                }
+              },
+              child: const Text('Загрузить из галере'),
+            ),
+            TextButton(
+              onPressed: () async {
+                context.pop();
+                await showImageSelector(ImageSource.camera, onFileSelected!);
+              },
+              child: const Text('Сделать снимок'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text('Отмена'),
+            ),
+          ],
+        ),
       ),
     );
   }

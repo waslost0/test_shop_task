@@ -41,10 +41,10 @@ class ThemeBuilder {
 
   static SystemUiOverlayStyle get systemUiOverlayStyle =>
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
+        statusBarColor: Colors.white,
         statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
-        systemNavigationBarIconBrightness: Brightness.light,
+        systemStatusBarContrastEnforced: false,
       );
 
   static ThemeData get themeData {
@@ -52,9 +52,10 @@ class ThemeBuilder {
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.background,
       dialogBackgroundColor: AppColors.dialogBackgroundColor,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         color: AppColors.white,
-        titleTextStyle: TextStyle(
+        systemOverlayStyle: ThemeBuilder.systemUiOverlayStyle,
+        titleTextStyle: const TextStyle(
           fontSize: 17.0,
           fontWeight: FontWeight.w600,
           color: AppColors.black,

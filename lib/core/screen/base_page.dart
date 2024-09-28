@@ -64,6 +64,7 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
     return AppBar(
       title: buildTitle(context),
       actions: buildAppBarActions(),
+      systemOverlayStyle: ThemeBuilder.systemUiOverlayStyle,
     );
   }
 
