@@ -89,14 +89,14 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i771.CartAddUpdateUseCase(gh<_i360.CartRepository>()));
     gh.factory<_i145.CartClearUseCase>(
         () => _i145.CartClearUseCase(gh<_i360.CartRepository>()));
+    gh.factory<_i20.CartCountUseCase>(
+        () => _i20.CartCountUseCase(gh<_i360.CartRepository>()));
     gh.factory<_i718.CartDeleteUseCase>(
         () => _i718.CartDeleteUseCase(gh<_i360.CartRepository>()));
     gh.factory<_i655.CartLoadUseCase>(
         () => _i655.CartLoadUseCase(gh<_i360.CartRepository>()));
     gh.factory<_i858.CartRemoveUseCase>(
         () => _i858.CartRemoveUseCase(gh<_i360.CartRepository>()));
-    gh.factory<_i20.CartCountUseCase>(
-        () => _i20.CartCountUseCase(gh<_i360.CartRepository>()));
     gh.lazySingleton<_i839.AuthRemoteDataSource>(
         () => _i839.AuthRemoteDataSourceImpl(gh<_i60.BaseApi>()));
     gh.lazySingleton<_i12.AuthLocalDataSource>(

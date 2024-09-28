@@ -100,3 +100,5 @@ ios/build
 
 # FVM Version Cache
 .fvm/
+
+sqlite3.so
