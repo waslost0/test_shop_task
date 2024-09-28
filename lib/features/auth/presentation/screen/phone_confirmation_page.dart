@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/router/routes.dart';
+import 'package:test_shop_task/core/screen/base_form_page.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/features/auth/presentation/mixins/auth_by_phone_mixin.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/auth_provider.dart';
@@ -21,36 +22,26 @@ class PhoneConfirmationFormPage extends BasePage {
 }
 
 class PhoneConfirmationFormPageState
-    extends BasePageState<PhoneConfirmationFormPage> with AuthByPhoneMixin {
+    extends BaseFormPageState<PhoneConfirmationFormPage> with AuthByPhoneMixin {
   @override
-  Widget buildBody(BuildContext context) {
+  Widget buildFormBody(BuildContext context) {
     ref.watch(authNotifierProvider.notifier);
     listenForState();
-    return Form(
-      key: formKey,
-      autovalidateMode: autovalidateMode,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: 16,
-          right: 16,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Spacer(),
+        const FlutterLogo(size: 150),
+        const Spacer(),
+        const SizedBox(height: 10),
+        buildPhoneCodeRow(context),
+        const SizedBox(height: 16),
+        ElevatedButton(
+          onPressed: () => trySubmitForm(context),
+          child: const Text('Войти'),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(),
-            const FlutterLogo(size: 150),
-            const Spacer(),
-            const SizedBox(height: 10),
-            buildPhoneCodeRow(context),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () => trySubmitForm(context),
-              child: const Text('Войти'),
-            ),
-            const Spacer(flex: 2),
-          ],
-        ),
-      ),
+        const Spacer(flex: 2),
+      ],
     );
   }
 
@@ -86,6 +77,8 @@ class PhoneConfirmationFormPageState
 
   @override
   Future<void> submitForm() async {
+    showLoadingIndicator();
     await login(widget.phoneNumber);
+    hideLoadingIndicator();
   }
 }

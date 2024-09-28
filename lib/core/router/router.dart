@@ -17,7 +17,7 @@ final routerProvider = Provider((ref) {
     observers: [BotToastNavigatorObserver()],
     redirect: (context, state) {
       if (!userState.isAuthenticated &&
-          !(state.path?.contains('phone-confirm') ?? true)) {
+          !(state.path?.contains(AppRoutes.phoneConfirm) ?? true)) {
         return AppRoutes.auth;
       }
       return state.path;

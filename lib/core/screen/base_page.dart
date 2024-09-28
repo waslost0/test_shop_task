@@ -49,6 +49,7 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
   @protected
   Widget buildScaffold(BuildContext context) {
     var body = buildBody(context);
+    body = buildDecorateBody(context, body);
     var scaffold = Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
@@ -63,6 +64,21 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
     return AppBar(
       title: buildTitle(context),
       actions: buildAppBarActions(),
+    );
+  }
+
+  @protected
+  Widget buildDecorateBody(BuildContext context, Widget child) {
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        child,
+        if (isLoading)
+          ColoredBox(
+            color: Colors.white.withOpacity(0.5),
+            child: buildLoadingIndicator(),
+          ),
+      ],
     );
   }
 
