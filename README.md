@@ -5,15 +5,15 @@ Flutter Test Task
 ## Checklist
 
 - [x] Local storage drift
-- [ ] go_router
+- [x] go_router
 ---
 - [x] Profile Page
 - [x] Edit fields
-- [ ] Edit avatar
+- [x] Edit avatar
 - [ ] Miltiple avatars
 - [ ] Sliver 
 - [ ] Phone country code 
-- [ ] Validation 
+- [x] Validation 
 ---
 - [x] Catalog Page 
 - [x] Catalog Page Child
