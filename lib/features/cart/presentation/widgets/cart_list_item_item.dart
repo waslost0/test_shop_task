@@ -5,7 +5,7 @@ import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/utils/numer_formatter.dart';
 import 'package:test_shop_task/core/widgets/app_slidable.dart';
 import 'package:test_shop_task/core/widgets/card_widget.dart';
-import 'package:test_shop_task/core/widgets/safe_network_Image.dart';
+import 'package:test_shop_task/core/widgets/safe_network_image.dart';
 import 'package:test_shop_task/features/cart/domain/entities/cart_entity.dart';
 import 'package:test_shop_task/features/cart/presentation/provider/cart_provider.dart';
 import 'package:test_shop_task/features/cart/presentation/provider/state/cart_notifier.dart';

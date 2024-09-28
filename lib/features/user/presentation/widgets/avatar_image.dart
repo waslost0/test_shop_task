@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/widgets/safe_network_image.dart';
+import 'package:universal_io/io.dart';
 
 class AvatarImage extends StatelessWidget {
   final String? imageUrl;

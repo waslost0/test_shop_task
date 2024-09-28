@@ -1,9 +1,10 @@
-import 'dart:io';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:test_shop_task/core/api/network_service.dart';
 import 'package:test_shop_task/core/exceptions/app_exceptions.dart';
 import 'package:test_shop_task/core/model/api_response.dart';
+import 'package:universal_io/io.dart';
 
 mixin ExceptionHandlerMixin on NetworkService {
   Future<ApiResponse> handleException(
@@ -22,6 +23,7 @@ mixin ExceptionHandlerMixin on NetworkService {
       }
       return ApiResponse.fromJson(res.data!);
     } catch (e, s) {
+      log(e.toString(), error: e, stackTrace: s);
       String message = '';
       switch (e.runtimeType) {
         case const (SocketException):

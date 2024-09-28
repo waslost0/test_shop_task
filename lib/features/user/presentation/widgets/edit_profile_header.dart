@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/theme.dart';
 import 'package:test_shop_task/features/user/presentation/widgets/avatar_image.dart';
+import 'package:universal_io/io.dart';
 
 class EditProfileHeader extends StatelessWidget {
   final String? avatarUrl;

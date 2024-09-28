@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:math';
 
 import 'package:extended_image/extended_image.dart';
@@ -9,6 +8,8 @@ import 'package:test_shop_task/core/model/custom_file.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/theme/assets_catalog.dart';
+import 'package:test_shop_task/core/utils/platform_info.dart';
+import 'package:universal_io/io.dart';
 
 class FullscreenPhotoPage extends StatefulWidget {
   final int initialIndex;
@@ -87,7 +88,7 @@ class FullscreenPhotoPageState extends State<FullscreenPhotoPage>
   PreferredSizeWidget buildAppBar(BuildContext context) {
     return AppBar(
       backgroundColor: AppColors.lightBlack.withOpacity(_opacity),
-      centerTitle: Platform.isIOS,
+      centerTitle: PlatformInfo.isIOS,
       title: Text(
         prepareTitle(),
         style: AppTextStyle.title.copyWith(
@@ -201,7 +202,7 @@ class FullscreenPhotoPageState extends State<FullscreenPhotoPage>
   }
 
   Widget _buildIndicator() {
-    return Platform.isIOS
+    return PlatformInfo.isIOS
         ? const CupertinoActivityIndicator(
             radius: 20,
             color: AppColors.updatingIndicatorColor,

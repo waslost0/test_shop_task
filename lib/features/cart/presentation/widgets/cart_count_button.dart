@@ -1,9 +1,8 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
+import 'package:test_shop_task/core/utils/platform_info.dart';
 import 'package:test_shop_task/features/cart/presentation/provider/cart_provider.dart';
 import 'package:test_shop_task/features/navigation/bottom_navigation_Item.dart';
 
@@ -49,7 +48,7 @@ class CartCountButton extends ConsumerWidget {
               alignment: Alignment.center,
               width: 15,
               height: 15,
-              padding: Platform.isIOS
+              padding: PlatformInfo.isIOS
                   ? const EdgeInsets.only(bottom: 0.4)
                   : const EdgeInsets.only(top: 0.4),
               decoration: BoxDecoration(

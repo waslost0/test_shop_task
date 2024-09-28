@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +5,9 @@ import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
+import 'package:test_shop_task/core/utils/platform_info.dart';
 import 'package:test_shop_task/core/widgets/base_alert_dialog.dart';
+import 'package:universal_io/io.dart';
 
 typedef ImageSelectCallback = void Function(File? image);
 typedef ImagesSelectCallback = void Function(List<File>? images);
@@ -112,12 +112,12 @@ mixin ImagePickerProviderStateMixin<T extends BasePage> on BasePageState<T> {
   }) async {
     final deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo? androidInfo;
-    if (Platform.isAndroid) {
+    if (PlatformInfo.isAndroid) {
       androidInfo = await deviceInfo.androidInfo;
     }
     final permission = imageSource == ImageSource.camera
         ? Permission.camera
-        : Platform.isAndroid
+        : PlatformInfo.isAndroid
             ? (androidInfo!.version.sdkInt <= 32
                 ? Permission.storage
                 : Permission.photos)

@@ -1,10 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
+import 'package:test_shop_task/core/utils/platform_info.dart';
 
 class BaseAlertDialog extends StatefulWidget {
   const BaseAlertDialog({
@@ -93,7 +92,7 @@ class BaseAlertDialog extends StatefulWidget {
 
 class _BaseAlertDialogState extends State<BaseAlertDialog> {
   final TextStyle defaultButtonTextStyle = AppTextStyle.body3.copyWith(
-    color: Platform.isIOS
+    color: PlatformInfo.isIOS
         ? AppColors.iosAlertButtonTextColor
         : AppColors.primaryColor,
     fontWeight: FontWeight.w500,
@@ -130,7 +129,7 @@ class _BaseAlertDialogState extends State<BaseAlertDialog> {
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
       ),
-      child: Platform.isIOS
+      child: PlatformInfo.isIOS
           ? _buildCupertinoDialog(context)
           : _buildCustomMaterialDialog(context),
     );
@@ -223,7 +222,7 @@ class _BaseAlertDialogState extends State<BaseAlertDialog> {
   }
 
   Widget _buildPositiveButton(BuildContext context) {
-    if (Platform.isIOS) {
+    if (PlatformInfo.isIOS) {
       return CupertinoDialogAction(
         isDefaultAction: widget.isPositiveDefaultActionIOS,
         onPressed: widget.onPositiveButtonPressed,
@@ -246,7 +245,7 @@ class _BaseAlertDialogState extends State<BaseAlertDialog> {
   }
 
   Widget _buildNegativeButton(BuildContext context) {
-    if (Platform.isIOS) {
+    if (PlatformInfo.isIOS) {
       return CupertinoDialogAction(
         onPressed: widget.onNegativeButtonPressed,
         child: Text(

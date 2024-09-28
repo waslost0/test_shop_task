@@ -1,11 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/utils/string_validator.dart';
 import 'package:test_shop_task/features/user/domain/entities/user_entity.dart';
 import 'package:test_shop_task/features/user/presentation/provider/edit_profile_provider.dart';
+import 'package:universal_io/io.dart';
 
 mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
   late final pageModel = ref.read(editProfileProvider.notifier);
@@ -55,7 +54,6 @@ mixin EditProfileMixin<T extends BasePage> on BasePageState<T> {
     }
     return null;
   }
-
 
   Future<void> changeProfile() async {
     final success = await pageModel.changeProfile(

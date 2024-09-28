@@ -1,10 +1,9 @@
-import 'dart:io';
-
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:test_shop_task/core/theme/assets_catalog.dart';
+import 'package:universal_io/io.dart';
 
 class SafeNetworkImage extends StatelessWidget {
   final String? imageUrl;
