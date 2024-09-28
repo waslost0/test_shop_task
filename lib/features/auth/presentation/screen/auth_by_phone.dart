@@ -24,15 +24,14 @@ class AuthByPhonePageState extends BaseFormPageState<AuthByPhonePage>
     ref.watch(authNotifierProvider.notifier);
     listenForState();
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Spacer(),
+        const SizedBox(height: 50),
         const FlutterLogo(size: 150),
-        const Spacer(),
-        const SizedBox(height: 10),
+        const SizedBox(height: 100),
         TextFormField(
           controller: phoneController,
           inputFormatters: [maskFormatter],
+          keyboardType: TextInputType.phone,
           decoration: const InputDecoration(
             hintText: '+7 (988) 756-55-55',
           ),
@@ -46,7 +45,6 @@ class AuthByPhonePageState extends BaseFormPageState<AuthByPhonePage>
           },
           child: const Text('Отправить СМС код'),
         ),
-        const Spacer(flex: 2),
       ],
     );
   }

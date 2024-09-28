@@ -30,17 +30,15 @@ class PhoneConfirmationFormPageState
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Spacer(),
+        const SizedBox(height: 50),
         const FlutterLogo(size: 150),
-        const Spacer(),
-        const SizedBox(height: 10),
+        const SizedBox(height: 100),
         buildPhoneCodeRow(context),
         const SizedBox(height: 16),
         ElevatedButton(
           onPressed: () => trySubmitForm(context),
           child: const Text('Войти'),
         ),
-        const Spacer(flex: 2),
       ],
     );
   }
