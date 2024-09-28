@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/logic/app_user.dart';
 import 'package:test_shop_task/core/logic/key_value_storage.dart';
@@ -27,6 +28,7 @@ class AppModel extends ChangeNotifier {
     }
     isInitialized = true;
     notifyListeners();
+    FlutterNativeSplash.remove();
   }
 
   bool get isAuthenticated => appUser.isAuthenticated();

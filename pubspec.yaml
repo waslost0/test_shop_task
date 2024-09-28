@@ -61,6 +61,7 @@ dependencies:
   image_picker: ^1.1.2
   permission_handler: ^11.3.1
   device_info_plus: ^10.1.2
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -71,7 +72,7 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^4.0.0
+  flutter_lints: ^5.0.0
   build_runner: ^2.4.12
   riverpod_generator: ^2.4.3
   riverpod_lint: ^2.3.13
@@ -119,3 +120,12 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/logo_splash.png
+  android_gravity: center
+
+  android_12:
+    image: assets/android12splash.png
+    color: "#ffffff"

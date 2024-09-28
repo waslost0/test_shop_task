@@ -42,9 +42,8 @@ class ThemeBuilder {
   static SystemUiOverlayStyle get systemUiOverlayStyle =>
       const SystemUiOverlayStyle(
         statusBarColor: Colors.white,
-        statusBarIconBrightness: Brightness.dark,
         statusBarBrightness: Brightness.light,
-        systemStatusBarContrastEnforced: false,
+        statusBarIconBrightness: Brightness.dark,
       );
 
   static ThemeData get themeData {

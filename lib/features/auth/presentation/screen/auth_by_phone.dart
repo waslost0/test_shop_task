@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_form_page.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
+import 'package:test_shop_task/core/theme/assets_catalog.dart';
 import 'package:test_shop_task/features/auth/presentation/mixins/auth_by_phone_mixin.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/auth_provider.dart';
 import 'package:test_shop_task/features/auth/presentation/provider/state/auth_state.dart';
@@ -26,7 +27,7 @@ class AuthByPhonePageState extends BaseFormPageState<AuthByPhonePage>
     return Column(
       children: [
         const SizedBox(height: 50),
-        const FlutterLogo(size: 150),
+        Image.asset(AssetsCatalog.logo, height: 160),
         const SizedBox(height: 100),
         TextFormField(
           controller: phoneController,
