@@ -11,6 +11,7 @@ class ProductListParams extends ListParams {
   const ProductListParams({
     super.limit,
     super.offset,
+    super.searchString,
     this.categoryId,
   });
 
@@ -18,11 +19,13 @@ class ProductListParams extends ListParams {
     int? offset,
     int? limit,
     int? categoryId,
+    String? searchString,
   }) {
     return ProductListParams(
       categoryId: categoryId ?? this.categoryId,
       limit: limit ?? this.limit,
       offset: offset ?? this.offset,
+      searchString: searchString ?? this.searchString,
     );
   }
 }

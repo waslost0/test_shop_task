@@ -9,6 +9,7 @@ abstract class ProductRemoteDataSource {
   Future<List<ProductEntity>> list({
     required int offset,
     int? categoryId,
+    String? searchString,
   });
 
   Future<ProductEntity> product({required int productId});

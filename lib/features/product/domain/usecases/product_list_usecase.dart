@@ -19,6 +19,7 @@ class LoadProductListUseCase
   ) async {
     return await _productRepository.getList(
       offset: params.offset,
+      searchString: params.searchString,
       categoryId: params.categoryId,
     );
   }

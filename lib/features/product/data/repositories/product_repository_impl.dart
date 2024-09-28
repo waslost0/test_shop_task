@@ -14,10 +14,12 @@ class ProductRepositoryImpl extends ProductRepository {
   Future<Either<AppFailure, List<ProductEntity>>> getList({
     int offset = 0,
     int? categoryId,
+    String? searchString,
   }) async {
     try {
       final response = await _remoteDataSource.list(
         offset: offset,
+        searchString: searchString,
         categoryId: categoryId,
       );
       return Right(response);

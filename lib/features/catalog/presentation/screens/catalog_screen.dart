@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
@@ -9,22 +8,20 @@ import 'package:test_shop_task/features/catalog/presentation/provider/catalog_pr
 import 'package:test_shop_task/features/catalog/presentation/provider/state/catalog_state.dart';
 import 'package:test_shop_task/features/catalog/presentation/widgets/category_list_item.dart';
 
-class CatalogPage extends BasePage {
+class CatalogListPage extends BasePage {
   final int? parentId;
 
-  const CatalogPage({
+  const CatalogListPage({
     this.parentId,
     super.key,
     super.title = 'Каталог',
   });
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => CatalogPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => CatalogListPageState();
 }
 
-class CatalogPageState extends BasePageState<CatalogPage> {
-  late AppModel appModel = ref.read(appModelProvider);
-
+class CatalogListPageState extends BasePageState<CatalogListPage> {
   @override
   List<Widget> buildAppBarActions() {
     return [const CartCountButton()];
@@ -36,9 +33,12 @@ class CatalogPageState extends BasePageState<CatalogPage> {
     final state = ref.watch(catalogProvider(widget.parentId));
     return RefreshIndicator(
       onRefresh: () => model.reloadData(),
-      child: state is Loading
-          ? const Center(child: CircularProgressIndicator())
-          : buildListView(state),
+      child: state.map(
+        initial: (value) => buildLoadingIndicator(),
+        loading: (value) => buildLoadingIndicator(),
+        failure: (value) => Text(value.exception.message ?? ''),
+        success: (value) => buildListView(value),
+      ),
     );
   }
 

@@ -60,6 +60,7 @@ class ThemeBuilder {
           color: AppColors.black,
         ),
       ),
+      searchBarTheme: buildSearchBarTheme(),
       inputDecorationTheme: InputDecorationTheme(
         isDense: true,
         filled: true,
@@ -71,8 +72,10 @@ class ThemeBuilder {
           }
           return AppColors.textFieldGray;
         }),
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 14.0, horizontal: 16.0),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 14.0,
+          horizontal: 16.0,
+        ),
         labelStyle: const TextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.w500,
@@ -113,7 +116,7 @@ class ThemeBuilder {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
           ),
-          minimumSize: const Size.fromHeight(52),
+          minimumSize: const Size.fromHeight(48),
           textStyle: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
@@ -159,6 +162,36 @@ class ThemeBuilder {
       ),
       dividerTheme: const DividerThemeData(
         color: AppColors.divider,
+      ),
+    );
+  }
+
+  static SearchBarThemeData buildSearchBarTheme() {
+    return SearchBarThemeData(
+      elevation: WidgetStatePropertyAll(3),
+      side: WidgetStatePropertyAll(
+        BorderSide(
+          color: AppColors.grey.withOpacity(0.1),
+        ),
+      ),
+      backgroundColor: WidgetStatePropertyAll(AppColors.white),
+      overlayColor: WidgetStatePropertyAll(Colors.transparent),
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+      hintStyle: WidgetStatePropertyAll(const TextStyle(
+        color: AppColors.black,
+      )),
+      padding: WidgetStatePropertyAll(
+        EdgeInsets.symmetric(
+          horizontal: 13.0,
+        ),
+      ),
+      constraints: BoxConstraints(
+        minHeight: 48,
+        maxHeight: 48,
       ),
     );
   }

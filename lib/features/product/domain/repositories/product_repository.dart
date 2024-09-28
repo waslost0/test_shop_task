@@ -13,6 +13,7 @@ abstract class ProductRepository {
   Future<Either<AppFailure, List<ProductEntity>>> getList({
     int offset = 0,
     int? categoryId,
+    String? searchString,
   });
 
   Future<Either<AppFailure, ProductEntity>> getProduct({

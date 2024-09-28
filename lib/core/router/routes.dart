@@ -153,7 +153,7 @@ class CatalogRouteData extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return CatalogPage(parentId: parentId);
+    return CatalogListPage(parentId: parentId);
   }
 }
 

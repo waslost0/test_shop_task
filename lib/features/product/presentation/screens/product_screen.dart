@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
+import 'package:test_shop_task/core/widgets/search_bar.dart';
 import 'package:test_shop_task/features/cart/presentation/widgets/cart_count_button.dart';
 import 'package:test_shop_task/features/catalog/domain/entities/category_entity.dart';
+import 'package:test_shop_task/features/product/presentation/mixins/product_list_mixin.dart';
 import 'package:test_shop_task/features/product/presentation/provider/product_list_provider.dart';
 import 'package:test_shop_task/features/product/presentation/provider/state/product_list_state.dart';
 import 'package:test_shop_task/features/product/presentation/screens/product_detail.dart';
@@ -22,7 +24,8 @@ class ProductListPage extends BasePage {
   ConsumerState<ConsumerStatefulWidget> createState() => ProductListPageState();
 }
 
-class ProductListPageState extends BasePageState<ProductListPage> {
+class ProductListPageState extends BasePageState<ProductListPage>
+    with ProductListMixin {
   @override
   List<Widget> buildAppBarActions() {
     return [const CartCountButton()];
@@ -34,41 +37,57 @@ class ProductListPageState extends BasePageState<ProductListPage> {
     final state = ref.watch(productListProvider(widget.category));
     return RefreshIndicator(
       onRefresh: () => model.reloadData(),
-      child: state is Loading
-          ? const Center(child: CircularProgressIndicator())
-          : buildGrid(),
+      child: state.map(
+        initial: (_) => buildLoadingIndicator(),
+        loading: (_) => buildLoadingIndicator(),
+        failure: (value) => buildEmptyPlaceholder(value.exception.message),
+        success: (value) => buildGrid(value),
+      ),
     );
   }
 
-  Widget buildGrid() {
-    final state = ref.watch(productListProvider(widget.category));
-    if (state.list.isEmpty) {
-      return const Center(
-        child: Text(
-          'Список пуст',
-          style: AppTextStyle.title,
-        ),
-      );
-    }
-    return GridView.builder(
-      itemCount: state.list.length,
-      itemBuilder: (context, index) => GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProductDetailPage(
-                productId: state.list[index].productId,
-              ),
-            ),
-          );
-        },
-        child: ProductGridItem(
-          product: state.list[index],
-        ),
+  Widget buildEmptyPlaceholder(String? message) {
+    return Center(
+      child: Text(
+        message ?? 'Список пуст',
+        style: AppTextStyle.title,
       ),
-      gridDelegate: createGridDelegate(context),
-      padding: const EdgeInsets.all(16),
+    );
+  }
+
+  Widget buildGrid(Success state) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: AppSearchBar(onChanged: onSearch),
+        ),
+        if (state.list.isEmpty)
+          Expanded(child: buildEmptyPlaceholder('Список пуст'))
+        else
+          Expanded(
+            child: GridView.builder(
+              itemCount: state.list.length,
+              itemBuilder: (context, index) => GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductDetailPage(
+                        productId: state.list[index].productId,
+                      ),
+                    ),
+                  );
+                },
+                child: ProductGridItem(
+                  product: state.list[index],
+                ),
+              ),
+              gridDelegate: createGridDelegate(context),
+              padding: const EdgeInsets.all(16),
+            ),
+          ),
+      ],
     );
   }
 

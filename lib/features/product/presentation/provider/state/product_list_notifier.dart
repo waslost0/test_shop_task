@@ -35,13 +35,13 @@ class ProductListNotifier extends StateNotifier<ProductListState> {
     );
   }
 
-  Future<void> reloadData() async {
+  Future<void> reloadData({String? searchString}) async {
     state = state.copyWith(
       listParams: ProductListParams(
         categoryId: state.listParams.categoryId,
+        searchString: searchString ?? state.listParams.searchString,
       ),
     );
-
     final result = await _loadList.call(
       state.listParams,
     );

@@ -12,11 +12,13 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
   Future<List<ProductEntity>> list({
     required int offset,
     int? categoryId,
+    String? searchString,
   }) async {
     final response = await _appHttpService.get(
       'shop/product/list',
       queryParameters: {
         'offset': offset,
+        if (searchString?.isNotEmpty ?? false) 'text': searchString,
         if (categoryId != null) 'categoryId': categoryId,
       },
     );
@@ -32,6 +34,6 @@ class ProductRemoteDataSourceImpl implements ProductRemoteDataSource {
         'productId': productId,
       },
     );
-    return  Product.fromJson(response.data['product']).toEntity();
+    return Product.fromJson(response.data['product']).toEntity();
   }
 }

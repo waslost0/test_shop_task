@@ -41,7 +41,7 @@ enum BottomNavigationItem {
   Widget page() {
     switch (this) {
       case BottomNavigationItem.main:
-        return const CatalogPage();
+        return const CatalogListPage();
       case BottomNavigationItem.cart:
         return const CartListPage();
       case BottomNavigationItem.profile:
