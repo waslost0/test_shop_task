@@ -47,12 +47,12 @@ class PhoneConfirmationFormPageState
   Widget buildPhoneCodeRow(BuildContext context) {
     return TextFormField(
       controller: codeController,
+      focusNode: codeFocus,
       scrollPadding: const EdgeInsets.only(
         bottom: 112,
       ),
       keyboardType: TextInputType.number,
       maxLength: 4,
-      autofocus: true,
       textAlign: TextAlign.center,
       decoration: const InputDecoration(
         hintText: 'Введите код',
@@ -76,6 +76,8 @@ class PhoneConfirmationFormPageState
 
   @override
   Future<void> submitForm() async {
+    codeFocus.unfocus();
+    unfocusKeyboard();
     showLoadingIndicator();
     await login(widget.phoneNumber);
     hideLoadingIndicator();

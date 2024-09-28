@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
+import 'package:test_shop_task/core/widgets/base_alert_dialog.dart';
 import 'package:test_shop_task/features/user/presentation/provider/profile_provider.dart';
 import 'package:test_shop_task/features/user/presentation/provider/state/profile_state.dart';
 import 'package:test_shop_task/features/user/presentation/widgets/avatar_image.dart';
@@ -40,7 +42,7 @@ class ProfilePageState extends BasePageState<ProfilePage> {
             case DetailsContextMenuItems.delete:
               break;
             case DetailsContextMenuItems.logout:
-              appModel.logout();
+              logout();
               break;
           }
         },
@@ -141,5 +143,17 @@ class ProfilePageState extends BasePageState<ProfilePage> {
 
   void editProfile() {
     const EditProfileRouteData().push(context);
+  }
+
+  void logout() async {
+    await BaseAlertDialog.showDialog(
+      context: context,
+      text: 'Вы уверены, что хотите выйти?',
+      onNegativeButtonPressed: (context) => context.pop(false),
+      onPositiveButtonPressed: (context) {
+        context.pop(true);
+        appModel.logout();
+      },
+    );
   }
 }

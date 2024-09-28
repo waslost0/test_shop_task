@@ -5,15 +5,23 @@ import 'package:test_shop_task/features/auth/presentation/provider/auth_provider
 
 mixin AuthByPhoneMixin<T extends BasePage> on BasePageState<T> {
   late final pageModel = ref.read(authNotifierProvider.notifier);
+  final FocusNode codeFocus = FocusNode();
   final MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
     mask: '+# (###) ###-##-##',
     filter: {"#": RegExp(r'[0-9]')},
     type: MaskAutoCompletionType.lazy,
   );
 
-
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController codeController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) => codeFocus.requestFocus(),
+    );
+  }
 
   Future<void> sendSmsCode() async {
     await pageModel.sendSmsCode(phoneController.text.trim());

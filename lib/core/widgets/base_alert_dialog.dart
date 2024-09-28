@@ -71,7 +71,7 @@ class BaseAlertDialog extends StatefulWidget {
     String negativeButtonTitle = "Нет",
     Function(BuildContext context)? onNegativeButtonPressed,
     Function(BuildContext contex)? onPositiveButtonPressed,
-    required bool isPositiveDefaultActionIOS,
+    bool isPositiveDefaultActionIOS = false,
   }) async {
     return BaseAlertDialog.showWithAnimation(
       context: context,

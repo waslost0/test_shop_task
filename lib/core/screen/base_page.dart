@@ -116,4 +116,8 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
   void showMessage(String message) {
     BotToast.showText(text: message);
   }
+
+  void unfocusKeyboard() {
+    WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+  }
 }

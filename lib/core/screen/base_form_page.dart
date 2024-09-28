@@ -31,7 +31,7 @@ abstract class BaseFormPageState<T extends BasePage> extends BasePageState<T> {
       return;
     }
     autovalidateMode = AutovalidateMode.always;
-    FocusScope.of(context).unfocus();
+    unfocusKeyboard();
     isFormSubmitting = true;
     if (await validate()) {
       formKey.currentState?.save();
