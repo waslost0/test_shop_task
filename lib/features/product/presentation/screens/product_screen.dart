@@ -35,7 +35,7 @@ class ProductListPageState extends BasePageState<ProductListPage>
   Widget buildBody(BuildContext context) {
     final model = ref.read(productListProvider(widget.category).notifier);
     final state = ref.watch(productListProvider(widget.category));
-    if (state.isLoading && state.list.isEmpty) {
+    if (state.isLoading && state.items.isEmpty) {
       return buildLoadingIndicator();
     }
     return RefreshIndicator(
@@ -54,17 +54,17 @@ class ProductListPageState extends BasePageState<ProductListPage>
   }
 
   Widget buildGrid(ProductListState state) {
-    if (state.isAllLoaded && state.list.isEmpty) {
+    if (state.isAllLoaded && state.items.isEmpty) {
       return buildEmptyPlaceholder('Список пуст');
     }
 
     return Stack(
       children: [
-        if (state.list.isEmpty)
+        if (state.items.isEmpty)
           buildEmptyPlaceholder('Список пуст')
         else
           GridView.builder(
-            itemCount: state.list.length,
+            itemCount: state.items.length,
             itemBuilder: (context, index) {
               WidgetsBinding.instance.addPostFrameCallback(
                 (_) => tryPreloadNextItems(index),
@@ -72,11 +72,11 @@ class ProductListPageState extends BasePageState<ProductListPage>
               return GestureDetector(
                 onTap: () {
                   ProductDetailRouteData(
-                    productId: state.list[index].productId,
+                    productId: state.items[index].productId,
                   ).push(context);
                 },
                 child: ProductGridItem(
-                  product: state.list[index],
+                  product: state.items[index],
                 ),
               );
             },
@@ -94,7 +94,7 @@ class ProductListPageState extends BasePageState<ProductListPage>
   }
 
   Widget buildSearchBar(ProductListState state) {
-    if (state.list.isEmpty && state.isAllLoaded && state.searchString == null) {
+    if (state.items.isEmpty && state.isAllLoaded && state.searchString == null) {
       return SizedBox.shrink();
     }
 

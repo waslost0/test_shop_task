@@ -1274,14 +1274,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.4.1"
-  talker_riverpod_logger:
-    dependency: "direct main"
-    description:
-      name: talker_riverpod_logger
-      sha256: "6b8efe833b851f68353d5d32ae2dbf265a617e89e53b2b4f2fcd6548a259bf20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.4.1"
   term_glyph:
     dependency: transitive
     description:

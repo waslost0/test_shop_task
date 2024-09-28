@@ -17,4 +17,16 @@ class ListParams extends Equatable {
         limit,
         searchString,
       ];
+
+  ListParams copyWith({
+    int? offset,
+    int? limit,
+    String? searchString,
+  }) {
+    return ListParams(
+      offset: offset ?? this.offset,
+      limit: limit ?? this.limit,
+      searchString: searchString ?? this.searchString,
+    );
+  }
 }

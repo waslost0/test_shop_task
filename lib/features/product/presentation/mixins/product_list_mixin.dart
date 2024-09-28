@@ -10,7 +10,7 @@ mixin ProductListMixin<T extends ProductListPage> on BasePageState<T> {
     final model = ref.read(productListProvider(widget.category).notifier);
     if (searchString.isNotEmpty &&
         state.listParams.searchString?.trim() == searchString.trim() &&
-        state.list.isNotEmpty) return;
+        state.items.isNotEmpty) return;
     showLoadingIndicator();
     await model.reloadData(searchString: searchString);
     hideLoadingIndicator();
@@ -18,13 +18,13 @@ mixin ProductListMixin<T extends ProductListPage> on BasePageState<T> {
 
   void tryPreloadNextItems(int renderedItemIndex) {
     final state = ref.read(productListProvider(widget.category));
-    if (state.isLoading || state.list.isEmpty || state.isAllLoaded) return;
+    if (state.isLoading || state.items.isEmpty || state.isAllLoaded) return;
 
     final model = ref.read(productListProvider(widget.category).notifier);
     var isListEnd =
-        (renderedItemIndex >= (state.list.length - infinityScrollOffset));
+        (renderedItemIndex >= (state.items.length - infinityScrollOffset));
     if (isListEnd) {
-      model.loadList();
+      model.loadData();
     }
   }
 }

@@ -14,9 +14,11 @@ class CategoryListParams extends ListParams {
     this.parentId,
   });
 
+  @override
   CategoryListParams copyWith({
     int? offset,
     int? limit,
+    String? searchString,
     int? parentId,
   }) {
     return CategoryListParams(
