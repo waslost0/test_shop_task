@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.test.task.app.test_shop_task"
-    compileSdk = 34
+    compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
