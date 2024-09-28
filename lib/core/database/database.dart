@@ -1,6 +1,8 @@
 import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
+import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:test_shop_task/core/database/db_interceptopr.dart';
 import 'package:test_shop_task/core/database/model/cart_item_table.dart';
 import 'package:test_shop_task/core/database/model/product_table.dart';
 import 'package:test_shop_task/features/cart/domain/entities/cart_entity.dart';
@@ -24,11 +26,16 @@ class AppDatabase extends _$AppDatabase {
       dataBasePath = '${script.path}/sqlite3.so';
     }
 
-    return driftDatabase(
+    final db = driftDatabase(
       name: 'app_database',
       native: dataBasePath != null
           ? DriftNativeOptions(databasePath: () async => dataBasePath!)
           : null,
     );
+
+    if (kDebugMode) {
+      return db.interceptWith(DbLogInterceptor());
+    }
+    return db;
   }
 }

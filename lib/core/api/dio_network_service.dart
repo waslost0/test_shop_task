@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:talker/talker.dart';
+import 'package:talker_dio_logger/talker_dio_logger.dart';
 import 'package:test_shop_task/core/api/exception_handler_mixin.dart';
 import 'package:test_shop_task/core/api/network_service.dart';
 import 'package:test_shop_task/core/model/api_response.dart';
 import 'package:test_shop_task/core/model/config.dart';
+import 'package:test_shop_task/di/injection.dart';
 
 abstract class DioNetworkService extends NetworkService
     with ExceptionHandlerMixin {
@@ -13,7 +16,16 @@ abstract class DioNetworkService extends NetworkService
     dio.options = dioBaseOptions;
     if (kDebugMode) {
       dio.interceptors.add(
-        LogInterceptor(requestBody: true, responseBody: true),
+        TalkerDioLogger(
+          talker: getIt<Talker>(),
+          settings: const TalkerDioLoggerSettings(
+            printErrorData: true,
+            printRequestData: true,
+            printErrorMessage: true,
+            printResponseData: true,
+            printResponseMessage: true,
+          ),
+        ),
       );
     }
   }

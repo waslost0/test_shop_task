@@ -11,6 +11,7 @@
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
+import 'package:talker/talker.dart' as _i993;
 import 'package:test_shop_task/core/api/base_api.dart' as _i60;
 import 'package:test_shop_task/core/api/private_api.dart' as _i423;
 import 'package:test_shop_task/core/database/database.dart' as _i493;
@@ -81,6 +82,7 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i493.AppDatabase>(() => _i493.AppDatabase());
+    gh.singleton<_i993.Talker>(() => registerModule.talker);
     gh.singleton<_i788.LocalStorageService>(
         () => _i788.LocalStorageService(gh<_i460.SharedPreferences>()));
     gh.lazySingleton<_i360.CartRepository>(

@@ -25,7 +25,6 @@ class CartRepositoryImpl extends CartRepository {
         var item = cartItem.copyWith(product: product);
         cartItems.add(item);
       }
-      log('Loaded cart items $cartItems}');
       return Right(cartItems);
     } catch (e, s) {
       return Left(
