@@ -29,7 +29,7 @@ mixin _$Product {
   num? get rating => throw _privateConstructorUsedError;
   @BoolJsonConverter()
   bool get isFavorite => throw _privateConstructorUsedError;
-  List<String> get images => throw _privateConstructorUsedError;
+  List<CustomFile> get images => throw _privateConstructorUsedError;
 
   /// Serializes this Product to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $ProductCopyWith<$Res> {
       String? productDescription,
       num? rating,
       @BoolJsonConverter() bool isFavorite,
-      List<String> images});
+      List<CustomFile> images});
 }
 
 /// @nodoc
@@ -118,7 +118,7 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<CustomFile>,
     ) as $Val);
   }
 }
@@ -139,7 +139,7 @@ abstract class _$$ProductImplCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String? productDescription,
       num? rating,
       @BoolJsonConverter() bool isFavorite,
-      List<String> images});
+      List<CustomFile> images});
 }
 
 /// @nodoc
@@ -201,7 +201,7 @@ class __$$ProductImplCopyWithImpl<$Res>
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<CustomFile>,
     ));
   }
 }
@@ -218,7 +218,7 @@ class _$ProductImpl implements _Product {
       this.productDescription,
       this.rating,
       @BoolJsonConverter() this.isFavorite = false,
-      final List<String> images = const []})
+      final List<CustomFile> images = const []})
       : _images = images;
 
   factory _$ProductImpl.fromJson(Map<String, dynamic> json) =>
@@ -242,10 +242,10 @@ class _$ProductImpl implements _Product {
   @JsonKey()
   @BoolJsonConverter()
   final bool isFavorite;
-  final List<String> _images;
+  final List<CustomFile> _images;
   @override
   @JsonKey()
-  List<String> get images {
+  List<CustomFile> get images {
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
@@ -317,7 +317,7 @@ abstract class _Product implements Product {
       final String? productDescription,
       final num? rating,
       @BoolJsonConverter() final bool isFavorite,
-      final List<String> images}) = _$ProductImpl;
+      final List<CustomFile> images}) = _$ProductImpl;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$ProductImpl.fromJson;
 
@@ -339,7 +339,7 @@ abstract class _Product implements Product {
   @BoolJsonConverter()
   bool get isFavorite;
   @override
-  List<String> get images;
+  List<CustomFile> get images;
 
   /// Create a copy of Product
   /// with the given fields replaced by the non-null parameter values.

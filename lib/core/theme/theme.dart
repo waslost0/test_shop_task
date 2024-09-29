@@ -163,6 +163,8 @@ class ThemeBuilder {
       ),
       dividerTheme: const DividerThemeData(
         color: AppColors.divider,
+        thickness: 1.5,
+        space: 1,
       ),
     );
   }

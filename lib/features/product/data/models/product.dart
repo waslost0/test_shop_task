@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_shop_task/core/model/custom_file.dart';
 import 'package:test_shop_task/core/utils/json_converter.dart';
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
 
@@ -16,7 +17,7 @@ class Product with _$Product {
     String? productDescription,
     num? rating,
     @BoolJsonConverter() @Default(false) bool isFavorite,
-    @Default([]) List<String> images,
+    @Default([]) List<CustomFile> images,
   }) = _Product;
 
   factory Product.fromJson(Map<String, dynamic> json) =>

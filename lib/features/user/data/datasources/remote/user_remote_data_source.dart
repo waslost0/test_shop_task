@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:test_shop_task/core/api/private_api.dart';
 import 'package:test_shop_task/features/user/data/models/user.dart';
 import 'package:test_shop_task/features/user/domain/entities/user_entity.dart';
+import 'package:path/path.dart';
 
 part 'user_remote_data_source_impl.dart';
 

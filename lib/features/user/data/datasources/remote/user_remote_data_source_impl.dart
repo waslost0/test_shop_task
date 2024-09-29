@@ -37,7 +37,7 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
         if (user.file != null)
           "image": await MultipartFile.fromFile(
             user.file!.path,
-            filename: "image",
+            filename: basename(user.file!.path),
           ),
         'name': user.name,
         if (user.lastname != null) 'lastname': user.lastname,

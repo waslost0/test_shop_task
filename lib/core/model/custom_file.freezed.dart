@@ -25,8 +25,10 @@ mixin _$CustomFile {
   String? get url => throw _privateConstructorUsedError;
   String? get blurHash => throw _privateConstructorUsedError;
   int? get fileId => throw _privateConstructorUsedError;
-  int? get previewUrl => throw _privateConstructorUsedError;
-  int? get mimeType => throw _privateConstructorUsedError;
+  int? get width => throw _privateConstructorUsedError;
+  int? get height => throw _privateConstructorUsedError;
+  String? get previewUrl => throw _privateConstructorUsedError;
+  String? get mimeType => throw _privateConstructorUsedError;
 
   /// Serializes this CustomFile to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,8 +51,10 @@ abstract class $CustomFileCopyWith<$Res> {
       String? url,
       String? blurHash,
       int? fileId,
-      int? previewUrl,
-      int? mimeType});
+      int? width,
+      int? height,
+      String? previewUrl,
+      String? mimeType});
 }
 
 /// @nodoc
@@ -72,6 +76,8 @@ class _$CustomFileCopyWithImpl<$Res, $Val extends CustomFile>
     Object? url = freezed,
     Object? blurHash = freezed,
     Object? fileId = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
     Object? previewUrl = freezed,
     Object? mimeType = freezed,
   }) {
@@ -92,14 +98,22 @@ class _$CustomFileCopyWithImpl<$Res, $Val extends CustomFile>
           ? _value.fileId
           : fileId // ignore: cast_nullable_to_non_nullable
               as int?,
+      width: freezed == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
       previewUrl: freezed == previewUrl
           ? _value.previewUrl
           : previewUrl // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       mimeType: freezed == mimeType
           ? _value.mimeType
           : mimeType // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ) as $Val);
   }
 }
@@ -117,8 +131,10 @@ abstract class _$$CustomFileImplCopyWith<$Res>
       String? url,
       String? blurHash,
       int? fileId,
-      int? previewUrl,
-      int? mimeType});
+      int? width,
+      int? height,
+      String? previewUrl,
+      String? mimeType});
 }
 
 /// @nodoc
@@ -138,6 +154,8 @@ class __$$CustomFileImplCopyWithImpl<$Res>
     Object? url = freezed,
     Object? blurHash = freezed,
     Object? fileId = freezed,
+    Object? width = freezed,
+    Object? height = freezed,
     Object? previewUrl = freezed,
     Object? mimeType = freezed,
   }) {
@@ -158,14 +176,22 @@ class __$$CustomFileImplCopyWithImpl<$Res>
           ? _value.fileId
           : fileId // ignore: cast_nullable_to_non_nullable
               as int?,
+      width: freezed == width
+          ? _value.width
+          : width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      height: freezed == height
+          ? _value.height
+          : height // ignore: cast_nullable_to_non_nullable
+              as int?,
       previewUrl: freezed == previewUrl
           ? _value.previewUrl
           : previewUrl // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       mimeType: freezed == mimeType
           ? _value.mimeType
           : mimeType // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
     ));
   }
 }
@@ -178,6 +204,8 @@ class _$CustomFileImpl implements _CustomFile {
       this.url,
       this.blurHash,
       this.fileId,
+      this.width,
+      this.height,
       this.previewUrl,
       this.mimeType});
 
@@ -194,13 +222,17 @@ class _$CustomFileImpl implements _CustomFile {
   @override
   final int? fileId;
   @override
-  final int? previewUrl;
+  final int? width;
   @override
-  final int? mimeType;
+  final int? height;
+  @override
+  final String? previewUrl;
+  @override
+  final String? mimeType;
 
   @override
   String toString() {
-    return 'CustomFile(file: $file, url: $url, blurHash: $blurHash, fileId: $fileId, previewUrl: $previewUrl, mimeType: $mimeType)';
+    return 'CustomFile(file: $file, url: $url, blurHash: $blurHash, fileId: $fileId, width: $width, height: $height, previewUrl: $previewUrl, mimeType: $mimeType)';
   }
 
   @override
@@ -213,6 +245,8 @@ class _$CustomFileImpl implements _CustomFile {
             (identical(other.blurHash, blurHash) ||
                 other.blurHash == blurHash) &&
             (identical(other.fileId, fileId) || other.fileId == fileId) &&
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.height, height) || other.height == height) &&
             (identical(other.previewUrl, previewUrl) ||
                 other.previewUrl == previewUrl) &&
             (identical(other.mimeType, mimeType) ||
@@ -221,8 +255,8 @@ class _$CustomFileImpl implements _CustomFile {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, file, url, blurHash, fileId, previewUrl, mimeType);
+  int get hashCode => Object.hash(runtimeType, file, url, blurHash, fileId,
+      width, height, previewUrl, mimeType);
 
   /// Create a copy of CustomFile
   /// with the given fields replaced by the non-null parameter values.
@@ -246,8 +280,10 @@ abstract class _CustomFile implements CustomFile {
       final String? url,
       final String? blurHash,
       final int? fileId,
-      final int? previewUrl,
-      final int? mimeType}) = _$CustomFileImpl;
+      final int? width,
+      final int? height,
+      final String? previewUrl,
+      final String? mimeType}) = _$CustomFileImpl;
 
   factory _CustomFile.fromJson(Map<String, dynamic> json) =
       _$CustomFileImpl.fromJson;
@@ -262,9 +298,13 @@ abstract class _CustomFile implements CustomFile {
   @override
   int? get fileId;
   @override
-  int? get previewUrl;
+  int? get width;
   @override
-  int? get mimeType;
+  int? get height;
+  @override
+  String? get previewUrl;
+  @override
+  String? get mimeType;
 
   /// Create a copy of CustomFile
   /// with the given fields replaced by the non-null parameter values.

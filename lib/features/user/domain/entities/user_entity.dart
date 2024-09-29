@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_shop_task/core/model/custom_file.dart';
 import 'package:universal_io/io.dart';
 
 part 'user_entity.freezed.dart';
@@ -10,10 +11,15 @@ class UserEntity with _$UserEntity {
     String? email,
     String? name,
     String? lastname,
-    String? avatar,
     String? phone,
     String? login,
-    int? dateOfBirth,
+    DateTime? dateOfBirth,
     File? file,
+    @Default([]) List<CustomFile> images,
   }) = _UserEntity;
+}
+
+
+extension UserEntityX on UserEntity {
+  String? get avatar => images.last.url;
 }

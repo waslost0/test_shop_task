@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:test_shop_task/core/model/custom_file.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
@@ -115,8 +114,8 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
   Widget buildProductGallery() {
     final state = ref.read(productDetailProvider(widget.productId)) as Success;
     if (state.product.images.length < 2) {
-      return SafeNetworkImage(
-        imageUrl: state.product.imageUrl,
+      return SafeNetworkImage.customFile(
+        image: state.product.images.firstOrNull,
       );
     }
     return PageView.builder(
@@ -132,14 +131,14 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
           onTap: () {
             FullscreenPhotoPage.openPage(
               context,
-              state.product.images.map((e) => CustomFile(url: e)).toList(),
+              state.product.images.map((e) => e).toList(),
               initialIndex: index,
             );
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: SafeNetworkImage(
-              imageUrl: image,
+            child: SafeNetworkImage.customFile(
+              image: image,
               fit: BoxFit.contain,
             ),
           ),
