@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:test_shop_task/features/auth/presentation/screen/auth_by_phone.dart';
 import 'package:test_shop_task/features/auth/presentation/screen/phone_confirmation_page.dart';
 import 'package:test_shop_task/features/cart/presentation/screens/cart_screen.dart';
-import 'package:test_shop_task/features/catalog/domain/entities/category_entity.dart';
 import 'package:test_shop_task/features/catalog/presentation/screens/catalog_screen.dart';
 import 'package:test_shop_task/features/navigation/bottom_navigation.dart';
 import 'package:test_shop_task/features/product/presentation/screens/product_detail.dart';
@@ -167,13 +166,13 @@ class CartRouteData extends GoRouteData {
 }
 
 class ProductListRouteData extends GoRouteData {
-  final CategoryEntity? $extra;
+  final int? categoryId;
 
-  const ProductListRouteData([this.$extra]);
+  const ProductListRouteData({this.categoryId});
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return ProductListPage(category: $extra);
+    return ProductListPage(categoryId: categoryId);
   }
 }
 

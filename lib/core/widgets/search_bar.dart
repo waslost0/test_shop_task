@@ -8,14 +8,14 @@ class AppSearchBar extends StatefulWidget {
   final VoidCallback? onFocusChanged;
   final ValueChanged<String>? onSubmitted;
 
-  final String initString;
+  final String? initString;
 
   const AppSearchBar({
     super.key,
     this.onChanged,
     this.onFocusChanged,
     this.onSubmitted,
-    this.initString = '',
+    this.initString,
   });
 
   @override
@@ -29,7 +29,7 @@ class AppSearchBarState extends State<AppSearchBar> {
 
   @override
   void initState() {
-    _searchController.text = widget.initString;
+    _searchController.text = widget.initString ?? '';
     _searchFocusNode.addListener(() {
       widget.onFocusChanged?.call();
       setState(() {});
@@ -49,7 +49,7 @@ class AppSearchBarState extends State<AppSearchBar> {
   @override
   Widget build(BuildContext context) {
     return SearchBar(
-      // controller: _searchController,
+      controller: _searchController,
       focusNode: _searchFocusNode,
       onSubmitted: _onSubmitted,
       textInputAction: TextInputAction.search,

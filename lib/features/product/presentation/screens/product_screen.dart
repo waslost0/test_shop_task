@@ -5,19 +5,18 @@ import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_text_style.dart';
 import 'package:test_shop_task/core/widgets/search_bar.dart';
 import 'package:test_shop_task/features/cart/presentation/widgets/cart_count_button.dart';
-import 'package:test_shop_task/features/catalog/domain/entities/category_entity.dart';
 import 'package:test_shop_task/features/product/presentation/mixins/product_list_mixin.dart';
 import 'package:test_shop_task/features/product/presentation/provider/product_list_provider.dart';
 import 'package:test_shop_task/features/product/presentation/provider/state/product_list_state.dart';
 import 'package:test_shop_task/features/product/presentation/widgets/product_grid_item.dart';
 
 class ProductListPage extends BasePage {
-  final CategoryEntity? category;
+  final int? categoryId;
 
   const ProductListPage({
     super.key,
     super.title = 'Продукты',
-    this.category,
+    this.categoryId,
   });
 
   @override
@@ -33,11 +32,9 @@ class ProductListPageState extends BasePageState<ProductListPage>
 
   @override
   Widget buildBody(BuildContext context) {
-    final model = ref.read(productListProvider(widget.category).notifier);
-    final state = ref.watch(productListProvider(widget.category));
-    if (state.isLoading && state.items.isEmpty) {
-      return buildLoadingIndicator();
-    }
+    final model = ref.read(productListProvider(widget.categoryId).notifier);
+    final state = ref.watch(productListProvider(widget.categoryId));
+
     return RefreshIndicator(
       onRefresh: () => model.reloadData(),
       child: buildGrid(state),
@@ -54,13 +51,9 @@ class ProductListPageState extends BasePageState<ProductListPage>
   }
 
   Widget buildGrid(ProductListState state) {
-    if (state.isAllLoaded && state.items.isEmpty) {
-      return buildEmptyPlaceholder('Список пуст');
-    }
-
     return Stack(
       children: [
-        if (state.items.isEmpty)
+        if (state.items.isEmpty && state.isAllLoaded)
           buildEmptyPlaceholder('Список пуст')
         else
           GridView.builder(
@@ -89,18 +82,24 @@ class ProductListPageState extends BasePageState<ProductListPage>
             ),
           ),
         buildSearchBar(state),
+        if (state.isLoading && state.items.isEmpty) buildLoadingIndicator(),
       ],
     );
   }
 
   Widget buildSearchBar(ProductListState state) {
-    if (state.items.isEmpty && state.isAllLoaded && state.searchString == null) {
+    if (state.items.isEmpty &&
+        state.isAllLoaded &&
+        state.searchString == null) {
       return SizedBox.shrink();
     }
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-      child: AppSearchBar(onChanged: onSearch),
+      child: AppSearchBar(
+        initString: state.searchString,
+        onChanged: onSearch,
+      ),
     );
   }
 

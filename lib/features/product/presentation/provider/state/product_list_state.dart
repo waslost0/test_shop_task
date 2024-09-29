@@ -47,6 +47,7 @@ class ProductListState extends BaseListState<ProductEntity> {
     super.items,
     super.exception,
     super.isLoading,
+    super.isFullReloading,
     super.isAllLoaded,
     super.listParams = const ProductListParams(),
   });
@@ -55,11 +56,13 @@ class ProductListState extends BaseListState<ProductEntity> {
   ProductListState copyWith({
     bool? isLoading,
     bool? isAllLoaded,
+    bool? isFullReloading,
     ListParams? listParams,
     List<ProductEntity>? items,
     AppFailure? exception,
   }) {
     return ProductListState(
+      isFullReloading: isFullReloading ?? this.isFullReloading,
       isLoading: isLoading ?? this.isLoading,
       isAllLoaded: isAllLoaded ?? this.isAllLoaded,
       listParams: listParams ?? this.listParams,
