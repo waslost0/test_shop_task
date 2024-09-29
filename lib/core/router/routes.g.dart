@@ -68,13 +68,16 @@ extension $MyShellRouteDataExtension on MyShellRouteData {
 
 extension $CatalogRouteDataExtension on CatalogRouteData {
   static CatalogRouteData _fromState(GoRouterState state) => CatalogRouteData(
-        _$convertMapValue('parent-id', state.uri.queryParameters, int.parse),
+        parentId: _$convertMapValue(
+            'parent-id', state.uri.queryParameters, int.parse),
+        title: state.uri.queryParameters['title'],
       );
 
   String get location => GoRouteData.$location(
         '/catalog',
         queryParams: {
           if (parentId != null) 'parent-id': parentId!.toString(),
+          if (title != null) 'title': title,
         },
       );
 
@@ -93,12 +96,14 @@ extension $ProductListRouteDataExtension on ProductListRouteData {
       ProductListRouteData(
         categoryId: _$convertMapValue(
             'category-id', state.uri.queryParameters, int.parse),
+        title: state.uri.queryParameters['title'],
       );
 
   String get location => GoRouteData.$location(
         '/catalog/productList',
         queryParams: {
           if (categoryId != null) 'category-id': categoryId!.toString(),
+          if (title != null) 'title': title,
         },
       );
 

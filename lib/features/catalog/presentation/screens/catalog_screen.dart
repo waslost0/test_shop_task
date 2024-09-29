@@ -83,9 +83,13 @@ class CatalogListPageState extends BasePageState<CatalogListPage> {
           onTap: () {
             final category = state.list[index];
             if (category.hasSubcategories) {
-              CatalogRouteData(category.categoryId).push(context);
+              CatalogRouteData(
+                parentId: category.categoryId,
+                title: category.title,
+              ).push(context);
             } else {
               ProductListRouteData(
+                title: category.title,
                 categoryId: category.categoryId,
               ).push(context);
             }

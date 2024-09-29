@@ -147,12 +147,19 @@ class EditProfileRouteData extends GoRouteData {
 
 class CatalogRouteData extends GoRouteData {
   final int? parentId;
+  final String? title;
 
-  const CatalogRouteData([this.parentId]);
+  const CatalogRouteData({
+    this.parentId,
+    this.title,
+  });
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return CatalogListPage(parentId: parentId);
+    return CatalogListPage(
+      parentId: parentId,
+      title: title ?? 'Каталог',
+    );
   }
 }
 
@@ -167,12 +174,19 @@ class CartRouteData extends GoRouteData {
 
 class ProductListRouteData extends GoRouteData {
   final int? categoryId;
+  final String? title;
 
-  const ProductListRouteData({this.categoryId});
+  const ProductListRouteData({
+    this.categoryId,
+    this.title,
+  });
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return ProductListPage(categoryId: categoryId);
+    return ProductListPage(
+      categoryId: categoryId,
+      title: title ?? 'Продукты',
+    );
   }
 }
 
