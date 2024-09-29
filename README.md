@@ -10,7 +10,7 @@ Flutter Test Task
 - [x] Profile Page
 - [x] Edit fields
 - [x] Edit avatar
-- [ ] Miltiple avatars
+- [x] Miltiple avatars
 - [ ] Sliver 
 - [ ] Phone country code 
 - [x] Validation 
