@@ -21,10 +21,14 @@ class AppSlidable extends StatelessWidget {
         motion: const ScrollMotion(),
         children: actionPaneBuilder.call(),
       ),
-      child: GestureDetector(
-        onLongPress: () => openSlidable(context),
-        behavior: HitTestBehavior.translucent,
-        child: child,
+      child: Builder(
+        builder: (context) {
+          return GestureDetector(
+            onLongPress: () => openSlidable(context),
+            behavior: HitTestBehavior.translucent,
+            child: child,
+          );
+        }
       ),
     );
   }

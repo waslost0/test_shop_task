@@ -109,6 +109,7 @@ class CartListItem extends ConsumerWidget {
   Widget _buildProductImage() {
     return SizedBox(
       width: 80,
+      height: 80,
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(

@@ -46,7 +46,6 @@ class ProfilePageState extends BasePageState<ProfilePage> {
       super.systemUiOverlayStyle.copyWith(
             statusBarColor: Colors.transparent,
             statusBarBrightness: Brightness.dark,
-            systemStatusBarContrastEnforced: true,
             statusBarIconBrightness: Brightness.light,
           );
 
