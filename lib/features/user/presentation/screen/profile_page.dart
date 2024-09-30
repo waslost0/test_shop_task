@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:test_shop_task/core/logic/app_model.dart';
 import 'package:test_shop_task/core/router/routes.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
+import 'package:test_shop_task/core/theme/app_text_style.dart';
+import 'package:test_shop_task/core/utils/date_time_extension.dart';
 import 'package:test_shop_task/core/widgets/base_alert_dialog.dart';
 import 'package:test_shop_task/features/user/presentation/provider/profile_provider.dart';
 import 'package:test_shop_task/features/user/presentation/provider/state/profile_state.dart';
-import 'package:test_shop_task/features/user/presentation/widgets/avatar_image.dart';
+import 'package:test_shop_task/features/user/presentation/widgets/user_header.dart';
 
 enum DetailsContextMenuItems {
   edit,
@@ -27,117 +31,187 @@ class ProfilePage extends BasePage {
 }
 
 class ProfilePageState extends BasePageState<ProfilePage> {
-  late AppModel appModel = ref.read(appModelProvider);
+  static const EdgeInsets horizontalPadding = EdgeInsets.symmetric(
+    horizontal: 16,
+  );
+
+  final MaskTextInputFormatter maskFormatter = MaskTextInputFormatter(
+    mask: '+# (###) ###-##-##',
+    filter: {"#": RegExp(r'[0-9]')},
+    type: MaskAutoCompletionType.lazy,
+  );
 
   @override
-  List<Widget> buildAppBarActions() {
-    return [
-      PopupMenuButton<DetailsContextMenuItems>(
-        icon: const Icon(Icons.more_vert_rounded),
-        onSelected: (value) {
-          switch (value) {
-            case DetailsContextMenuItems.edit:
-              editProfile();
-              break;
-            case DetailsContextMenuItems.delete:
-              break;
-            case DetailsContextMenuItems.logout:
-              logout();
-              break;
-          }
-        },
-        itemBuilder: (popUpContext) {
-          return [
-            const PopupMenuItem(
-              value: DetailsContextMenuItems.edit,
-              child: Text('Редактировать'),
-            ),
-            const PopupMenuItem(
-              value: DetailsContextMenuItems.delete,
-              child: Text('Удалить'),
-            ),
-            const PopupMenuItem(
-              value: DetailsContextMenuItems.logout,
-              child: Text(
-                'Выйти',
-              ),
-            ),
-          ];
-        },
+  SystemUiOverlayStyle get systemUiOverlayStyle =>
+      super.systemUiOverlayStyle.copyWith(
+            statusBarColor: Colors.transparent,
+            statusBarBrightness: Brightness.dark,
+            statusBarIconBrightness: Brightness.light,
+          );
+
+  @override
+  bool get withSafeArea => false;
+
+  @override
+  PreferredSizeWidget? buildAppBar(BuildContext context) {
+    return null;
+  }
+
+  Widget buildProfileActions() {
+    return PopupMenuButton<DetailsContextMenuItems>(
+      icon: const Icon(
+        Icons.more_vert_rounded,
+        color: AppColors.white,
       ),
-    ];
+      onSelected: (value) {
+        switch (value) {
+          case DetailsContextMenuItems.edit:
+            editProfile();
+            break;
+          case DetailsContextMenuItems.delete:
+            break;
+          case DetailsContextMenuItems.logout:
+            logout();
+            break;
+        }
+      },
+      itemBuilder: (popUpContext) {
+        return [
+          const PopupMenuItem(
+            value: DetailsContextMenuItems.edit,
+            child: Text('Редактировать'),
+          ),
+          const PopupMenuItem(
+            value: DetailsContextMenuItems.delete,
+            child: Text('Удалить'),
+          ),
+          const PopupMenuItem(
+            value: DetailsContextMenuItems.logout,
+            child: Text(
+              'Выйти',
+            ),
+          ),
+        ];
+      },
+    );
   }
 
   @override
   Widget buildBody(BuildContext context) {
     final model = ref.read(profileProvider.notifier);
     final state = ref.watch(profileProvider);
-    return RefreshIndicator(
-      onRefresh: () => model.loginProfile(),
-      child: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        physics: const AlwaysScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            if (state is Loading)
-              const Center(
-                child: CircularProgressIndicator(),
-              ),
-            if (state is Success) buildContent(context),
-          ],
+    if (state is Loading) {
+      return buildLoadingIndicator();
+    }
+    return Stack(
+      children: [
+        RefreshIndicator(
+          onRefresh: () => model.loginProfile(),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 16),
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Column(
+              children: [
+                if (state is Success) buildContent(context),
+              ],
+            ),
+          ),
         ),
-      ),
+        Positioned(
+          top: 10,
+          right: 0,
+          child: SafeArea(child: buildProfileActions()),
+        ),
+      ],
     );
   }
 
   Widget buildContent(BuildContext context) {
     final state = ref.watch(profileProvider) as Success;
-    return Container(
-      padding: const EdgeInsets.fromLTRB(16, 12, 12, 12),
-      decoration: BoxDecoration(
-        color: AppColors.lightBlue.withOpacity(0.2),
-        border: Border.all(color: AppColors.black),
-        borderRadius: BorderRadius.circular(22),
-      ),
-      child: Row(
-        children: [
-          AvatarImage(
-            state.user.avatar,
-            size: 104,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        UserHeader(user: state.user),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: horizontalPadding,
+                child: Text(
+                  'Информация',
+                  style:
+                      AppTextStyle.body3.copyWith(fontWeight: FontWeight.bold),
+                ),
+              ),
+              SizedBox(height: 16),
+              if (state.user.phone?.isNotEmpty ?? false) ...[
+                buildItemRow(
+                  maskFormatter.maskText(state.user.phone!),
+                  'Телефон',
+                ),
+                Divider(endIndent: 16, indent: 16),
+              ],
+              if (state.user.email?.isNotEmpty ?? false) ...[
+                buildItemRow(
+                  state.user.email!,
+                  'Email',
+                ),
+                Divider(endIndent: 16, indent: 16),
+              ],
+              if (state.user.login?.isNotEmpty ?? false) ...[
+                buildItemRow(
+                  state.user.login!,
+                  'Username',
+                ),
+                Divider(endIndent: 16, indent: 16),
+              ],
+              if (state.user.dateOfBirth != null) ...[
+                buildItemRow(
+                  state.user.dateOfBirth!.formatDate(),
+                  'Дата рождения',
+                ),
+                Divider(endIndent: 16, indent: 16),
+              ],
+            ],
           ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: _buildName(state),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
-  Widget _buildName(Success state) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "${state.user.name} ${state.user.lastname}",
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
+  Widget buildItemRow(
+    String title,
+    String description,
+  ) {
+    return InkWell(
+      highlightColor: Colors.white10,
+      onTap: () => Clipboard.setData(ClipboardData(text: title)),
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        padding: horizontalPadding.copyWith(top: 10, bottom: 10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: AppTextStyle.body.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              description,
+              style: AppTextStyle.body.copyWith(
+                fontSize: 14,
+                color: AppColors.primaryColor.withOpacity(0.7),
+              ),
+            ),
+          ],
         ),
-        Text(
-          "ID ${state.user.id}",
-        ),
-        Text(
-          "${state.user.phone}",
-        ),
-        if (state.user.email?.isNotEmpty ?? false)
-          Text(
-            "${state.user.email}",
-          ),
-      ],
+      ),
     );
   }
 
@@ -152,7 +226,7 @@ class ProfilePageState extends BasePageState<ProfilePage> {
       onNegativeButtonPressed: (context) => context.pop(false),
       onPositiveButtonPressed: (context) {
         context.pop(true);
-        appModel.logout();
+        ref.read(appModelProvider).logout();
       },
     );
   }

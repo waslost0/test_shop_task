@@ -15,6 +15,9 @@ abstract class BasePage extends ConsumerStatefulWidget {
 }
 
 abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
+  final SystemUiOverlayStyle systemUiOverlayStyle =
+      ThemeBuilder.systemUiOverlayStyle;
+
   bool _isLoading = false;
 
   @protected
@@ -41,7 +44,7 @@ abstract class BasePageState<T extends BasePage> extends ConsumerState<T> {
   @protected
   Widget buildDecorateScaffold(BuildContext context, Widget child) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: ThemeBuilder.systemUiOverlayStyle,
+      value: systemUiOverlayStyle,
       child: child,
     );
   }

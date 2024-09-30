@@ -435,6 +435,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_blurhash:
+    dependency: "direct main"
+    description:
+      name: flutter_blurhash
+      sha256: "5e67678e479ac639069d7af1e133f4a4702311491188ff3e0227486430db0c06"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.8.2"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -830,7 +838,7 @@ packages:
     source: hosted
     version: "2.1.0"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       sha256: "087ce49c3f0dc39180befefc60fdb4acd8f8620e5682fe2476afd0b3688bb4af"
@@ -1271,14 +1279,6 @@ packages:
     description:
       name: talker_logger
       sha256: "515d2e5803928b2bab42108f710c814743965f939be2b4261f9c3045ef8a3fba"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.4.1"
-  talker_riverpod_logger:
-    dependency: "direct main"
-    description:
-      name: talker_riverpod_logger
-      sha256: "6b8efe833b851f68353d5d32ae2dbf265a617e89e53b2b4f2fcd6548a259bf20"
       url: "https://pub.dev"
     source: hosted
     version: "4.4.1"

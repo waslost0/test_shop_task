@@ -68,7 +68,7 @@ class CatalogListPageState extends BasePageState<CatalogListPage> {
       itemCount: itemsCount(state),
       padding: const EdgeInsets.all(16),
       itemBuilder: (context, index) {
-        if (index == 0) {
+        if (index == 0 && widget.parentId == null) {
           return GestureDetector(
             onTap: () {
               ProductListRouteData().push(context);
@@ -78,14 +78,20 @@ class CatalogListPageState extends BasePageState<CatalogListPage> {
             ),
           );
         }
-        index--;
+        if (widget.parentId == null) index--;
         return GestureDetector(
           onTap: () {
             final category = state.list[index];
             if (category.hasSubcategories) {
-              CatalogRouteData(category.categoryId).push(context);
+              CatalogRouteData(
+                parentId: category.categoryId,
+                title: category.title,
+              ).push(context);
             } else {
-              ProductListRouteData(category).push(context);
+              ProductListRouteData(
+                title: category.title,
+                categoryId: category.categoryId,
+              ).push(context);
             }
           },
           child: CategoryListItem(

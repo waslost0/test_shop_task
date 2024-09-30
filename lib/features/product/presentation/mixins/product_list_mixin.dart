@@ -6,25 +6,28 @@ mixin ProductListMixin<T extends ProductListPage> on BasePageState<T> {
   int get infinityScrollOffset => 1;
 
   void onSearch(String searchString) async {
-    final state = ref.read(productListProvider(widget.category));
-    final model = ref.read(productListProvider(widget.category).notifier);
+    final state = ref.read(productListProvider(widget.categoryId));
+    final model = ref.read(productListProvider(widget.categoryId).notifier);
+    if (state.listParams.searchString?.trim() == searchString.trim()) {
+      return;
+    }
     if (searchString.isNotEmpty &&
         state.listParams.searchString?.trim() == searchString.trim() &&
-        state.list.isNotEmpty) return;
+        state.items.isNotEmpty) return;
     showLoadingIndicator();
-    await model.reloadData(searchString: searchString);
+    await model.search(searchString);
     hideLoadingIndicator();
   }
 
   void tryPreloadNextItems(int renderedItemIndex) {
-    final state = ref.read(productListProvider(widget.category));
-    if (state.isLoading || state.list.isEmpty || state.isAllLoaded) return;
+    final state = ref.read(productListProvider(widget.categoryId));
+    if (state.isLoading || state.items.isEmpty || state.isAllLoaded) return;
 
-    final model = ref.read(productListProvider(widget.category).notifier);
+    final model = ref.read(productListProvider(widget.categoryId).notifier);
     var isListEnd =
-        (renderedItemIndex >= (state.list.length - infinityScrollOffset));
+        (renderedItemIndex >= (state.items.length - infinityScrollOffset));
     if (isListEnd) {
-      model.loadList();
+      model.loadData();
     }
   }
 }

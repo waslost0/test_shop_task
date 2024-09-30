@@ -23,10 +23,12 @@ mixin _$User {
   int get userId => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get lastname => throw _privateConstructorUsedError;
-  String? get avatar => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  int? get dateOfBirth => throw _privateConstructorUsedError;
+  String? get login => throw _privateConstructorUsedError;
+  @DateTimeJsonConverter()
+  DateTime? get dateOfBirth => throw _privateConstructorUsedError;
+  List<CustomFile> get images => throw _privateConstructorUsedError;
 
   /// Serializes this User to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,10 +48,11 @@ abstract class $UserCopyWith<$Res> {
       {int userId,
       String? name,
       String? lastname,
-      String? avatar,
       String? phone,
       String? email,
-      int? dateOfBirth});
+      String? login,
+      @DateTimeJsonConverter() DateTime? dateOfBirth,
+      List<CustomFile> images});
 }
 
 /// @nodoc
@@ -70,10 +73,11 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
     Object? userId = null,
     Object? name = freezed,
     Object? lastname = freezed,
-    Object? avatar = freezed,
     Object? phone = freezed,
     Object? email = freezed,
+    Object? login = freezed,
     Object? dateOfBirth = freezed,
+    Object? images = null,
   }) {
     return _then(_value.copyWith(
       userId: null == userId
@@ -88,10 +92,6 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -100,10 +100,18 @@ class _$UserCopyWithImpl<$Res, $Val extends User>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      login: freezed == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
+              as String?,
       dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as DateTime?,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<CustomFile>,
     ) as $Val);
   }
 }
@@ -119,10 +127,11 @@ abstract class _$$UserImplCopyWith<$Res> implements $UserCopyWith<$Res> {
       {int userId,
       String? name,
       String? lastname,
-      String? avatar,
       String? phone,
       String? email,
-      int? dateOfBirth});
+      String? login,
+      @DateTimeJsonConverter() DateTime? dateOfBirth,
+      List<CustomFile> images});
 }
 
 /// @nodoc
@@ -140,10 +149,11 @@ class __$$UserImplCopyWithImpl<$Res>
     Object? userId = null,
     Object? name = freezed,
     Object? lastname = freezed,
-    Object? avatar = freezed,
     Object? phone = freezed,
     Object? email = freezed,
+    Object? login = freezed,
     Object? dateOfBirth = freezed,
+    Object? images = null,
   }) {
     return _then(_$UserImpl(
       userId: null == userId
@@ -158,10 +168,6 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -170,10 +176,18 @@ class __$$UserImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      login: freezed == login
+          ? _value.login
+          : login // ignore: cast_nullable_to_non_nullable
+              as String?,
       dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as DateTime?,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<CustomFile>,
     ));
   }
 }
@@ -185,10 +199,12 @@ class _$UserImpl implements _User {
       {required this.userId,
       this.name,
       this.lastname,
-      this.avatar,
       this.phone,
       this.email,
-      this.dateOfBirth});
+      this.login,
+      @DateTimeJsonConverter() this.dateOfBirth,
+      final List<CustomFile> images = const []})
+      : _images = images;
 
   factory _$UserImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserImplFromJson(json);
@@ -200,17 +216,26 @@ class _$UserImpl implements _User {
   @override
   final String? lastname;
   @override
-  final String? avatar;
-  @override
   final String? phone;
   @override
   final String? email;
   @override
-  final int? dateOfBirth;
+  final String? login;
+  @override
+  @DateTimeJsonConverter()
+  final DateTime? dateOfBirth;
+  final List<CustomFile> _images;
+  @override
+  @JsonKey()
+  List<CustomFile> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
 
   @override
   String toString() {
-    return 'User(userId: $userId, name: $name, lastname: $lastname, avatar: $avatar, phone: $phone, email: $email, dateOfBirth: $dateOfBirth)';
+    return 'User(userId: $userId, name: $name, lastname: $lastname, phone: $phone, email: $email, login: $login, dateOfBirth: $dateOfBirth, images: $images)';
   }
 
   @override
@@ -222,17 +247,18 @@ class _$UserImpl implements _User {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.lastname, lastname) ||
                 other.lastname == lastname) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.login, login) || other.login == login) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
-                other.dateOfBirth == dateOfBirth));
+                other.dateOfBirth == dateOfBirth) &&
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, userId, name, lastname, avatar, phone, email, dateOfBirth);
+  int get hashCode => Object.hash(runtimeType, userId, name, lastname, phone,
+      email, login, dateOfBirth, const DeepCollectionEquality().hash(_images));
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.
@@ -255,10 +281,11 @@ abstract class _User implements User {
       {required final int userId,
       final String? name,
       final String? lastname,
-      final String? avatar,
       final String? phone,
       final String? email,
-      final int? dateOfBirth}) = _$UserImpl;
+      final String? login,
+      @DateTimeJsonConverter() final DateTime? dateOfBirth,
+      final List<CustomFile> images}) = _$UserImpl;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$UserImpl.fromJson;
 
@@ -269,13 +296,16 @@ abstract class _User implements User {
   @override
   String? get lastname;
   @override
-  String? get avatar;
-  @override
   String? get phone;
   @override
   String? get email;
   @override
-  int? get dateOfBirth;
+  String? get login;
+  @override
+  @DateTimeJsonConverter()
+  DateTime? get dateOfBirth;
+  @override
+  List<CustomFile> get images;
 
   /// Create a copy of User
   /// with the given fields replaced by the non-null parameter values.

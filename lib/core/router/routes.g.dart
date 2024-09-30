@@ -68,13 +68,16 @@ extension $MyShellRouteDataExtension on MyShellRouteData {
 
 extension $CatalogRouteDataExtension on CatalogRouteData {
   static CatalogRouteData _fromState(GoRouterState state) => CatalogRouteData(
-        _$convertMapValue('parent-id', state.uri.queryParameters, int.parse),
+        parentId: _$convertMapValue(
+            'parent-id', state.uri.queryParameters, int.parse),
+        title: state.uri.queryParameters['title'],
       );
 
   String get location => GoRouteData.$location(
         '/catalog',
         queryParams: {
           if (parentId != null) 'parent-id': parentId!.toString(),
+          if (title != null) 'title': title,
         },
       );
 
@@ -91,23 +94,27 @@ extension $CatalogRouteDataExtension on CatalogRouteData {
 extension $ProductListRouteDataExtension on ProductListRouteData {
   static ProductListRouteData _fromState(GoRouterState state) =>
       ProductListRouteData(
-        state.extra as CategoryEntity?,
+        categoryId: _$convertMapValue(
+            'category-id', state.uri.queryParameters, int.parse),
+        title: state.uri.queryParameters['title'],
       );
 
   String get location => GoRouteData.$location(
         '/catalog/productList',
+        queryParams: {
+          if (categoryId != null) 'category-id': categoryId!.toString(),
+          if (title != null) 'title': title,
+        },
       );
 
-  void go(BuildContext context) => context.go(location, extra: $extra);
+  void go(BuildContext context) => context.go(location);
 
-  Future<T?> push<T>(BuildContext context) =>
-      context.push<T>(location, extra: $extra);
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
 
   void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location, extra: $extra);
+      context.pushReplacement(location);
 
-  void replace(BuildContext context) =>
-      context.replace(location, extra: $extra);
+  void replace(BuildContext context) => context.replace(location);
 }
 
 extension $ProductDetailRouteDataExtension on ProductDetailRouteData {

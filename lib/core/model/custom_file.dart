@@ -11,8 +11,10 @@ class CustomFile with _$CustomFile {
     String? url,
     String? blurHash,
     int? fileId,
-    int? previewUrl,
-    int? mimeType,
+    int? width,
+    int? height,
+    String? previewUrl,
+    String? mimeType,
   }) = _CustomFile;
 
   factory CustomFile.fromJson(Map<String, dynamic> json) =>

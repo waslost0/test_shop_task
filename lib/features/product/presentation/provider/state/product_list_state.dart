@@ -1,9 +1,7 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_shop_task/core/errors/errors.dart';
 import 'package:test_shop_task/core/params/list_params.dart';
+import 'package:test_shop_task/core/satates/base_list_state.dart';
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
-
-part 'product_list_state.freezed.dart';
 
 class ProductListParams extends ListParams {
   final int? categoryId;
@@ -15,6 +13,7 @@ class ProductListParams extends ListParams {
     this.categoryId,
   });
 
+  @override
   ProductListParams copyWith({
     int? offset,
     int? limit,
@@ -28,22 +27,47 @@ class ProductListParams extends ListParams {
       searchString: searchString ?? this.searchString,
     );
   }
+
+  static ProductListParams fromListParams(
+    ListParams? listParams,
+  ) {
+    return ProductListParams(
+      limit: listParams?.limit ?? 10,
+      offset: listParams?.offset ?? 0,
+      searchString: listParams?.searchString,
+    );
+  }
 }
 
-@freezed
-abstract class ProductListState with _$ProductListState {
-  const factory ProductListState({
-    @Default([]) List<ProductEntity> list,
+class ProductListState extends BaseListState<ProductEntity> {
+  @override
+  ProductListParams get listParams => super.listParams as ProductListParams;
+
+  ProductListState({
+    super.items,
+    super.exception,
+    super.isLoading,
+    super.isFullReloading,
+    super.isAllLoaded,
+    super.listParams = const ProductListParams(),
+  });
+
+  @override
+  ProductListState copyWith({
+    bool? isLoading,
+    bool? isAllLoaded,
+    bool? isFullReloading,
+    ListParams? listParams,
+    List<ProductEntity>? items,
     AppFailure? exception,
-    @Default(false) bool isLoading,
-    @Default(false) bool isAllLoaded,
-    @Default(ProductListParams()) ProductListParams listParams,
-  }) = _ProductListState;
-}
-
-extension ProductListStateX on ProductListState {
-  bool get hasError => exception?.message?.isNotEmpty ?? false;
-  String? get searchString => listParams.searchString;
-  String? get errorMessage => exception?.message;
-
+  }) {
+    return ProductListState(
+      isFullReloading: isFullReloading ?? this.isFullReloading,
+      isLoading: isLoading ?? this.isLoading,
+      isAllLoaded: isAllLoaded ?? this.isAllLoaded,
+      listParams: listParams ?? this.listParams,
+      items: items ?? this.items,
+      exception: exception ?? this.exception,
+    );
+  }
 }

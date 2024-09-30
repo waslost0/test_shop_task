@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_shop_task/core/mixin/image_picker.dart';
 import 'package:test_shop_task/core/screen/base_form_page.dart';
 import 'package:test_shop_task/core/screen/base_page.dart';
+import 'package:test_shop_task/features/user/domain/entities/user_entity.dart';
 import 'package:test_shop_task/features/user/presentation/mixins/edit_profile_mixin.dart';
 import 'package:test_shop_task/features/user/presentation/provider/edit_profile_provider.dart';
 import 'package:test_shop_task/features/user/presentation/widgets/edit_profile_header.dart';
@@ -95,6 +96,7 @@ class EditProfilePageState extends BaseFormPageState<EditProfilePage>
       decoration: const InputDecoration(
         hintText: 'Email',
       ),
+      keyboardType: TextInputType.emailAddress,
       textInputAction: TextInputAction.next,
       validator: validateEmail,
     );

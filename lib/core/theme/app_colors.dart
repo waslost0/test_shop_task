@@ -101,7 +101,7 @@ class AppColors {
 
   /// Цвета для элементов
   static const Color defaultText = black2;
-  static const Color divider = Color(0xFFCED2DC);
+  static const Color divider = Color(0xFF333333);
   static const Color border = charcoal;
   static const Color disabledBorder = Color(0xFFB9BECB);
   static const Color defaultShadow = Color(0x5E020202);

@@ -39,10 +39,10 @@ class $ProductTableTable extends ProductTable
       type: DriftSqlType.double, requiredDuringInsert: false);
   static const VerificationMeta _imagesMeta = const VerificationMeta('images');
   @override
-  late final GeneratedColumnWithTypeConverter<List<String>, String> images =
+  late final GeneratedColumnWithTypeConverter<List<CustomFile>, String> images =
       GeneratedColumn<String>('images', aliasedName, false,
               type: DriftSqlType.string, requiredDuringInsert: true)
-          .withConverter<List<String>>($ProductTableTable.$converterimages);
+          .withConverter<List<CustomFile>>($ProductTableTable.$converterimages);
   @override
   List<GeneratedColumn> get $columns =>
       [productId, name, productDescription, imageUrl, price, images];
@@ -111,7 +111,7 @@ class $ProductTableTable extends ProductTable
     return $ProductTableTable(attachedDatabase, alias);
   }
 
-  static TypeConverter<List<String>, String> $converterimages =
+  static TypeConverter<List<CustomFile>, String> $converterimages =
       const JsonStringListConverter();
 }
 
@@ -121,7 +121,7 @@ class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
   final Value<String?> productDescription;
   final Value<String?> imageUrl;
   final Value<double?> price;
-  final Value<List<String>> images;
+  final Value<List<CustomFile>> images;
   const ProductTableCompanion({
     this.productId = const Value.absent(),
     this.name = const Value.absent(),
@@ -136,7 +136,7 @@ class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
     this.productDescription = const Value.absent(),
     this.imageUrl = const Value.absent(),
     this.price = const Value.absent(),
-    required List<String> images,
+    required List<CustomFile> images,
   })  : name = Value(name),
         images = Value(images);
   static Insertable<ProductEntity> custom({
@@ -163,7 +163,7 @@ class ProductTableCompanion extends UpdateCompanion<ProductEntity> {
       Value<String?>? productDescription,
       Value<String?>? imageUrl,
       Value<double?>? price,
-      Value<List<String>>? images}) {
+      Value<List<CustomFile>>? images}) {
     return ProductTableCompanion(
       productId: productId ?? this.productId,
       name: name ?? this.name,
@@ -347,7 +347,7 @@ typedef $$ProductTableTableCreateCompanionBuilder = ProductTableCompanion
   Value<String?> productDescription,
   Value<String?> imageUrl,
   Value<double?> price,
-  required List<String> images,
+  required List<CustomFile> images,
 });
 typedef $$ProductTableTableUpdateCompanionBuilder = ProductTableCompanion
     Function({
@@ -356,7 +356,7 @@ typedef $$ProductTableTableUpdateCompanionBuilder = ProductTableCompanion
   Value<String?> productDescription,
   Value<String?> imageUrl,
   Value<double?> price,
-  Value<List<String>> images,
+  Value<List<CustomFile>> images,
 });
 
 final class $$ProductTableTableReferences
@@ -407,7 +407,7 @@ class $$ProductTableTableFilterComposer
       builder: (column, joinBuilders) =>
           ColumnFilters(column, joinBuilders: joinBuilders));
 
-  ColumnWithTypeConverterFilters<List<String>, List<String>, String>
+  ColumnWithTypeConverterFilters<List<CustomFile>, List<CustomFile>, String>
       get images => $state.composableBuilder(
           column: $state.table.images,
           builder: (column, joinBuilders) => ColumnWithTypeConverterFilters(
@@ -487,7 +487,7 @@ class $$ProductTableTableTableManager extends RootTableManager<
             Value<String?> productDescription = const Value.absent(),
             Value<String?> imageUrl = const Value.absent(),
             Value<double?> price = const Value.absent(),
-            Value<List<String>> images = const Value.absent(),
+            Value<List<CustomFile>> images = const Value.absent(),
           }) =>
               ProductTableCompanion(
             productId: productId,
@@ -503,7 +503,7 @@ class $$ProductTableTableTableManager extends RootTableManager<
             Value<String?> productDescription = const Value.absent(),
             Value<String?> imageUrl = const Value.absent(),
             Value<double?> price = const Value.absent(),
-            required List<String> images,
+            required List<CustomFile> images,
           }) =>
               ProductTableCompanion.insert(
             productId: productId,

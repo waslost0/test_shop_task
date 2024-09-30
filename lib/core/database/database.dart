@@ -5,6 +5,7 @@ import 'package:test_shop_task/core/database/db_interceptopr.dart';
 import 'package:test_shop_task/core/database/model/cart_item_table.dart';
 import 'package:test_shop_task/core/database/model/product_table.dart';
 import 'package:test_shop_task/core/model/config.dart';
+import 'package:test_shop_task/core/model/custom_file.dart';
 import 'package:test_shop_task/features/cart/domain/entities/cart_entity.dart';
 import 'package:test_shop_task/features/product/domain/entities/product_entity.dart';
 import 'package:universal_io/io.dart';

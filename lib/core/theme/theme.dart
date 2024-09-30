@@ -41,7 +41,7 @@ class ThemeBuilder {
 
   static SystemUiOverlayStyle get systemUiOverlayStyle =>
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
+        statusBarColor: Colors.transparent,
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark,
       );
@@ -163,6 +163,8 @@ class ThemeBuilder {
       ),
       dividerTheme: const DividerThemeData(
         color: AppColors.divider,
+        thickness: 1.5,
+        space: 1,
       ),
     );
   }

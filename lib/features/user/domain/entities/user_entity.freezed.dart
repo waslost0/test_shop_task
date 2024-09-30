@@ -20,11 +20,11 @@ mixin _$UserEntity {
   String? get email => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get lastname => throw _privateConstructorUsedError;
-  String? get avatar => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get login => throw _privateConstructorUsedError;
-  int? get dateOfBirth => throw _privateConstructorUsedError;
+  DateTime? get dateOfBirth => throw _privateConstructorUsedError;
   File? get file => throw _privateConstructorUsedError;
+  List<CustomFile> get images => throw _privateConstructorUsedError;
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -44,11 +44,11 @@ abstract class $UserEntityCopyWith<$Res> {
       String? email,
       String? name,
       String? lastname,
-      String? avatar,
       String? phone,
       String? login,
-      int? dateOfBirth,
-      File? file});
+      DateTime? dateOfBirth,
+      File? file,
+      List<CustomFile> images});
 }
 
 /// @nodoc
@@ -70,11 +70,11 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? email = freezed,
     Object? name = freezed,
     Object? lastname = freezed,
-    Object? avatar = freezed,
     Object? phone = freezed,
     Object? login = freezed,
     Object? dateOfBirth = freezed,
     Object? file = freezed,
+    Object? images = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -93,10 +93,6 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -108,11 +104,15 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
       dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as DateTime?,
       file: freezed == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
               as File?,
+      images: null == images
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<CustomFile>,
     ) as $Val);
   }
 }
@@ -130,11 +130,11 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       String? email,
       String? name,
       String? lastname,
-      String? avatar,
       String? phone,
       String? login,
-      int? dateOfBirth,
-      File? file});
+      DateTime? dateOfBirth,
+      File? file,
+      List<CustomFile> images});
 }
 
 /// @nodoc
@@ -154,11 +154,11 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? email = freezed,
     Object? name = freezed,
     Object? lastname = freezed,
-    Object? avatar = freezed,
     Object? phone = freezed,
     Object? login = freezed,
     Object? dateOfBirth = freezed,
     Object? file = freezed,
+    Object? images = null,
   }) {
     return _then(_$UserEntityImpl(
       id: null == id
@@ -177,10 +177,6 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value.lastname
           : lastname // ignore: cast_nullable_to_non_nullable
               as String?,
-      avatar: freezed == avatar
-          ? _value.avatar
-          : avatar // ignore: cast_nullable_to_non_nullable
-              as String?,
       phone: freezed == phone
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
@@ -192,11 +188,15 @@ class __$$UserEntityImplCopyWithImpl<$Res>
       dateOfBirth: freezed == dateOfBirth
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as DateTime?,
       file: freezed == file
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
               as File?,
+      images: null == images
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<CustomFile>,
     ));
   }
 }
@@ -209,11 +209,12 @@ class _$UserEntityImpl implements _UserEntity {
       this.email,
       this.name,
       this.lastname,
-      this.avatar,
       this.phone,
       this.login,
       this.dateOfBirth,
-      this.file});
+      this.file,
+      final List<CustomFile> images = const []})
+      : _images = images;
 
   @override
   final int id;
@@ -224,19 +225,25 @@ class _$UserEntityImpl implements _UserEntity {
   @override
   final String? lastname;
   @override
-  final String? avatar;
-  @override
   final String? phone;
   @override
   final String? login;
   @override
-  final int? dateOfBirth;
+  final DateTime? dateOfBirth;
   @override
   final File? file;
+  final List<CustomFile> _images;
+  @override
+  @JsonKey()
+  List<CustomFile> get images {
+    if (_images is EqualUnmodifiableListView) return _images;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_images);
+  }
 
   @override
   String toString() {
-    return 'UserEntity(id: $id, email: $email, name: $name, lastname: $lastname, avatar: $avatar, phone: $phone, login: $login, dateOfBirth: $dateOfBirth, file: $file)';
+    return 'UserEntity(id: $id, email: $email, name: $name, lastname: $lastname, phone: $phone, login: $login, dateOfBirth: $dateOfBirth, file: $file, images: $images)';
   }
 
   @override
@@ -249,17 +256,17 @@ class _$UserEntityImpl implements _UserEntity {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.lastname, lastname) ||
                 other.lastname == lastname) &&
-            (identical(other.avatar, avatar) || other.avatar == avatar) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.login, login) || other.login == login) &&
             (identical(other.dateOfBirth, dateOfBirth) ||
                 other.dateOfBirth == dateOfBirth) &&
-            (identical(other.file, file) || other.file == file));
+            (identical(other.file, file) || other.file == file) &&
+            const DeepCollectionEquality().equals(other._images, _images));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, email, name, lastname,
-      avatar, phone, login, dateOfBirth, file);
+  int get hashCode => Object.hash(runtimeType, id, email, name, lastname, phone,
+      login, dateOfBirth, file, const DeepCollectionEquality().hash(_images));
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -276,11 +283,11 @@ abstract class _UserEntity implements UserEntity {
       final String? email,
       final String? name,
       final String? lastname,
-      final String? avatar,
       final String? phone,
       final String? login,
-      final int? dateOfBirth,
-      final File? file}) = _$UserEntityImpl;
+      final DateTime? dateOfBirth,
+      final File? file,
+      final List<CustomFile> images}) = _$UserEntityImpl;
 
   @override
   int get id;
@@ -291,15 +298,15 @@ abstract class _UserEntity implements UserEntity {
   @override
   String? get lastname;
   @override
-  String? get avatar;
-  @override
   String? get phone;
   @override
   String? get login;
   @override
-  int? get dateOfBirth;
+  DateTime? get dateOfBirth;
   @override
   File? get file;
+  @override
+  List<CustomFile> get images;
 
   /// Create a copy of UserEntity
   /// with the given fields replaced by the non-null parameter values.

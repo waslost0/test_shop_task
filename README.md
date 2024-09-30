@@ -10,7 +10,7 @@ Flutter Test Task
 - [x] Profile Page
 - [x] Edit fields
 - [x] Edit avatar
-- [ ] Miltiple avatars
+- [x] Miltiple avatars
 - [ ] Sliver 
 - [ ] Phone country code 
 - [x] Validation 
@@ -29,7 +29,7 @@ Flutter Test Task
 - [x] Product Name
 - [x] Product Price
 - [x] Product Description
-- [ ] Product Search
+- [x] Product Search
 - [ ] Select weight
 - [ ] Select volume
 - [ ] Select volume on grid (why)?

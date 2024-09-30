@@ -19,7 +19,7 @@ _$ProductImpl _$$ProductImplFromJson(Map<String, dynamic> json) =>
           ? false
           : const BoolJsonConverter().fromJson(json['isFavorite']),
       images: (json['images'] as List<dynamic>?)
-              ?.map((e) => e as String)
+              ?.map((e) => CustomFile.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
     );

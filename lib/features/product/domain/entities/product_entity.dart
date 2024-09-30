@@ -1,6 +1,7 @@
 import 'package:drift/drift.dart' as drift;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:test_shop_task/core/database/database.dart';
+import 'package:test_shop_task/core/model/custom_file.dart';
 
 part 'product_entity.freezed.dart';
 
@@ -13,7 +14,7 @@ class ProductEntity with _$ProductEntity {
     String? productDescription,
     double? price,
     @Default(false) bool isFavorite,
-    @Default([]) List<String> images,
+    @Default([]) List<CustomFile> images,
   }) = _ProductEntity;
 }
 

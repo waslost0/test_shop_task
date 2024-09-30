@@ -22,7 +22,7 @@ mixin _$ProductEntity {
   String? get productDescription => throw _privateConstructorUsedError;
   double? get price => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
-  List<String> get images => throw _privateConstructorUsedError;
+  List<CustomFile> get images => throw _privateConstructorUsedError;
 
   /// Create a copy of ProductEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -44,7 +44,7 @@ abstract class $ProductEntityCopyWith<$Res> {
       String? productDescription,
       double? price,
       bool isFavorite,
-      List<String> images});
+      List<CustomFile> images});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class _$ProductEntityCopyWithImpl<$Res, $Val extends ProductEntity>
       images: null == images
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<CustomFile>,
     ) as $Val);
   }
 }
@@ -118,7 +118,7 @@ abstract class _$$ProductEntityImplCopyWith<$Res>
       String? productDescription,
       double? price,
       bool isFavorite,
-      List<String> images});
+      List<CustomFile> images});
 }
 
 /// @nodoc
@@ -170,7 +170,7 @@ class __$$ProductEntityImplCopyWithImpl<$Res>
       images: null == images
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<CustomFile>,
     ));
   }
 }
@@ -185,7 +185,7 @@ class _$ProductEntityImpl implements _ProductEntity {
       this.productDescription,
       this.price,
       this.isFavorite = false,
-      final List<String> images = const []})
+      final List<CustomFile> images = const []})
       : _images = images;
 
   @override
@@ -201,10 +201,10 @@ class _$ProductEntityImpl implements _ProductEntity {
   @override
   @JsonKey()
   final bool isFavorite;
-  final List<String> _images;
+  final List<CustomFile> _images;
   @override
   @JsonKey()
-  List<String> get images {
+  List<CustomFile> get images {
     if (_images is EqualUnmodifiableListView) return _images;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
@@ -261,7 +261,7 @@ abstract class _ProductEntity implements ProductEntity {
       final String? productDescription,
       final double? price,
       final bool isFavorite,
-      final List<String> images}) = _$ProductEntityImpl;
+      final List<CustomFile> images}) = _$ProductEntityImpl;
 
   @override
   int get productId;
@@ -276,7 +276,7 @@ abstract class _ProductEntity implements ProductEntity {
   @override
   bool get isFavorite;
   @override
-  List<String> get images;
+  List<CustomFile> get images;
 
   /// Create a copy of ProductEntity
   /// with the given fields replaced by the non-null parameter values.

@@ -32,7 +32,7 @@ class CartListItem extends ConsumerWidget {
         GestureDetector(
           onTap: () => model.deleteItem(index),
           child: AspectRatio(
-            aspectRatio: 0.7,
+            aspectRatio: 0.6,
             child: Container(
               decoration: BoxDecoration(
                 color: AppColors.red,
@@ -109,14 +109,15 @@ class CartListItem extends ConsumerWidget {
   Widget _buildProductImage() {
     return SizedBox(
       width: 80,
+      height: 80,
       child: Container(
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: AppColors.black,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: SafeNetworkImage(
-          imageUrl: item.product?.imageUrl,
+        child: SafeNetworkImage.customFile(
+          image: item.product?.images.firstOrNull,
           fit: BoxFit.cover,
         ),
       ),

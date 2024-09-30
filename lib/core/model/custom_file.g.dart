@@ -11,8 +11,10 @@ _$CustomFileImpl _$$CustomFileImplFromJson(Map<String, dynamic> json) =>
       url: json['url'] as String?,
       blurHash: json['blurHash'] as String?,
       fileId: (json['fileId'] as num?)?.toInt(),
-      previewUrl: (json['previewUrl'] as num?)?.toInt(),
-      mimeType: (json['mimeType'] as num?)?.toInt(),
+      width: (json['width'] as num?)?.toInt(),
+      height: (json['height'] as num?)?.toInt(),
+      previewUrl: json['previewUrl'] as String?,
+      mimeType: json['mimeType'] as String?,
     );
 
 Map<String, dynamic> _$$CustomFileImplToJson(_$CustomFileImpl instance) =>
@@ -20,6 +22,8 @@ Map<String, dynamic> _$$CustomFileImplToJson(_$CustomFileImpl instance) =>
       'url': instance.url,
       'blurHash': instance.blurHash,
       'fileId': instance.fileId,
+      'width': instance.width,
+      'height': instance.height,
       'previewUrl': instance.previewUrl,
       'mimeType': instance.mimeType,
     };

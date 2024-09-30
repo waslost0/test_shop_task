@@ -52,8 +52,8 @@ class _ProductGridItemState extends ConsumerState<ProductGridItem> {
 
     return Padding(
       padding: const EdgeInsets.all(15.0),
-      child: SafeNetworkImage(
-        imageUrl: imageList.firstOrNull,
+      child: SafeNetworkImage.customFile(
+        image: imageList.firstOrNull,
         fit: BoxFit.contain,
       ),
     );
