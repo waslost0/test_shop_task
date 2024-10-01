@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:test_shop_task/core/theme/app_colors.dart';
@@ -26,6 +27,15 @@ final elevatedButtonGrayStyle = ElevatedButton.styleFrom(
   ),
   elevation: 0,
 );
+
+class AppScrollBehavior extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
+}
 
 /// Класс для формирования "визуальной темы" приложения
 /// - внешний вид текстов

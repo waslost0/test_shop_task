@@ -36,6 +36,7 @@ class AppState extends ConsumerState<App> {
     ref.watch(appModelProvider);
     final router = ref.watch(routerProvider);
     return MaterialApp.router(
+      scrollBehavior: AppScrollBehavior(),
       title: "Shop",
       routerConfig: router,
       key: appNavigator.materialAppKey,
