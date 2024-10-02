@@ -132,7 +132,8 @@ class _ProductGridItemState extends ConsumerState<ProductGridItem> {
       },
       child: const Icon(
         Icons.shopping_cart,
-        size: 18,
+        size: 15,
+        color: AppColors.white,
       ),
     );
   }

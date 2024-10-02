@@ -71,7 +71,10 @@ class ProductCounterWidget extends StatelessWidget {
       child: ElevatedButton(
         style: style ?? activeStyle,
         onPressed: onPressed,
-        child: Icon(icon),
+        child: Icon(
+          icon,
+          color: AppColors.white,
+        ),
       ),
     );
   }
