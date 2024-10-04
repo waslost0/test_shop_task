@@ -41,43 +41,72 @@ class DbLogInterceptor extends QueryInterceptor {
 
   @override
   Future<void> runBatched(
-      QueryExecutor executor, BatchedStatements statements) {
+    QueryExecutor executor,
+    BatchedStatements statements,
+  ) {
     return _run(
-        'batch with $statements', () => executor.runBatched(statements));
+      'batch with $statements',
+      () => executor.runBatched(statements),
+    );
   }
 
   @override
   Future<int> runInsert(
-      QueryExecutor executor, String statement, List<Object?> args) {
+    QueryExecutor executor,
+    String statement,
+    List<Object?> args,
+  ) {
     return _run(
-        '$statement with $args', () => executor.runInsert(statement, args));
+      '$statement with $args',
+      () => executor.runInsert(statement, args),
+    );
   }
 
   @override
   Future<int> runUpdate(
-      QueryExecutor executor, String statement, List<Object?> args) {
+    QueryExecutor executor,
+    String statement,
+    List<Object?> args,
+  ) {
     return _run(
-        '$statement with $args', () => executor.runUpdate(statement, args));
+      '$statement with $args',
+      () => executor.runUpdate(statement, args),
+    );
   }
 
   @override
   Future<int> runDelete(
-      QueryExecutor executor, String statement, List<Object?> args) {
+    QueryExecutor executor,
+    String statement,
+    List<Object?> args,
+  ) {
     return _run(
-        '$statement with $args', () => executor.runDelete(statement, args));
+      '$statement with $args',
+      () => executor.runDelete(statement, args),
+    );
   }
 
   @override
   Future<void> runCustom(
-      QueryExecutor executor, String statement, List<Object?> args) {
+    QueryExecutor executor,
+    String statement,
+    List<Object?> args,
+  ) {
     return _run(
-        '$statement with $args', () => executor.runCustom(statement, args));
+      '$statement with $args',
+      () => executor.runCustom(statement, args),
+    );
   }
 
   @override
   Future<List<Map<String, Object?>>> runSelect(
-      QueryExecutor executor, String statement, List<Object?> args) {
+    QueryExecutor executor,
+    String statement,
+    List<Object?> args,
+  ) {
     return _run(
-        '$statement with $args', () => executor.runSelect(statement, args));
+      '$statement with $args',
+      () => executor.runSelect(statement, args),
+    );
   }
 }

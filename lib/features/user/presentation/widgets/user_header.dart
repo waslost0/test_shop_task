@@ -25,7 +25,7 @@ class _UserHeaderState extends State<UserHeader> {
   );
 
   double dotWidth(BuildContext context) {
-    return ((MediaQuery.of(context).size.width - 10) -
+    return ((MediaQuery.sizeOf(context).width - 10) -
             UserHeader.dotSpacing * (widget.user.images.length - 1)) /
         widget.user.images.length;
   }
@@ -35,9 +35,8 @@ class _UserHeaderState extends State<UserHeader> {
     return Stack(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.width * 0.8,
+          height: MediaQuery.sizeOf(context).width * 0.8,
           child: PageView.builder(
-
             controller: controller,
             itemCount: widget.user.images.length,
             itemBuilder: (BuildContext context, int index) {
@@ -51,7 +50,7 @@ class _UserHeaderState extends State<UserHeader> {
         Positioned(
           left: 5,
           right: 5,
-          top: MediaQuery.of(context).viewPadding.top + 5,
+          top: MediaQuery.viewPaddingOf(context).top + 5,
           child: buildPageIndicator(context),
         ),
         Positioned(

@@ -189,7 +189,7 @@ class ProfilePageState extends BasePageState<ProfilePage> {
       highlightColor: Colors.white10,
       onTap: () => Clipboard.setData(ClipboardData(text: title)),
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.sizeOf(context).width,
         padding: horizontalPadding.copyWith(top: 10, bottom: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
