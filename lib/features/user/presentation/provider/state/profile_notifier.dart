@@ -22,7 +22,9 @@ class ProfileProvider extends StateNotifier<ProfileState> {
     state = await response.fold(
       (failure) => Failure(failure),
       (result) {
-        ref.read(appUserProvider).user = result;
+        ref.read(appUserProvider).user = result.copyWith(
+          images: result.images.reversed.toList(),
+        );
         return Success(result);
       },
     );

@@ -54,8 +54,7 @@ class SafeNetworkImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if ((type.isNetwork && imageUrl == null) ||
-        (type.isCustomFile && customFile?.url == null)) {
+    if (type.isNetwork && imageUrl == null) {
       return Image.asset(
         placeholder,
         fit: placeholderFit,
