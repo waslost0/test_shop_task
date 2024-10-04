@@ -36,14 +36,12 @@ class AuthByPhonePageState extends BaseFormPageState<AuthByPhonePage>
           decoration: const InputDecoration(
             hintText: '+7 (988) 756-55-55',
           ),
-          onFieldSubmitted: (value) => trySubmitForm(context),
+          onFieldSubmitted: (value) => trySubmitForm(),
           validator: validatePhone,
         ),
         const SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () {
-            trySubmitForm(context);
-          },
+          onPressed: () => trySubmitForm(),
           child: const Text('Отправить СМС код'),
         ),
       ],

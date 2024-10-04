@@ -105,18 +105,23 @@ class ProfilePageState extends BasePageState<ProfilePage> {
     }
     return Stack(
       children: [
-        RefreshIndicator(
-          onRefresh: () => model.loginProfile(),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 16),
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                if (state is Success) buildContent(context),
-              ],
+        if (state is Failure)
+          Center(
+            child: Text(state.exception.message!),
+          )
+        else
+          RefreshIndicator(
+            onRefresh: () => model.loadProfile(),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.only(bottom: 16),
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  if (state is Success) buildContent(context),
+                ],
+              ),
             ),
           ),
-        ),
         Positioned(
           top: 10,
           right: 0,
@@ -226,7 +231,7 @@ class ProfilePageState extends BasePageState<ProfilePage> {
       onNegativeButtonPressed: (context) => context.pop(false),
       onPositiveButtonPressed: (context) {
         context.pop(true);
-        ref.read(appModelProvider).logout();
+        ref.read(appModelProvider.notifier).logout();
       },
     );
   }

@@ -31,7 +31,3 @@ final routerProvider = Provider((ref) {
     routes: $appRoutes,
   );
 });
-
-extension GoRouterX on GoRouter {
-  String get currentPath => routerDelegate.currentConfiguration.fullPath;
-}

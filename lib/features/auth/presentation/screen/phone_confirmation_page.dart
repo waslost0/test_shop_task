@@ -37,7 +37,7 @@ class PhoneConfirmationFormPageState
         buildPhoneCodeRow(context),
         const SizedBox(height: 16),
         ElevatedButton(
-          onPressed: () => trySubmitForm(context),
+          onPressed: () => trySubmitForm(),
           child: const Text('Войти'),
         ),
       ],
@@ -58,7 +58,7 @@ class PhoneConfirmationFormPageState
         hintText: 'Введите код',
       ),
       validator: validateCode,
-      onFieldSubmitted: (value) => trySubmitForm(context),
+      onFieldSubmitted: (value) => trySubmitForm(),
       autofillHints: const [AutofillHints.oneTimeCode],
     );
   }

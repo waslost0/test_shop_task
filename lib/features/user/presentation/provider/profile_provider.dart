@@ -10,6 +10,6 @@ final profileProvider =
     return ProfileProvider(
       getIt<LoadProfileUseCase>(),
       ref,
-    )..loginProfile();
+    )..loadProfile();
   },
 );
