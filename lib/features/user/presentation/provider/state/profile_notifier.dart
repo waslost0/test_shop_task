@@ -13,7 +13,7 @@ class ProfileProvider extends StateNotifier<ProfileState> {
     this.ref,
   ) : super(const Loading());
 
-  Future<void> loginProfile() async {
+  Future<void> loadProfile() async {
     state = const ProfileState.loading();
     final response = await _loadProfileUseCase.call(
       NoParams(),

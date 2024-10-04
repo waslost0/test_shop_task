@@ -11,8 +11,4 @@ abstract class UserRemoteDataSource {
   Future<User> profile();
 
   Future<User> changeProfile(UserEntity user);
-
-  Future<bool> logout();
-
-  Future<bool> deleteAccount();
 }

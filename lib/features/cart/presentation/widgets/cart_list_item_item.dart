@@ -117,7 +117,7 @@ class CartListItem extends ConsumerWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         child: SafeNetworkImage.customFile(
-          image: item.product?.images.firstOrNull,
+          customFile: item.product?.images.firstOrNull,
           fit: BoxFit.cover,
         ),
       ),

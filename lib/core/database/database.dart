@@ -12,14 +12,23 @@ import 'package:universal_io/io.dart';
 
 part 'database.g.dart';
 
+/// Singleton class representing the application's database using Drift.
+///
+/// This class defines the database schema, including tables for products and cart items.
 @Singleton()
 @DriftDatabase(tables: [ProductTable, CartItemTable])
 class AppDatabase extends _$AppDatabase {
+  /// Constructor initializes the database connection.
   AppDatabase() : super(_openConnection());
 
+  /// Returns the schema version of the database.
   @override
   int get schemaVersion => 1;
 
+  /// Opens a connection to the database.
+  ///
+  /// Determines the database path based on the platform (Windows, macOS, Linux, or others).
+  /// Uses DriftNativeOptions for native platforms and provides a custom path to the 'sqlite3.so' file.
   static QueryExecutor _openConnection() {
     String? dataBasePath;
     if (Platform.isWindows || Platform.isMacOS || Platform.isLinux) {

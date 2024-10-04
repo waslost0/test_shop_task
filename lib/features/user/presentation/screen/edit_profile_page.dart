@@ -115,7 +115,7 @@ class EditProfilePageState extends BaseFormPageState<EditProfilePage>
 
   Widget _buildSubmitButton() {
     return ElevatedButton(
-      onPressed: () => trySubmitForm(context),
+      onPressed: () => trySubmitForm(),
       child: const Text('Сохранить'),
     );
   }

@@ -30,17 +30,4 @@ class AppTextStyle {
     color: AppColors.defaultText,
     fontWeight: FontWeight.normal,
   );
-
-  static const TextStyle hyperLink = TextStyle(
-    fontSize: 12,
-    decoration: TextDecoration.underline,
-    decorationColor: AppColors.primaryColor,
-    shadows: [
-      Shadow(
-        color: AppColors.primaryColor,
-        offset: Offset(0, -1),
-      ),
-    ],
-    color: Colors.transparent,
-  );
 }

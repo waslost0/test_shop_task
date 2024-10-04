@@ -117,7 +117,7 @@ class FullscreenPhotoPageState extends State<FullscreenPhotoPage>
         ExtendedImageSlidePageState? state,
         ScaleEndDetails? details,
       }) {
-        final size = MediaQuery.of(context).size;
+        final size = MediaQuery.sizeOf(context);
         return offset.dy.abs() > (size.height / 5.5);
       },
       slideScaleHandler: (Offset offset, {ExtendedImageSlidePageState? state}) {

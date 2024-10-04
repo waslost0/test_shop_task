@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:test_shop_task/core/api/dio_network_service.dart';
 import 'package:test_shop_task/features/auth/domain/repositories/auth_repository.dart';
 
+/// [PrivateApi] class for authorized request
 @injectable
 class PrivateApi extends DioNetworkService {
   bool shouldLogRequest = true;

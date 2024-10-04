@@ -17,10 +17,4 @@ abstract class RegisterModule {
 
   @singleton
   Talker get talker => Talker();
-
-// @singleton
-// InternetConnectionChecker get internetConnectionChecker;
-//
-// @singleton
-// Connectivity get connectivity;
 }
