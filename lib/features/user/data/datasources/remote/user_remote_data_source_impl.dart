@@ -11,18 +11,6 @@ class UserRemoteDataSourceImpl implements UserRemoteDataSource {
   );
 
   @override
-  Future<bool> deleteAccount() {
-    // TODO: implement deleteAccount
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<bool> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
-  }
-
-  @override
   Future<User> profile() async {
     final response = await _appHttpService.get(
       'user/profile',
