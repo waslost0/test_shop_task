@@ -42,7 +42,7 @@ class _UserHeaderState extends State<UserHeader> {
             itemBuilder: (BuildContext context, int index) {
               var item = widget.user.images[index];
               return SafeNetworkImage.customFile(
-                image: item,
+                customFile: item,
               );
             },
           ),

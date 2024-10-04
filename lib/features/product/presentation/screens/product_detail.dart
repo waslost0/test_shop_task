@@ -115,7 +115,7 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
     final state = ref.read(productDetailProvider(widget.productId)) as Success;
     if (state.product.images.length < 2) {
       return SafeNetworkImage.customFile(
-        image: state.product.images.firstOrNull,
+        customFile: state.product.images.firstOrNull,
       );
     }
     return PageView.builder(
@@ -138,7 +138,7 @@ class ProductDetailPageState extends BasePageState<ProductDetailPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: SafeNetworkImage.customFile(
-              image: image,
+              customFile: image,
               fit: BoxFit.contain,
             ),
           ),

@@ -5,7 +5,15 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_blurhash/flutter_blurhash.dart';
 import 'package:test_shop_task/core/model/custom_file.dart';
 import 'package:test_shop_task/core/theme/assets_catalog.dart';
-import 'package:universal_io/io.dart';
+
+enum SafeNetworkImageType {
+  network,
+  customFile;
+
+  bool get isNetwork => this == network;
+
+  bool get isCustomFile => this == customFile;
+}
 
 class SafeNetworkImage extends StatelessWidget {
   final String? imageUrl;
@@ -14,11 +22,11 @@ class SafeNetworkImage extends StatelessWidget {
   final int? decodingWidth;
   final int? decodingHeight;
 
-  final CustomFile? image;
-  final File? imageFile;
+  final CustomFile? customFile;
 
   final BoxFit fit;
   final BoxFit placeholderFit;
+  final SafeNetworkImageType type;
 
   const SafeNetworkImage({
     super.key,
@@ -26,47 +34,45 @@ class SafeNetworkImage extends StatelessWidget {
     this.placeholder = AssetsCatalog.placeholder,
     this.fit = BoxFit.cover,
     this.placeholderFit = BoxFit.cover,
-  })  : image = null,
+  })  : type = SafeNetworkImageType.network,
+        customFile = null,
         blurHash = null,
-        imageFile = null,
         decodingWidth = null,
         decodingHeight = null;
 
   SafeNetworkImage.customFile({
-    required this.image,
+    required this.customFile,
     super.key,
     this.placeholder = AssetsCatalog.placeholder,
     this.fit = BoxFit.cover,
     this.placeholderFit = BoxFit.cover,
     this.decodingWidth,
     this.decodingHeight,
-  })  : imageUrl = image?.url,
-        imageFile = null,
-        blurHash = image?.blurHash;
-
-  const SafeNetworkImage.file({
-    required this.imageFile,
-    super.key,
-    this.placeholder = AssetsCatalog.placeholder,
-    this.fit = BoxFit.cover,
-    this.placeholderFit = BoxFit.cover,
-    this.blurHash,
-    this.image,
-  })  : imageUrl = null,
-        decodingWidth = null,
-        decodingHeight = null;
+  })  : type = SafeNetworkImageType.customFile,
+        imageUrl = customFile?.url,
+        blurHash = customFile?.blurHash;
 
   @override
   Widget build(BuildContext context) {
-    if (imageUrl?.isEmpty ?? true) {
+    if ((type.isNetwork && imageUrl == null) ||
+        (type.isCustomFile && customFile?.url == null)) {
       return Image.asset(
         placeholder,
         fit: placeholderFit,
         colorBlendMode: BlendMode.color,
       );
     }
+
+    if (type.isCustomFile && customFile?.file != null) {
+      return ExtendedImage.file(
+        customFile!.file!,
+        fit: fit,
+        loadStateChanged: onLoadStateChanged,
+      );
+    }
+
     return ExtendedImage.network(
-      imageUrl ?? '',
+      customFile?.url ?? imageUrl ?? '',
       fit: fit,
       loadStateChanged: onLoadStateChanged,
     );
