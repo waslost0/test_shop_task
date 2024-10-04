@@ -51,7 +51,7 @@ class ThemeBuilder {
 
   static SystemUiOverlayStyle get systemUiOverlayStyle =>
       const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
+        statusBarColor: Colors.white,
         statusBarBrightness: Brightness.light,
         statusBarIconBrightness: Brightness.dark,
       );
