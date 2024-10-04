@@ -1,6 +1,36 @@
 # test_shop_task
+## Flutter Test Task
 
-Flutter Test Task
+
+#### Flutter App Screenshots
+
+<table>
+  <tr>
+    <td>Auth by phone</td>
+    <td>Code confirm</td>
+    <td>Profile</td>
+    <td>Catalog</td>
+  </tr>
+  <tr>
+    <td><img src="git_asset/preview_6.png" width=270></td>
+    <td><img src="git_asset/preview_7.png" width=270></td>
+    <td><img src="git_asset/preview_5.png" width=270></td>
+    <td><img src="git_asset/preview.png" width=270></td>
+  </tr>
+  <tr>
+    <td>Product List</td>
+    <td>Product Detail</td>
+    <td>Full screen photo view</td>
+    <td>Shopping Cart</td>
+  </tr>
+  <tr>
+    <td><img src="git_asset/preview_2.png" width=270></td>
+    <td><img src="git_asset/preview_1.png" width=270></td>
+    <td><img src="git_asset/preview_3.png" width=270></td>
+    <td><img src="git_asset/preview_4.png" width=270></td>
+  </tr>
+ </table>
+
 
 ## Checklist
 
